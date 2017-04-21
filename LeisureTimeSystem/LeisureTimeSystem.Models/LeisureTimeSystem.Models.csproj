@@ -64,10 +64,14 @@
   <ItemGroup>
     <Compile Include="Attributes\UniqueAttribute.cs" />
     <Compile Include="EntityModels\Address.cs" />
+    <Compile Include="EntityModels\AbstractClasses\ContactableObject.cs" />
     <Compile Include="EntityModels\ApplicationUser.cs" />
     <Compile Include="EntityModels\Category.cs" />
     <Compile Include="EntityModels\Course.cs" />
     <Compile Include="EntityModels\Discipline.cs" />
+    <Compile Include="EntityModels\Interfaces\IContactableObject.cs" />
+    <Compile Include="EntityModels\Interfaces\INameableObject.cs" />
+    <Compile Include="EntityModels\AbstractClasses\NameableObject.cs" />
     <Compile Include="EntityModels\Organization.cs" />
     <Compile Include="EntityModels\Student.cs" />
     <Compile Include="EntityModels\CourseApplicationData.cs" />
