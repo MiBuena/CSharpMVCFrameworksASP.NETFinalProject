@@ -62,7 +62,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Attributes\UniqueAttribute.cs" />
+    <Compile Include="Attributes\EndDateAttribute.cs" />
+    <Compile Include="Attributes\StartDateAttribute.cs" />
+    <Compile Include="Constants\Constatnts.cs" />
     <Compile Include="EntityModels\Address.cs" />
     <Compile Include="EntityModels\AbstractClasses\ContactableObject.cs" />
     <Compile Include="EntityModels\ApplicationUser.cs" />

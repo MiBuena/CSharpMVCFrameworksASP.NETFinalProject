@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using LeisureTimeSystem.Models.EntityModels.AbstractClasses;
+using Microsoft.Build.Framework;
 
 namespace LeisureTimeSystem.Models.EntityModels
 {
@@ -11,6 +12,7 @@ namespace LeisureTimeSystem.Models.EntityModels
     {
         public int Id { get; set; }
 
+        [Required]
         public virtual Category Category { get; set; }
     }
 }

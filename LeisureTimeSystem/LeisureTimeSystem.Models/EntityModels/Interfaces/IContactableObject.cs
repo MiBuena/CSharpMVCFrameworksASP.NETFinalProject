@@ -10,7 +10,7 @@ namespace LeisureTimeSystem.Models.EntityModels.Interfaces
     {
         string Website { get; set; }
 
-        string Emails { get; set; }
+        string DisplayEmail { get; set; }
 
         string Telephones { get; set; }
 

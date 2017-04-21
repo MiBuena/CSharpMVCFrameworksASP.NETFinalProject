@@ -2,6 +2,7 @@ using System.Globalization;
 using System.Runtime.Remoting.Contexts;
 using LeisureTimeSystem.Data.Migrations;
 using LeisureTimeSystem.Models.EntityModels;
+using LeisureTimeSystem.Models.EntityModels.AbstractClasses;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace LeisureTimeSystem.Data
