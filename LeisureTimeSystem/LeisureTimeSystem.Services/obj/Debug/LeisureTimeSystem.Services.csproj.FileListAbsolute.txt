@@ -1,0 +1,4 @@
+C:\Users\ff\Documents\MVCFinalProject\ASP.NET_MVC_FinalProject\LeisureTimeSystem\LeisureTimeSystem.Services\bin\Debug\LeisureTimeSystem.Services.dll
+C:\Users\ff\Documents\MVCFinalProject\ASP.NET_MVC_FinalProject\LeisureTimeSystem\LeisureTimeSystem.Services\bin\Debug\LeisureTimeSystem.Services.pdb
+C:\Users\ff\Documents\MVCFinalProject\ASP.NET_MVC_FinalProject\LeisureTimeSystem\LeisureTimeSystem.Services\obj\Debug\LeisureTimeSystem.Services.dll
+C:\Users\ff\Documents\MVCFinalProject\ASP.NET_MVC_FinalProject\LeisureTimeSystem\LeisureTimeSystem.Services\obj\Debug\LeisureTimeSystem.Services.pdb
