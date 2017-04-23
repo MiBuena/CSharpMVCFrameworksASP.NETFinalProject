@@ -14,7 +14,6 @@ namespace LeisureTimeSystem.Models.EntityModels
     {
         public Student()
         {
-            this.AllCourseApplicationsSubmittedByThisUser = new HashSet<CourseApplicationData>();
             this.AllCourseApplicationsAsAStudent = new HashSet<CourseApplicationData>();
             this.OrganizationsTheyRepresent = new HashSet<Organization>();
         }
@@ -29,10 +28,6 @@ namespace LeisureTimeSystem.Models.EntityModels
         public string UserId { get; set; }
 
         public virtual ApplicationUser User { get; set; }
-
-        //This collection contains all courses the user made an application for themselves or for another person
-        [InverseProperty("ApplicationMaker")]
-        public virtual ICollection<CourseApplicationData> AllCourseApplicationsSubmittedByThisUser { get; set; }
 
         //This collection contains all courses the user has applied to
         [InverseProperty("Student")]

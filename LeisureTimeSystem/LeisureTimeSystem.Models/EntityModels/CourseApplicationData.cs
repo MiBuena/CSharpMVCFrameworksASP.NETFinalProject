@@ -16,18 +16,12 @@ namespace LeisureTimeSystem.Models.EntityModels
 
         public virtual Course Course { get; set; }
 
-
         [ForeignKey("Student")]
         [Key, Column(Order = 1)]
         public int StudentId { get; set; }
 
         public virtual Student Student { get; set; }
 
-
-        [ForeignKey("ApplicationMaker")]
-        public int ApplicationMakerId { get; set; }
-
-        public virtual Student ApplicationMaker { get; set; }
 
         public bool IsApplicationApproved { get; set; }
     }

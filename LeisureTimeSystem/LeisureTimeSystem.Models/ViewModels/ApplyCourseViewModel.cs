@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using LeisureTimeSystem.Models.Attributes;
-using LeisureTimeSystem.Models.EntityModels;
 
 namespace LeisureTimeSystem.Models.ViewModels
 {
-    public class CourseViewModel
+    public class ApplyCourseViewModel
     {
         public int Id { get; set; }
 
@@ -20,12 +17,6 @@ namespace LeisureTimeSystem.Models.ViewModels
         public DateTime StartDate { get; set; }
 
         public DateTime EndDate { get; set; }
-
-        public DateTime SubscriptionDeadLine { get; set; }
-
-        public bool CanStudentsSignUp { get; set; }
-
-        public string DisciplineName { get; set; }
 
         public string OrganizationName { get; set; }
     }

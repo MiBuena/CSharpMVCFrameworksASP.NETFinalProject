@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using LeisureTimeSystem.Services.Services;
+using Microsoft.AspNet.Identity;
 
 namespace LeisureTimeSystem.Controllers
 {
@@ -22,9 +23,13 @@ namespace LeisureTimeSystem.Controllers
             return View(courses);
         }
 
-        //public ActionResult ApplyPersonally(int course)
-        //{
-        //    var currentUser = 
-        //}
+        public ActionResult Apply(int courseId)
+        {
+            string currentUserId = User.Identity.GetUserId();
+
+            var applyViewModel = this.service.GetApplyViewModel(courseId, currentUserId);
+
+            return View(applyViewModel);
+        }
     }
 }

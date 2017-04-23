@@ -1,0 +1,82 @@
+﻿@model LeisureTimeSystem.Models.ViewModels.ApplyViewModel
+
+@{
+    ViewBag.Title = "Apply";
+}
+
+<h2>Apply</h2>
+
+
+
+@using (Html.BeginForm())
+{
+    <table>
+        <tr>
+            <th>
+                @Html.LabelFor(x => x.ApplyCourseViewModel.Name)
+            </th>
+
+            <td>
+                @Html.EditorFor(model => model.ApplyCourseViewModel.Name, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.ApplyCourseViewModel.Name, "", new {@class = "text-danger"})
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.LabelFor(model => model.ApplyCourseViewModel.Description)
+            </th>
+
+            <td>
+                @Html.EditorFor(model => model.ApplyCourseViewModel.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ApplyCourseViewModel.Description, "", new { @class = "text-danger" })
+
+            </td>
+        </tr>
+
+        <tr>
+            <th>
+                @Html.LabelFor(model => model.ApplyCourseViewModel.StartDate)
+            </th>
+
+            <td>
+                @Html.EditorFor(model => model.ApplyCourseViewModel.StartDate, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                @Html.ValidationMessageFor(model => model.ApplyCourseViewModel.StartDate, "", new { @class = "text-danger" })
+
+
+            </td>
+        </tr>
+
+        <tr>
+            <th>
+                @Html.LabelFor(model => model.ApplyCourseViewModel.EndDate)
+            </th>
+
+            <td>
+                @Html.EditorFor(model => model.ApplyCourseViewModel.EndDate, new {htmlAttributes = new {@class = "form-control", @type = "date"}})
+                @Html.ValidationMessageFor(model => model.ApplyCourseViewModel.EndDate, "", new {@class = "text-danger"})
+            </td>
+        </tr>
+
+        <tr>
+            <th>
+                @Html.LabelFor(model => model.ApplyCourseViewModel.OrganizationName)
+            </th>
+
+            <td>
+                @Html.EditorFor(model => model.ApplyCourseViewModel.OrganizationName, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                @Html.ValidationMessageFor(model => model.ApplyCourseViewModel.EndDate, "", new { @class = "text-danger" })
+
+
+            </td>
+        </tr>
+
+
+
+    </table>
+
+    <div class="form-group">
+        <input type="submit">
+    </div>
+
+}
+

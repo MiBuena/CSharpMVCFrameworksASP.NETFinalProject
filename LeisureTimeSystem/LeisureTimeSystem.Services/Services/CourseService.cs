@@ -13,11 +13,30 @@ namespace LeisureTimeSystem.Services.Services
     {
         public IEnumerable<CourseViewModel> GetCourseViewModels(int disciplineId)
         {
-            IEnumerable<Course> courses = this.Context.Courses.Where(x=>x.Discipline.Id == disciplineId).ToList();
+            IEnumerable<Course> courses = this.Context.Courses.Where(x => x.Discipline.Id == disciplineId).ToList();
 
             var courseViewModels = Mapper.Map<IEnumerable<Course>, IEnumerable<CourseViewModel>>(courses);
 
             return courseViewModels;
+        }
+
+        public ApplyViewModel GetApplyViewModel(int courseId, string userId)
+        {
+            var course = this.Context.Courses.Find(courseId);
+
+            var student = this.Context.Students.FirstOrDefault(x => x.UserId == userId);
+
+            ApplyCourseViewModel applyCourseViewModel = Mapper.Map<Course, ApplyCourseViewModel>(course);
+
+            ApplyStudentViewModel applyStudentViewModel = Mapper.Map<Student, ApplyStudentViewModel>(student);
+
+            ApplyViewModel vm = new ApplyViewModel()
+            {
+                ApplyCourseViewModel = applyCourseViewModel,
+                ApplyStudentViewModel = applyStudentViewModel,
+            };
+
+            return vm;
         }
 
         public void SignUp(int courseId, int studentId)
@@ -26,7 +45,6 @@ namespace LeisureTimeSystem.Services.Services
 
             course.CoursesSubscriptionData.Add(new CourseApplicationData()
             {
-                ApplicationMakerId = studentId,
                 CourseId = courseId,
                 StudentId = studentId
             });

@@ -87,6 +87,8 @@
     <Compile Include="ViewModels\Account\ResetPasswordViewModel.cs" />
     <Compile Include="ViewModels\Account\SendCodeViewModel.cs" />
     <Compile Include="ViewModels\Account\VerifyCodeViewModel.cs" />
+    <Compile Include="ViewModels\ApplyCourseViewModel.cs" />
+    <Compile Include="ViewModels\ApplyViewModel.cs" />
     <Compile Include="ViewModels\CategoryViewModel.cs" />
     <Compile Include="ViewModels\CourseViewModel.cs" />
     <Compile Include="ViewModels\DisciplineViewModel.cs" />
@@ -99,6 +101,7 @@
     <Compile Include="ViewModels\Manage\SetPasswordViewModel.cs" />
     <Compile Include="ViewModels\Manage\VerifyPhoneNumberViewModel.cs" />
     <Compile Include="ViewModels\NavbarViewModel.cs" />
+    <Compile Include="ViewModels\ApplyStudentViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="BidningModels\" />

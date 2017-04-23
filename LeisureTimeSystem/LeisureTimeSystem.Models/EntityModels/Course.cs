@@ -60,6 +60,8 @@ namespace LeisureTimeSystem.Models.EntityModels
 
         public virtual Discipline Discipline { get; set; }
 
+        public virtual Organization Organization { get; set; }
+
         public virtual ICollection<CourseApplicationData> CoursesSubscriptionData { get; set; }
 
     }

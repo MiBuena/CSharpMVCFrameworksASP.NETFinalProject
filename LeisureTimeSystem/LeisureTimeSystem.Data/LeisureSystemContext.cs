@@ -50,11 +50,6 @@ namespace LeisureTimeSystem.Data
 .WithRequired(x => x.Student)
 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Student>()
-.HasMany(st => st.AllCourseApplicationsSubmittedByThisUser)
-.WithRequired(x => x.ApplicationMaker)
-.WillCascadeOnDelete(false);
-
             base.OnModelCreating(modelBuilder);
         }
     }
