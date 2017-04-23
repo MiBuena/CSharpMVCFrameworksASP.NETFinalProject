@@ -9,21 +9,31 @@
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">WebSiteName</a>
+                <div class="navbar-brand">@Html.ActionLink("Site Name", "Index", "Home") </div>
             </div>
             <ul class="nav navbar-nav">
                 @foreach (var vm in this.Model.MainCategoriesViewModels)
                 {
-                    <li class="dropdown">
-                        <button class="dropbtn">@vm.Name</button>
-                        <div class="dropdown-content">
-                            @foreach (var subcategory in vm.SubCategoryViewModels)
-                            {
-                                @Html.ActionLink(subcategory.Name, "ShowDisciplines", "Discipline", new {categoryId = subcategory.Id}, null)
-                            }
-                        </div>
-                    </li>
+                    if (vm.SubCategoryViewModels.Count == 0)
+                    {
+                        <li> @Html.ActionLink(@vm.Name, "ShowDisciplines", "Discipline", new { categoryId = vm.Id }, null)</li>
+                    }
+                    else
+                    {
+                        <li class="dropdown">
+                            <button class="dropbtn">@vm.Name</button>
+
+                            <div class="dropdown-content">
+                                @foreach (var subcategory in vm.SubCategoryViewModels)
+                                {
+                                    @Html.ActionLink(subcategory.Name, "ShowDisciplines", "Discipline", new { categoryId = subcategory.Id }, null)
+                                }
+                            </div>
+                        </li>
+                    }
                 }
+
+                <li>@Html.ActionLink("Articles", "Index", "Articles", new { area = "Blog" }, null)</li>
             </ul>
 
             @Html.Partial("_LoginPartial")

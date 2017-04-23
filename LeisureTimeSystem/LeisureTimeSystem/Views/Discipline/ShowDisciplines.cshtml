@@ -5,15 +5,17 @@
 
 <h2>ShowDisciplines</h2>
 
-<div class="dropdown">
+
 
     @foreach (var vm in this.Model)
     {
-        <button class="dropbtn">@vm.Name</button>
+        <div class="dropdown">
+            <button class="dropbtn">@vm.Name</button>
 
-        <div class="dropdown-content">
-            <a href="#">Organizations</a>
-            @Html.ActionLink("Courses", "DisciplineCourses", "Course", new { disciplineId = vm.Id}, null)
+            <div class="dropdown-content">
+                <a href="#">Organizations</a>
+                @Html.ActionLink("Courses", "DisciplineCourses", "Course", new { disciplineId = vm.Id }, null)
+            </div>
         </div>
     }
-</div>
+

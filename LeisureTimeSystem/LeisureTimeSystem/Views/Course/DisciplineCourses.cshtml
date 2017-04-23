@@ -50,13 +50,17 @@
             @Html.DisplayFor(modelItem => item.SubscriptionDeadLine)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DisciplineName)
+            @Html.DisplayFor(modelItem => item.OrganizationName)
         </td>
         <td>
 
             @if (item.CanStudentsSignUp)
             {
                 @Html.ActionLink("Apply", "Apply", "Course", new { courseId = item.Id }, null)
+            }
+            else
+            {
+                <p>No</p>
             }
         </td>
 

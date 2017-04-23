@@ -40,7 +40,7 @@ namespace LeisureTimeSystem.Models.EntityModels
             get { return this.subscriptionDeadLine; }
             set
             {
-                if (value >= this.EndDate || value < DateTime.Now)
+                if (value >= this.EndDate)
                 {
                     throw new ArgumentException("Subscription Deadline can not be later than the course's finish date");
                 }
