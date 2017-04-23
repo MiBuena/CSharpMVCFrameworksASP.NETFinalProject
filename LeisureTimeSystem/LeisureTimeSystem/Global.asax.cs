@@ -41,7 +41,9 @@ namespace LeisureTimeSystem
         m => m.MapFrom(course => course.Organization.Name));
 
 
-                expression.CreateMap<Student, ApplyStudentViewModel>();
+                expression.CreateMap<Student, ApplyStudentViewModel>()
+                                    .ForMember(student => student.Name,
+        m => m.MapFrom(student => student.Name));
 
             });
         }

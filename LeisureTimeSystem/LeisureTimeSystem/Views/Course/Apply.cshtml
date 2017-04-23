@@ -10,6 +10,10 @@
 
 @using (Html.BeginForm())
 {
+    @Html.Hidden("StudentId", this.Model.ApplyStudentViewModel.Id)
+
+    @Html.Hidden("CourseId", this.Model.ApplyCourseViewModel.Id)
+
     <table>
         <tr>
             <th>
@@ -17,7 +21,7 @@
             </th>
 
             <td>
-                @Html.EditorFor(model => model.ApplyCourseViewModel.Name, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.DisplayFor(model => model.ApplyCourseViewModel.Name, new {htmlAttributes = new {@class = "form-control"}})
                 @Html.ValidationMessageFor(model => model.ApplyCourseViewModel.Name, "", new {@class = "text-danger"})
             </td>
         </tr>
@@ -27,8 +31,8 @@
             </th>
 
             <td>
-                @Html.EditorFor(model => model.ApplyCourseViewModel.Description, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ApplyCourseViewModel.Description, "", new { @class = "text-danger" })
+                @Html.DisplayFor(model => model.ApplyCourseViewModel.Description, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.ApplyCourseViewModel.Description, "", new {@class = "text-danger"})
 
             </td>
         </tr>
@@ -39,7 +43,7 @@
             </th>
 
             <td>
-                @Html.EditorFor(model => model.ApplyCourseViewModel.StartDate, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                @Html.DisplayFor(model => model.ApplyCourseViewModel.StartDate, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
                 @Html.ValidationMessageFor(model => model.ApplyCourseViewModel.StartDate, "", new { @class = "text-danger" })
 
 
@@ -52,7 +56,7 @@
             </th>
 
             <td>
-                @Html.EditorFor(model => model.ApplyCourseViewModel.EndDate, new {htmlAttributes = new {@class = "form-control", @type = "date"}})
+                @Html.DisplayFor(model => model.ApplyCourseViewModel.EndDate, new {htmlAttributes = new {@class = "form-control", @type = "date"}})
                 @Html.ValidationMessageFor(model => model.ApplyCourseViewModel.EndDate, "", new {@class = "text-danger"})
             </td>
         </tr>
@@ -63,11 +67,43 @@
             </th>
 
             <td>
-                @Html.EditorFor(model => model.ApplyCourseViewModel.OrganizationName, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
-                @Html.ValidationMessageFor(model => model.ApplyCourseViewModel.EndDate, "", new { @class = "text-danger" })
+                @Html.DisplayFor(model => model.ApplyCourseViewModel.OrganizationName, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.ApplyCourseViewModel.OrganizationName, "", new {@class = "text-danger"})
 
 
             </td>
+        </tr>
+
+        <tr>
+            <th>
+                @Html.LabelFor(model => model.ApplyStudentViewModel.Name)
+            </th>
+
+            <td>
+                @Html.DisplayFor(model => model.ApplyStudentViewModel.Name, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.ApplyStudentViewModel.Name, "", new {@class = "text-danger"})
+
+            </td>
+        </tr>
+
+        <tr>
+            <th>
+                @Html.LabelFor(model => model.ApplyStudentViewModel.Telephones)
+            </th>
+
+            @if (this.Model.ApplyStudentViewModel.Telephones != null)
+            {
+                <td>
+                    @Html.DisplayFor(model => model.ApplyStudentViewModel.Telephones, new {htmlAttributes = new {@class = "form-control"}})
+                    @Html.ValidationMessageFor(model => model.ApplyStudentViewModel.Telephones, "", new {@class = "text-danger"})
+
+                </td>
+            }
+            else
+            {
+                <p>Please, register a telephone in your profile.</p>
+            }
+
         </tr>
 
 

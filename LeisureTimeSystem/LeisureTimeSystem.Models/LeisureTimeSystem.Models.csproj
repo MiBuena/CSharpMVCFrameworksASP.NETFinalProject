@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="Attributes\EndDateAttribute.cs" />
     <Compile Include="Attributes\StartDateAttribute.cs" />
+    <Compile Include="BidningModels\ApplicationBindingModel.cs" />
     <Compile Include="Constants\Constatnts.cs" />
     <Compile Include="EntityModels\Address.cs" />
     <Compile Include="EntityModels\AbstractClasses\ContactableObject.cs" />
@@ -103,9 +104,7 @@
     <Compile Include="ViewModels\NavbarViewModel.cs" />
     <Compile Include="ViewModels\ApplyStudentViewModel.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BidningModels\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />

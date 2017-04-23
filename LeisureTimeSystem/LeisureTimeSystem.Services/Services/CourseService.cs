@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using LeisureTimeSystem.Models.BidningModels;
 using LeisureTimeSystem.Models.EntityModels;
 using LeisureTimeSystem.Models.ViewModels;
 
@@ -39,14 +40,14 @@ namespace LeisureTimeSystem.Services.Services
             return vm;
         }
 
-        public void SignUp(int courseId, int studentId)
+        public void SubmitApplication(ApplicationBindingModel applicationBindingModel)
         {
-            var course = this.Context.Courses.Find(courseId);
+            var course = this.Context.Courses.Find(applicationBindingModel.CourseId);
 
             course.CoursesSubscriptionData.Add(new CourseApplicationData()
             {
-                CourseId = courseId,
-                StudentId = studentId
+                CourseId = applicationBindingModel.CourseId,
+                StudentId = applicationBindingModel.StudentId
             });
 
             this.Context.SaveChanges();

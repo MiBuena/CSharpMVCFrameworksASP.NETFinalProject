@@ -24,6 +24,9 @@
             @Html.DisplayNameFor(model => model.SubscriptionDeadLine)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.OrganizationName)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.CanStudentsSignUp)
         </th>
         <th></th>
@@ -47,20 +50,17 @@
             @Html.DisplayFor(modelItem => item.SubscriptionDeadLine)
         </td>
         <td>
-
-            @if (item.CanStudentsSignUp)
-            {
-            }
-            @Html.DisplayFor(modelItem => item.CanStudentsSignUp)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.DisciplineName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new {id = item.Id}) |
-            @Html.ActionLink("Details", "Details", new {id = item.Id}) |
-            @Html.ActionLink("Delete", "Delete", new {id = item.Id})
+
+            @if (item.CanStudentsSignUp)
+            {
+                @Html.ActionLink("Apply", "Apply", "Course", new { courseId = item.Id }, null)
+            }
         </td>
+
+
     </tr>
 }
 
