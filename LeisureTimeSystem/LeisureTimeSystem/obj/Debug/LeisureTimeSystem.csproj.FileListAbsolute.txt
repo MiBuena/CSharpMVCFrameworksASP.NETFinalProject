@@ -73,3 +73,5 @@ C:\Users\ff\Documents\MVCFinalProject\ASP.NET_MVC_FinalProject\LeisureTimeSystem
 C:\Users\ff\Documents\MVCFinalProject\ASP.NET_MVC_FinalProject\LeisureTimeSystem\LeisureTimeSystem\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\ff\Documents\MVCFinalProject\ASP.NET_MVC_FinalProject\LeisureTimeSystem\LeisureTimeSystem\obj\Debug\LeisureTimeSystem.dll
 C:\Users\ff\Documents\MVCFinalProject\ASP.NET_MVC_FinalProject\LeisureTimeSystem\LeisureTimeSystem\obj\Debug\LeisureTimeSystem.pdb
+C:\Users\ff\Documents\MVCFinalProject\ASP.NET_MVC_FinalProject\LeisureTimeSystem\LeisureTimeSystem\bin\AutoMapper.dll
+C:\Users\ff\Documents\MVCFinalProject\ASP.NET_MVC_FinalProject\LeisureTimeSystem\LeisureTimeSystem\bin\AutoMapper.xml

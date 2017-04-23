@@ -10,9 +10,16 @@ namespace LeisureTimeSystem.Models.EntityModels
 {
     public class Discipline : NameableObject
     {
+        public Discipline()
+        {
+            this.Courses = new HashSet<Course>();
+        }
+
         public int Id { get; set; }
 
         [Required]
         public virtual Category Category { get; set; }
+
+        public virtual ICollection<Course> Courses { get; set; } 
     }
 }

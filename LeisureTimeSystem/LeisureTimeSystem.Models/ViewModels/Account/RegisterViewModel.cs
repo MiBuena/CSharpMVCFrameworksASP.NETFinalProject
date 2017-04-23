@@ -10,6 +10,24 @@ namespace LeisureTimeSystem.Models.ViewModels.Account
     public class RegisterViewModel
     {
         [Required]
+        [MinLength(2)]
+        [MaxLength(30)]
+        [Display(Name = "Name")]
+        public string Name { get; set; }
+
+        [Required]
+        [MinLength(2)]
+        [MaxLength(10)]
+        [Display(Name = "Username")]
+        public string Username { get; set; }
+
+
+        [Required]
+        [DataType(DataType.Date)]
+        [Display(Name = "BirthDate")]
+        public DateTime BirthDate { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }

@@ -1,14 +1,27 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
 using LeisureTimeSystem.Data;
+using LeisureTimeSystem.Models.EntityModels;
+using LeisureTimeSystem.Models.ViewModels;
+using LeisureTimeSystem.Services.Services;
 
 namespace LeisureTimeSystem.Controllers
 {
     public class HomeController : Controller
     {
+        private HomeService homeService;
+
+        public HomeController()
+        {
+            this.homeService = new HomeService();
+        }
+
         public ActionResult Index()
         {
             LeisureSystemContext context = new LeisureSystemContext();
@@ -30,5 +43,21 @@ namespace LeisureTimeSystem.Controllers
 
             return View();
         }
+
+        public ActionResult RenderNavbar()
+        {
+            NavbarViewModel model = this.homeService.GetNavbarViewModel();
+
+            return this.PartialView(model);
+        }
+
+
+
+
+        //public ActionResult RenderSubcategory()
+        //{
+        //}
+
+
     }
 }

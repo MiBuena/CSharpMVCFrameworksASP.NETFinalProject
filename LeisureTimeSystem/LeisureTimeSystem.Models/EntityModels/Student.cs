@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using LeisureTimeSystem.Models.EntityModels.AbstractClasses;
+using Microsoft.Build.Framework;
 
 namespace LeisureTimeSystem.Models.EntityModels
 {
@@ -20,7 +21,14 @@ namespace LeisureTimeSystem.Models.EntityModels
 
         public int Id { get; set; }
 
-        public virtual ApplicationUser ApplicationUser { get; set; }
+        [Required]
+        public DateTime BirthDate { get; set; }
+
+
+        [ForeignKey("User")]
+        public string UserId { get; set; }
+
+        public virtual ApplicationUser User { get; set; }
 
         //This collection contains all courses the user made an application for themselves or for another person
         [InverseProperty("ApplicationMaker")]

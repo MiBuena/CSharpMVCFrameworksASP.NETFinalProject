@@ -11,6 +11,7 @@ using Microsoft.Owin.Security;
 using LeisureTimeSystem.Models;
 using LeisureTimeSystem.Models.EntityModels;
 using LeisureTimeSystem.Models.ViewModels.Account;
+using LeisureTimeSystem.Services.Services;
 
 namespace LeisureTimeSystem.Controllers
 {
@@ -19,9 +20,12 @@ namespace LeisureTimeSystem.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private AccountService accountService;
+
 
         public AccountController()
         {
+            this.accountService = new AccountService();
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -153,8 +157,16 @@ namespace LeisureTimeSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Username, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
+
+
+
+                this.UserManager.AddToRole(user.Id, "BasicUser");
+
+
+                this.accountService.AddStudent(model.Name, user.Id, model.BirthDate);
+
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
@@ -204,7 +216,7 @@ namespace LeisureTimeSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await UserManager.FindByNameAsync(model.Email);
+                var user = await UserManager.FindByEmailAsync(model.Email);
                 if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
                 {
                     // Don't reveal that the user does not exist or is not confirmed
@@ -250,7 +262,7 @@ namespace LeisureTimeSystem.Controllers
             {
                 return View(model);
             }
-            var user = await UserManager.FindByNameAsync(model.Email);
+            var user = await UserManager.FindByEmailAsync(model.Email);
             if (user == null)
             {
                 // Don't reveal that the user does not exist

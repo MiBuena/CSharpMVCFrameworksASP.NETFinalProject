@@ -1,0 +1,32 @@
+﻿@using System.Web.Mvc.Html
+@model LeisureTimeSystem.Models.ViewModels.NavbarViewModel
+
+<link id="bs-css" href="~/Content/3.css" rel="stylesheet">
+
+
+
+<div class="bar">
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">WebSiteName</a>
+            </div>
+            <ul class="nav navbar-nav">
+                @foreach (var vm in this.Model.MainCategoriesViewModels)
+                {
+                    <li class="dropdown">
+                        <button class="dropbtn">@vm.Name</button>
+                        <div class="dropdown-content">
+                            @foreach (var subcategory in vm.SubCategoryViewModels)
+                            {
+                                @Html.ActionLink(subcategory.Name, "ShowDisciplines", "Discipline", new {categoryId = subcategory.Id}, null)
+                            }
+                        </div>
+                    </li>
+                }
+            </ul>
+
+            @Html.Partial("_LoginPartial")
+        </div>
+    </nav>
+</div>
