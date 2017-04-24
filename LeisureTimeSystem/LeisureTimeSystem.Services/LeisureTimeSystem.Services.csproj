@@ -68,6 +68,7 @@
     <Compile Include="Services\DisciplineService.cs" />
     <Compile Include="Services\HomeService.cs" />
     <Compile Include="Services\OrganizationService.cs" />
+    <Compile Include="Services\ProfileService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LeisureTimeSystem.Data\LeisureTimeSystem.Data.csproj">

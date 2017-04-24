@@ -253,6 +253,8 @@
     <Content Include="Views\Course\DisciplineCourses.cshtml" />
     <Content Include="Views\Course\Apply.cshtml" />
     <Content Include="Views\Organization\Create.cshtml" />
+    <Content Include="Views\Organization\All.cshtml" />
+    <Content Include="Views\Profile\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -263,7 +265,6 @@
     <Folder Include="Areas\Blog\Views\Articles\" />
     <Folder Include="Areas\Blog\Views\Shared\" />
     <Folder Include="Views\Controllers\" />
-    <Folder Include="Views\Profile\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

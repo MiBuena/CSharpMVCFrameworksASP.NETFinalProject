@@ -7,15 +7,15 @@
 
 
 
-    @foreach (var vm in this.Model)
-    {
-        <div class="dropdown">
-            <button class="dropbtn">@vm.Name</button>
+@foreach (var vm in this.Model)
+{
+    <div class="dropdown">
+        <button class="dropbtn">@vm.Name</button>
 
-            <div class="dropdown-content">
-                <a href="#">Organizations</a>
-                @Html.ActionLink("Courses", "DisciplineCourses", "Course", new { disciplineId = vm.Id }, null)
-            </div>
+        <div class="dropdown-content">
+            @Html.ActionLink("Organizations", "All", "Organization", new { disciplineId = vm.Id }, null)
+            @Html.ActionLink("Courses", "DisciplineCourses", "Course", new { disciplineId = vm.Id }, null)
         </div>
-    }
+    </div>
+}
 

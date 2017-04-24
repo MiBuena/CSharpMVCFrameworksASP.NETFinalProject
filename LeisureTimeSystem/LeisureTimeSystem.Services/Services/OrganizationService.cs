@@ -65,5 +65,23 @@ namespace LeisureTimeSystem.Services.Services
 
             return vms;
         }
+
+        public AllDisciplineOrganizationsViewModel GetAllOrganizationsViewModels(int disciplineId)
+        {
+            var organizations = this.Context.Organizations.Where(x => x.Disciplines.Any(y => y.Id == disciplineId));
+
+            var organizationsViewModels =
+                Mapper.Map<IEnumerable<Organization>, IEnumerable<OrganizationViewModel>>(organizations);
+
+            var discipline = this.Context.Disciplines.Find(disciplineId);
+
+            AllDisciplineOrganizationsViewModel model = new AllDisciplineOrganizationsViewModel()
+            {
+                OrganizationViewModels = organizationsViewModels,
+                DisciplineName = discipline.Name
+            };
+
+            return model;
+        } 
     }
 }

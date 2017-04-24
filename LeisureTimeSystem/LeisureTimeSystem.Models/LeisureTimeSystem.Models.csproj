@@ -91,6 +91,9 @@
     <Compile Include="ViewModels\Account\ResetPasswordViewModel.cs" />
     <Compile Include="ViewModels\Account\SendCodeViewModel.cs" />
     <Compile Include="ViewModels\Account\VerifyCodeViewModel.cs" />
+    <Compile Include="ViewModels\AllDisciplineOrganizationsViewModel.cs" />
+    <Compile Include="ViewModels\DetailsProfileViewModel.cs" />
+    <Compile Include="ViewModels\OrganizationViewModel.cs" />
     <Compile Include="ViewModels\ApplyCourseViewModel.cs" />
     <Compile Include="ViewModels\ApplyViewModel.cs" />
     <Compile Include="ViewModels\CategoryViewModel.cs" />

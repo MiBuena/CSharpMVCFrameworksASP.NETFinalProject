@@ -61,6 +61,11 @@ namespace LeisureTimeSystem
                 .ForMember(discipline => discipline.Name,
         m => m.MapFrom(discipline => discipline.Name));
 
+                expression.CreateMap<Organization, OrganizationViewModel>();
+
+                expression.CreateMap<Student, DetailsProfileViewModel>();
+
+
 
             });
         }

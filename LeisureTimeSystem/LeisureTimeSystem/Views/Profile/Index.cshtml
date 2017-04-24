@@ -1,0 +1,114 @@
+﻿@model LeisureTimeSystem.Models.ViewModels.DetailsProfileViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div>
+    <h4>DetailsProfileViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BirthDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BirthDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Website)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Website)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DisplayEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DisplayEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telephones)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telephones)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.City)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.City)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.District)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.District)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BlockNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BlockNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Entrance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Entrance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AppartmentNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AppartmentNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Street)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Street)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StreetNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StreetNumber)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

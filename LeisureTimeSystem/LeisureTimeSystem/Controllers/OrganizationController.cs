@@ -44,5 +44,12 @@ namespace LeisureTimeSystem.Controllers
             return View(organizationViewModel);
 
         }
+
+        public ActionResult All(int disciplineId)
+        {
+            var allViewModel = this.service.GetAllOrganizationsViewModels(disciplineId);
+
+            return View(allViewModel);
+        }
     }
 }
