@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using AutoMapper;
+using LeisureTimeSystem.Models.BidningModels;
 using LeisureTimeSystem.Models.EntityModels;
 using LeisureTimeSystem.Models.ViewModels;
 
@@ -46,6 +47,17 @@ namespace LeisureTimeSystem
                 expression.CreateMap<Student, ApplyStudentViewModel>()
                                     .ForMember(student => student.Name,
         m => m.MapFrom(student => student.Name));
+
+                expression.CreateMap<AddressBindingModel, Address>();
+
+
+                expression.CreateMap<AddOrganizationBindingModel, Organization>()
+                                                    .ForMember(organization => organization.Address,
+        m => m.MapFrom(organization=>organization.Address));
+
+                expression.CreateMap<AddOrganizationBindingModel, AddOrganizationViewModel>();
+
+
 
             });
         }

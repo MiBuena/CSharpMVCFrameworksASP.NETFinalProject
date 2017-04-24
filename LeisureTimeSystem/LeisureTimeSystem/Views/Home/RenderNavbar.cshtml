@@ -16,7 +16,7 @@
                 {
                     if (vm.SubCategoryViewModels.Count == 0)
                     {
-                        <li> @Html.ActionLink(@vm.Name, "ShowDisciplines", "Discipline", new { categoryId = vm.Id }, null)</li>
+                        <li> @Html.ActionLink(@vm.Name, "ShowDisciplines", "Discipline", new {categoryId = vm.Id}, null)</li>
                     }
                     else
                     {
@@ -26,14 +26,20 @@
                             <div class="dropdown-content">
                                 @foreach (var subcategory in vm.SubCategoryViewModels)
                                 {
-                                    @Html.ActionLink(subcategory.Name, "ShowDisciplines", "Discipline", new { categoryId = subcategory.Id }, null)
+                                    @Html.ActionLink(subcategory.Name, "ShowDisciplines", "Discipline", new {categoryId = subcategory.Id}, null)
                                 }
                             </div>
                         </li>
                     }
                 }
 
-                <li>@Html.ActionLink("Articles", "Index", "Articles", new { area = "Blog" }, null)</li>
+                <li>@Html.ActionLink("Articles", "Index", "Articles", new {area = "Blog"}, null)</li>
+
+            </ul>
+
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>@Html.ActionLink("Create Organization", "Create", "Organization")</li>
             </ul>
 
             @Html.Partial("_LoginPartial")
