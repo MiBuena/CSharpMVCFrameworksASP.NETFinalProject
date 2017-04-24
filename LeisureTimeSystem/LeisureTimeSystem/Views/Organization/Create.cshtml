@@ -95,11 +95,21 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Telephones, htmlAttributes: new {@class = "control-label col-md-2"})
+            @Html.LabelFor(model => model.Telephones, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Telephones, new {htmlAttributes = new {@class = "form-control"}})
-                @Html.ValidationMessageFor(model => model.Telephones, "", new {@class = "text-danger"})
+                @Html.EditorFor(model => model.Telephones, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Telephones, "", new { @class = "text-danger" })
             </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Disciplines, htmlAttributes: new { @class = "control-label col-md-2" })
+
+
+            @Html.DropDownList("DisciplineId",
+            new SelectList(@Model.Disciplines,
+                "Id", "Name"), "Select Discipline")
+            @Html.ValidationMessageFor(model => model.Disciplines, "", new { @class = "text-danger" })
         </div>
 
         <div class="form-group">

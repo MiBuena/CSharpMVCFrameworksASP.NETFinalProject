@@ -28,6 +28,8 @@ namespace LeisureTimeSystem.Models.BidningModels
 
         public string RepresentativeId { get; set; }
 
+        public int DisciplineId { get; set; }
+
         public AddressBindingModel Address { get; set; }
     }
 }

@@ -53,10 +53,13 @@ namespace LeisureTimeSystem
 
                 expression.CreateMap<AddOrganizationBindingModel, Organization>()
                                                     .ForMember(organization => organization.Address,
-        m => m.MapFrom(organization=>organization.Address));
+        m => m.MapFrom(organization => organization.Address));
 
                 expression.CreateMap<AddOrganizationBindingModel, AddOrganizationViewModel>();
 
+                expression.CreateMap<Discipline, AddOrganizationDisciplineViewModel>()
+                .ForMember(discipline => discipline.Name,
+        m => m.MapFrom(discipline => discipline.Name));
 
 
             });

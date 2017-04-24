@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,17 @@ namespace LeisureTimeSystem.Services.Services
 {
     public class OrganizationService : Service
     {
+        public AddOrganizationViewModel GetViewModel()
+        {
+            AddOrganizationViewModel model = new AddOrganizationViewModel();
+
+            var disciplineViewModels = this.GetDisciplinesViewModels();
+
+            model.Disciplines = disciplineViewModels;
+
+            return model;
+        }
+
         public void CreateOrganization(AddOrganizationBindingModel model)
         {
             var organization = Mapper.Map<AddOrganizationBindingModel, Organization>(model);
@@ -20,12 +32,20 @@ namespace LeisureTimeSystem.Services.Services
 
             organization.Representatives.Add(representative);
 
+            AddDiscipline(model, organization);
 
             AddAddress(model, organization);
 
             this.Context.Organizations.Add(organization);
 
             this.Context.SaveChanges();
+        }
+
+        private void AddDiscipline(AddOrganizationBindingModel model, Organization organization)
+        {
+            var discipline = this.Context.Disciplines.Find(model.DisciplineId);
+
+            organization.Disciplines.Add(discipline);
         }
 
         private void AddAddress(AddOrganizationBindingModel model, Organization organization)
@@ -35,6 +55,15 @@ namespace LeisureTimeSystem.Services.Services
             this.Context.Addresses.Add(address);
 
             organization.Address = address;
+        }
+
+        public ICollection<AddOrganizationDisciplineViewModel> GetDisciplinesViewModels()
+        {
+            var disciplines = this.Context.Disciplines.ToList();
+
+            var vms = Mapper.Map<ICollection<Discipline>, ICollection<AddOrganizationDisciplineViewModel>>(disciplines);
+
+            return vms;
         }
     }
 }

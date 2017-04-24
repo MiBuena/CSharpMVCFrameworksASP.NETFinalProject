@@ -13,12 +13,15 @@ namespace LeisureTimeSystem.Models.EntityModels
         public Discipline()
         {
             this.Courses = new HashSet<Course>();
+            this.Organizations = new HashSet<Organization>();
         }
 
         public int Id { get; set; }
 
         [Required]
         public virtual Category Category { get; set; }
+
+        public virtual ICollection<Organization> Organizations { get; set; }
 
         public virtual ICollection<Course> Courses { get; set; } 
     }

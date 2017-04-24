@@ -58,5 +58,8 @@ namespace LeisureTimeSystem.Models.ViewModels
         [MinLength(2)]
         [MaxLength(100)]
         public string Telephones { get; set; }
+
+        public ICollection<AddOrganizationDisciplineViewModel> Disciplines { get; set; } 
+
     }
 }

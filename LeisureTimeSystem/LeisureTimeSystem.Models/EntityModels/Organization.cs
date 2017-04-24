@@ -17,12 +17,15 @@ namespace LeisureTimeSystem.Models.EntityModels
             this.Courses = new HashSet<Course>();
             this.Representatives = new HashSet<Student>();
             this.Pictures = new HashSet<string>();
+            this.Disciplines = new HashSet<Discipline>();
         }
 
         public int Id { get; set; }
 
         [MaxLength(3000)]
         public string Description { get; set; }
+
+        public virtual ICollection<Discipline> Disciplines { get; set; }
 
         public virtual ICollection<Course> Courses { get; set; }
 

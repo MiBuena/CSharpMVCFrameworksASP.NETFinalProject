@@ -19,7 +19,9 @@ namespace LeisureTimeSystem.Controllers
 
         public ActionResult Create()
         {
-            return View();
+            var addOrganizationViewModel = this.service.GetViewModel();
+
+            return View(addOrganizationViewModel);
         }
 
         [HttpPost]
@@ -30,6 +32,7 @@ namespace LeisureTimeSystem.Controllers
                 string currentUserId = User.Identity.GetUserId();
 
                 bindingModel.RepresentativeId = currentUserId;
+
                 this.service.CreateOrganization(bindingModel);
 
                 return this.RedirectToAction("Index", "Home", new { area = "" });
