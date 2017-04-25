@@ -18,6 +18,8 @@ namespace LeisureTimeSystem.Models.ViewModels.Profile
         [Display(Name = "Username")]
         public string Username { get; set; }
 
+        public string ProfilePicturePath { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
@@ -68,5 +70,7 @@ namespace LeisureTimeSystem.Models.ViewModels.Profile
         [MinLength(2)]
         [MaxLength(20)]
         public string StreetNumber { get; set; }
+
+
     }
 }

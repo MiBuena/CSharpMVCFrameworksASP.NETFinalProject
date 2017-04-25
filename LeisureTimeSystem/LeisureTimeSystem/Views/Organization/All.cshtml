@@ -3,42 +3,25 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-@*<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.City)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Telephones)
-        </th>
-        <th></th>
-    </tr>
 
-    @foreach (var item in Model)
+<div class="row">
+    @foreach (var item in Model.OrganizationViewModels)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.City)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Telephones)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new {id = item.Id}) |
-                @Html.ActionLink("Details", "Details", new {id = item.Id}) |
-                @Html.ActionLink("Delete", "Delete", new {id = item.Id})
-            </td>
-        </tr>
+        <div class="col-md-3" style="margin-top: 50px">
+            <img src=@item.ProfilePicturePath alt="Smiley face" style="float: none; width: 80px; height: 40px;">
+            <br/>
+            @Html.ActionLink(@item.Name, "Details", "Organization", new { organizationId = @item.Id })
+
+            <br />
+            <span style="color: #8a8b8d;">City:</span> @item.City <br>
+            <span style="color: #8a8b8d;" class="left lh11 ">Address:</span>
+            <br> <span style="color: #8a8b8d;"> Telephone:</span> @item.Telephones <br>
+            @Html.ActionLink("See profile", "Details", new { organizationId = item.Id })
+        </div>
     }
 
-</table>*@
+</div>
 
 
-<img src="~/UploadedFiles/basket.png" alt="Smiley face" style="float:left;width:80px;height:40px;">
-    A paragraph with a floating image. A paragraph with a floating image. A paragraph with a floating image.
+
+

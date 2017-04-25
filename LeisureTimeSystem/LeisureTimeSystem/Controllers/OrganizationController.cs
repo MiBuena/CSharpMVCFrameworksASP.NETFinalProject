@@ -18,6 +18,11 @@ namespace LeisureTimeSystem.Controllers
             this.service = new OrganizationService();
         }
 
+        public ActionResult Details(int organizationId)
+        {
+            return View();
+        }
+
         public ActionResult Create()
         {
             var addOrganizationViewModel = this.service.GetViewModel();

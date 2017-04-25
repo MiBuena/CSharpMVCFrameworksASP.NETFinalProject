@@ -10,5 +10,8 @@
 
         public string Telephones { get; set; }
 
+        public string ProfilePicturePath { get; set; }
+
+
     }
 }
