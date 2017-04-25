@@ -38,3 +38,11 @@
 
 .navbar-inverse .navbar-nav > li > a:hover {    color: black;
 }
+
+.img {
+    padding: 10px 10px 10px 10px;
+
+    float: left; 
+    width: 80px; 
+    height: 80px;
+}

@@ -18,6 +18,8 @@ namespace LeisureTimeSystem.Models.EntityModels
 
         public int Id { get; set; }
 
+        public string PicturePath { get; set; }
+
         [Required]
         public virtual Category Category { get; set; }
 

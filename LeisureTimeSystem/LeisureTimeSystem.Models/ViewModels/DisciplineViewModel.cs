@@ -12,5 +12,6 @@ namespace LeisureTimeSystem.Models.ViewModels
 
         public string Name { get; set; }
 
+        public string PicturePath { get; set; }
     }
 }
