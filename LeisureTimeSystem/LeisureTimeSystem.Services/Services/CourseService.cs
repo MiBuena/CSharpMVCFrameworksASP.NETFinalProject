@@ -7,12 +7,35 @@ using AutoMapper;
 using LeisureTimeSystem.Models.BidningModels;
 using LeisureTimeSystem.Models.EntityModels;
 using LeisureTimeSystem.Models.ViewModels;
+using LeisureTimeSystem.Models.ViewModels.Course;
 
 namespace LeisureTimeSystem.Services.Services
 {
     public class CourseService : Service
     {
-        public IEnumerable<CourseViewModel> GetCourseViewModels(int disciplineId)
+        public void DeleteCourseApplication(DeleteCourseApplicationBindingModel model)
+        {
+            var application= this.Context.CoursesApplications.FirstOrDefault(x => x.CourseId == model.CourseId && x.StudentId == model.StudentId);
+
+            this.Context.CoursesApplications.Remove(application);
+
+            this.Context.SaveChanges();
+        }
+
+        public DeleteCourseViewModel GetDeleteCourseViewModel(int courseId, string userId)
+        {
+            var course = this.Context.Courses.Find(courseId);
+
+            var courseViewModel = Mapper.Map<Course, DeleteCourseViewModel>(course);
+
+            var student = this.Context.Students.FirstOrDefault(x => x.UserId == userId);
+
+            courseViewModel.StudentId = student.Id;
+
+            return courseViewModel;
+        }
+
+        public IEnumerable<CourseViewModel> GetCourseViewModelsByDiscipline(int disciplineId)
         {
             IEnumerable<Course> courses = this.Context.Courses.Where(x => x.Discipline.Id == disciplineId).ToList();
 
@@ -51,6 +74,23 @@ namespace LeisureTimeSystem.Services.Services
             });
 
             this.Context.SaveChanges();
+        }
+
+        public IEnumerable<CourseViewModel> GetCourseViewModelsByStudent(int studentId)
+        {
+            IList<Course> courses = this.Context.Courses.Where(x => x.CoursesSubscriptionData.Any(y=>y.StudentId == studentId)).ToList();
+
+            var courseViewModels = Mapper.Map<IList<Course>, IList<CourseViewModel>>(courses);
+
+            for (int i = 0; i < courseViewModels.Count; i++)
+            {
+                courseViewModels[i].Status =
+                    courses[i].CoursesSubscriptionData.FirstOrDefault(x => x.StudentId == studentId)
+                        .Status;
+            }
+
+
+            return courseViewModels;
         }
     }
 }

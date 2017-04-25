@@ -1,0 +1,71 @@
+﻿@model IEnumerable<LeisureTimeSystem.Models.ViewModels.Course.CourseViewModel>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SubscriptionDeadLine)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CanStudentsSignUp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DisciplineName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrganizationName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SubscriptionDeadLine)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CanStudentsSignUp)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DisciplineName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrganizationName)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.ActionLink("Delete Application", "DeleteCourseApplication", new { courseId=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

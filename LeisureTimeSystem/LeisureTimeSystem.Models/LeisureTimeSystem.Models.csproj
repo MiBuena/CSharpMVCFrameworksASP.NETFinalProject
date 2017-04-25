@@ -66,9 +66,13 @@
     <Compile Include="Attributes\StartDateAttribute.cs" />
     <Compile Include="BidningModels\AddressBindingModel.cs" />
     <Compile Include="BidningModels\ApplicationBindingModel.cs" />
+    <Compile Include="BidningModels\DeleteCourseApplicationBindingModel.cs" />
+    <Compile Include="BidningModels\EditProfileBindingModel.cs" />
     <Compile Include="Constants\Constatnts.cs" />
     <Compile Include="BidningModels\AddOrganizationBindingModel.cs" />
-    <Compile Include="ViewModels\AddOrganizationDisciplineViewModel.cs" />
+    <Compile Include="Enums\ApplicationStatus.cs" />
+    <Compile Include="ViewModels\Course\DeleteCourseViewModel.cs" />
+    <Compile Include="ViewModels\Organization\AddOrganizationDisciplineViewModel.cs" />
     <Compile Include="EntityModels\Address.cs" />
     <Compile Include="EntityModels\AbstractClasses\ContactableObject.cs" />
     <Compile Include="EntityModels\ApplicationUser.cs" />
@@ -91,13 +95,16 @@
     <Compile Include="ViewModels\Account\ResetPasswordViewModel.cs" />
     <Compile Include="ViewModels\Account\SendCodeViewModel.cs" />
     <Compile Include="ViewModels\Account\VerifyCodeViewModel.cs" />
-    <Compile Include="ViewModels\AllDisciplineOrganizationsViewModel.cs" />
-    <Compile Include="ViewModels\DetailsProfileViewModel.cs" />
-    <Compile Include="ViewModels\OrganizationViewModel.cs" />
-    <Compile Include="ViewModels\ApplyCourseViewModel.cs" />
-    <Compile Include="ViewModels\ApplyViewModel.cs" />
-    <Compile Include="ViewModels\CategoryViewModel.cs" />
-    <Compile Include="ViewModels\CourseViewModel.cs" />
+    <Compile Include="ViewModels\Organization\AllDisciplineOrganizationsViewModel.cs" />
+    <Compile Include="ViewModels\Profile\StudentProfileOrganizationViewModel.cs" />
+    <Compile Include="ViewModels\Profile\EditAddressModelView.cs" />
+    <Compile Include="ViewModels\Profile\EditProfileViewModel.cs" />
+    <Compile Include="ViewModels\Profile\DetailsProfileViewModel.cs" />
+    <Compile Include="ViewModels\Organization\OrganizationViewModel.cs" />
+    <Compile Include="ViewModels\Course\ApplyCourseViewModel.cs" />
+    <Compile Include="ViewModels\Course\ApplyViewModel.cs" />
+    <Compile Include="ViewModels\Category\CategoryViewModel.cs" />
+    <Compile Include="ViewModels\Course\CourseViewModel.cs" />
     <Compile Include="ViewModels\DisciplineViewModel.cs" />
     <Compile Include="ViewModels\Manage\AddPhoneNumberViewModel.cs" />
     <Compile Include="ViewModels\Manage\ChangePasswordViewModel.cs" />
@@ -108,8 +115,8 @@
     <Compile Include="ViewModels\Manage\SetPasswordViewModel.cs" />
     <Compile Include="ViewModels\Manage\VerifyPhoneNumberViewModel.cs" />
     <Compile Include="ViewModels\NavbarViewModel.cs" />
-    <Compile Include="ViewModels\ApplyStudentViewModel.cs" />
-    <Compile Include="ViewModels\AddOrganizationViewModel.cs" />
+    <Compile Include="ViewModels\Course\ApplyStudentViewModel.cs" />
+    <Compile Include="ViewModels\Organization\AddOrganizationViewModel.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

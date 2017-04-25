@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using LeisureTimeSystem.Models.Attributes;
-using LeisureTimeSystem.Models.EntityModels;
+using LeisureTimeSystem.Models.Enums;
 
-namespace LeisureTimeSystem.Models.ViewModels
+namespace LeisureTimeSystem.Models.ViewModels.Course
 {
     public class CourseViewModel
     {
@@ -36,5 +31,7 @@ namespace LeisureTimeSystem.Models.ViewModels
 
         [Display(Name = "Organization name")]
         public string OrganizationName { get; set; }
+
+        public ApplicationStatus Status { get; set; }
     }
 }

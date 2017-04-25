@@ -1,0 +1,80 @@
+﻿@model LeisureTimeSystem.Models.ViewModels.Course.DeleteCourseViewModel
+    
+
+
+@using (Html.BeginForm())
+{
+    @Html.Hidden("StudentId", this.Model.StudentId)
+
+    @Html.Hidden("CourseId", this.Model.Id)
+
+    <table>
+        <tr>
+            <th>
+                @Html.LabelFor(x => x.Name)
+            </th>
+
+            <td>
+                @Html.DisplayFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.LabelFor(model => model.Description)
+            </th>
+
+            <td>
+                @Html.DisplayFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+
+            </td>
+        </tr>
+
+        <tr>
+            <th>
+                @Html.LabelFor(model => model.StartDate)
+            </th>
+
+            <td>
+                @Html.DisplayFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+
+
+            </td>
+        </tr>
+
+        <tr>
+            <th>
+                @Html.LabelFor(model => model.EndDate)
+            </th>
+
+            <td>
+                @Html.DisplayFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+
+        <tr>
+            <th>
+                @Html.LabelFor(model => model.OrganizationName)
+            </th>
+
+            <td>
+                @Html.DisplayFor(model => model.OrganizationName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.OrganizationName, "", new { @class = "text-danger" })
+
+
+            </td>
+        </tr>
+
+
+
+    </table>
+
+    <div class="form-group">
+        <input type="submit">
+    </div>
+
+}
+

@@ -20,7 +20,8 @@ namespace LeisureTimeSystem.Controllers
 
         public ActionResult DisciplineCourses(int disciplineId)
         {
-            var courses = this.service.GetCourseViewModels(disciplineId);
+            var courses = this.service.GetCourseViewModelsByDiscipline(disciplineId);
+
             return View(courses);
         }
 
@@ -48,5 +49,40 @@ namespace LeisureTimeSystem.Controllers
 
             return this.View(applyViewModel);
         }
+
+        public ActionResult DeleteCourseApplication(int courseId)
+        {
+            string currentUserId = User.Identity.GetUserId();
+
+            var applicationToDelete = this.service.GetDeleteCourseViewModel(courseId, currentUserId);
+
+            return View(applicationToDelete);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteCourseApplication(DeleteCourseApplicationBindingModel model)
+        {
+            if (this.ModelState.IsValid)
+            {
+                this.service.DeleteCourseApplication(model);
+
+                return this.RedirectToAction("Details", "Profile");
+            }
+
+            string currentUserId = User.Identity.GetUserId();
+
+            var applicationToDelete = this.service.GetDeleteCourseViewModel(model.CourseId, currentUserId);
+
+            return View(applicationToDelete);
+        }
+
+        public ActionResult RenderStudentCourses(int studentId)
+        {
+            var coursesViewModels = this.service.GetCourseViewModelsByStudent(studentId);
+
+            return this.PartialView(coursesViewModels);
+        }
+
+        
     }
 }

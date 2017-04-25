@@ -9,6 +9,10 @@ using AutoMapper;
 using LeisureTimeSystem.Models.BidningModels;
 using LeisureTimeSystem.Models.EntityModels;
 using LeisureTimeSystem.Models.ViewModels;
+using LeisureTimeSystem.Models.ViewModels.Category;
+using LeisureTimeSystem.Models.ViewModels.Course;
+using LeisureTimeSystem.Models.ViewModels.Organization;
+using LeisureTimeSystem.Models.ViewModels.Profile;
 
 namespace LeisureTimeSystem
 {
@@ -34,9 +38,9 @@ namespace LeisureTimeSystem
                 expression.CreateMap<Discipline, DisciplineViewModel>();
 
                 expression.CreateMap<Course, CourseViewModel>()
-                                    .ForMember(course => course.DisciplineName,
+                    .ForMember(course => course.DisciplineName,
                         m => m.MapFrom(course => course.Discipline.Name))
-                        .ForMember(course => course.OrganizationName,
+                    .ForMember(course => course.OrganizationName,
                         m => m.MapFrom(course => course.Organization.Name));
 
                 expression.CreateMap<Course, ApplyCourseViewModel>()
@@ -50,6 +54,9 @@ namespace LeisureTimeSystem
 
                 expression.CreateMap<AddressBindingModel, Address>();
 
+                expression.CreateMap<Course, DeleteCourseViewModel>()
+                    .ForMember(course => course.OrganizationName,
+                        m => m.MapFrom(course => course.Organization.Name));
 
                 expression.CreateMap<AddOrganizationBindingModel, Organization>()
                                                     .ForMember(organization => organization.Address,
@@ -63,7 +70,25 @@ namespace LeisureTimeSystem
 
                 expression.CreateMap<Organization, OrganizationViewModel>();
 
+                expression.CreateMap<Address, AddressBindingModel>();
+
+                expression.CreateMap<AddressBindingModel, Address>();
+
                 expression.CreateMap<Student, DetailsProfileViewModel>();
+
+                expression.CreateMap<Address, EditAddressModelView>();
+
+                expression.CreateMap<Student, EditProfileViewModel>()
+                .ForMember(student => student.Address,
+        m => m.MapFrom(student => student.Address));
+
+
+                expression.CreateMap<EditProfileBindingModel, Student>();
+
+                expression.CreateMap<EditProfileBindingModel, Address>();
+
+                expression.CreateMap<Organization, StudentProfileOrganizationViewModel>();
+
 
 
 

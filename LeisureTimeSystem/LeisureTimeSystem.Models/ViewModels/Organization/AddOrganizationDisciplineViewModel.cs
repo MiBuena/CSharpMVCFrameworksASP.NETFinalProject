@@ -1,4 +1,4 @@
-﻿namespace LeisureTimeSystem.Models.ViewModels
+﻿namespace LeisureTimeSystem.Models.ViewModels.Organization
 {
     public class AddOrganizationDisciplineViewModel
     {

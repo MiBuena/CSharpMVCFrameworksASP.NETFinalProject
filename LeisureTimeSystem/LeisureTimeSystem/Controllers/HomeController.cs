@@ -51,6 +51,14 @@ namespace LeisureTimeSystem.Controllers
             return this.PartialView(model);
         }
 
+        public ActionResult Update()
+        {
+            return this.PartialView("_NamePartial", new string[]
+            {
+                "Ivan", "Nasko", "Valio"
+            });
+        }
+
 
 
 

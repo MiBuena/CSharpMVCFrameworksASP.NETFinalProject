@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LeisureTimeSystem.Models.Enums;
 
 namespace LeisureTimeSystem.Models.EntityModels
 {
@@ -22,7 +23,6 @@ namespace LeisureTimeSystem.Models.EntityModels
 
         public virtual Student Student { get; set; }
 
-
-        public bool IsApplicationApproved { get; set; }
+        public ApplicationStatus Status { get; set; }
     }
 }

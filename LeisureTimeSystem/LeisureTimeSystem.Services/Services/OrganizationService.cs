@@ -8,6 +8,8 @@ using AutoMapper;
 using LeisureTimeSystem.Models.BidningModels;
 using LeisureTimeSystem.Models.EntityModels;
 using LeisureTimeSystem.Models.ViewModels;
+using LeisureTimeSystem.Models.ViewModels.Organization;
+using LeisureTimeSystem.Models.ViewModels.Profile;
 
 namespace LeisureTimeSystem.Services.Services
 {
@@ -82,6 +84,19 @@ namespace LeisureTimeSystem.Services.Services
             };
 
             return model;
-        } 
+        }
+
+        public IEnumerable<StudentProfileOrganizationViewModel> GetOrganizations(int studentId)
+        {
+            var student = this.Context.Students.Find(studentId);
+
+            var organizations = student.OrganizationsTheyRepresent;
+
+            var organizationsVms =
+                Mapper.Map<IEnumerable<Organization>, IEnumerable<StudentProfileOrganizationViewModel>>(organizations);
+
+            return organizationsVms;
+
+        }
     }
 }

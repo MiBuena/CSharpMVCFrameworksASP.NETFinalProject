@@ -3,6 +3,7 @@ using AutoMapper;
 using LeisureTimeSystem.Models.BidningModels;
 using LeisureTimeSystem.Models.EntityModels;
 using LeisureTimeSystem.Models.ViewModels;
+using LeisureTimeSystem.Models.ViewModels.Organization;
 using LeisureTimeSystem.Services.Services;
 using Microsoft.AspNet.Identity;
 
@@ -50,6 +51,13 @@ namespace LeisureTimeSystem.Controllers
             var allViewModel = this.service.GetAllOrganizationsViewModels(disciplineId);
 
             return View(allViewModel);
+        }
+
+        public ActionResult RenderStudentOrganizations(int studentId)
+        {
+            var organizationsViewModels = this.service.GetOrganizations(studentId);
+
+            return this.PartialView(organizationsViewModels);
         }
     }
 }

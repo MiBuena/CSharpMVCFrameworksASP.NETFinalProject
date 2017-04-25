@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using LeisureTimeSystem.Models.EntityModels;
 using LeisureTimeSystem.Models.ViewModels;
+using LeisureTimeSystem.Models.ViewModels.Category;
 
 namespace LeisureTimeSystem.Services.Services
 {
