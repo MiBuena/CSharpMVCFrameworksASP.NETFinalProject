@@ -84,7 +84,9 @@ namespace LeisureTimeSystem
 
                 expression.CreateMap<AddressBindingModel, Address>();
 
-                expression.CreateMap<Student, DetailsProfileViewModel>();
+                expression.CreateMap<Student, DetailsProfileViewModel>()
+                                .ForMember(student => student.Address,
+        m => m.MapFrom(student => student.Address.ToString()));
 
                 expression.CreateMap<Address, EditAddressModelView>();
 
