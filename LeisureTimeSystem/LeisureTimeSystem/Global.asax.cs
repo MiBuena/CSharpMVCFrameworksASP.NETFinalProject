@@ -64,6 +64,16 @@ namespace LeisureTimeSystem
 
                 expression.CreateMap<AddOrganizationBindingModel, AddOrganizationViewModel>();
 
+                expression.CreateMap<Organization, DetailsOrganizationViewModel>()
+                 .ForMember(organization => organization.DisciplineNames,
+        m => m.MapFrom(organization => organization.Disciplines.Select(x=>x.Name)))
+                         .ForMember(organization => organization.City,
+        m => m.MapFrom(organization => organization.Address.City))
+                         .ForMember(organization => organization.Address,
+        m => m.MapFrom(organization => organization.Address.ToString()))
+                                 .ForMember(organization => organization.Pictures,
+        m => m.MapFrom(organization => organization.Pictures.Select(x=>x.Path)));
+
                 expression.CreateMap<Discipline, AddOrganizationDisciplineViewModel>()
                 .ForMember(discipline => discipline.Name,
         m => m.MapFrom(discipline => discipline.Name));

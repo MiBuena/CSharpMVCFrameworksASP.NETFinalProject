@@ -20,7 +20,9 @@ namespace LeisureTimeSystem.Controllers
 
         public ActionResult Details(int organizationId)
         {
-            return View();
+            var organizationVm = this.service.GetDetailsOrganizationViewModel(organizationId);
+
+            return View(organizationVm);
         }
 
         public ActionResult Create()

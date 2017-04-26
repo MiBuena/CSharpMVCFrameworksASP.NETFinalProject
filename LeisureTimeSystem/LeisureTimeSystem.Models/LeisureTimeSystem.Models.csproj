@@ -70,6 +70,7 @@
     <Compile Include="BidningModels\EditProfileBindingModel.cs" />
     <Compile Include="Constants\Constatnts.cs" />
     <Compile Include="BidningModels\AddOrganizationBindingModel.cs" />
+    <Compile Include="EntityModels\Picture.cs" />
     <Compile Include="Enums\ApplicationStatus.cs" />
     <Compile Include="ViewModels\Course\DeleteCourseViewModel.cs" />
     <Compile Include="ViewModels\Organization\AddOrganizationDisciplineViewModel.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="ViewModels\Account\SendCodeViewModel.cs" />
     <Compile Include="ViewModels\Account\VerifyCodeViewModel.cs" />
     <Compile Include="ViewModels\Organization\AllDisciplineOrganizationsViewModel.cs" />
+    <Compile Include="ViewModels\Organization\DetailsOrganizationViewModel.cs" />
     <Compile Include="ViewModels\Profile\StudentProfileOrganizationViewModel.cs" />
     <Compile Include="ViewModels\Profile\EditAddressModelView.cs" />
     <Compile Include="ViewModels\Profile\EditProfileViewModel.cs" />

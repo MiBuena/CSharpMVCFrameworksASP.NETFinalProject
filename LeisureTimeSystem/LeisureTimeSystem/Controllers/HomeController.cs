@@ -26,8 +26,8 @@ namespace LeisureTimeSystem.Controllers
         {
             LeisureSystemContext context = new LeisureSystemContext();
 
-            context.Categories.FirstOrDefault();
-            return View();
+
+            return View(context.Organizations.FirstOrDefault());
         }
 
         public ActionResult About()

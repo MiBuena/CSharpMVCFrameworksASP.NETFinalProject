@@ -27,7 +27,7 @@ namespace LeisureTimeSystem.Models.EntityModels
         [ForeignKey("User")]
         public string UserId { get; set; }
 
-        public string ProfilePicturePath { get; set; }
+        public virtual Picture ProfilePicture { get; set; }
 
         public virtual ApplicationUser User { get; set; }
 

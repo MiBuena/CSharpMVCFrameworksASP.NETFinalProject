@@ -39,6 +39,7 @@ namespace LeisureTimeSystem.Data
 
         public virtual DbSet<Address> Addresses { get; set; }
 
+        public virtual DbSet<Picture> Pictures { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

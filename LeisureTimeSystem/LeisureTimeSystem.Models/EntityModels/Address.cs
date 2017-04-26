@@ -40,5 +40,41 @@ namespace LeisureTimeSystem.Models.EntityModels
         [MaxLength(20)]
         public string StreetNumber { get; set; }
 
+        public override string ToString()
+        {
+            string address = null;
+
+            if (this.District != null)
+            {
+                address += $"{this.District} Distr.";
+            }
+
+            if (this.StreetNumber != null)
+            {
+                address += $", {this.StreetNumber}";
+            }
+
+            if (this.Street != null)
+            {
+                address += $" {this.Street} Str.";
+            }
+
+            if (this.BlockNumber != null)
+            {
+                address += $", {this.BlockNumber} Bl.";
+            }
+
+            if (this.Entrance != null)
+            {
+                address += $", {this.Entrance} Entr.";
+            }
+
+            if (this.AppartmentNumber != null)
+            {
+                address += $", {this.Entrance} App.";
+            }
+
+            return address;
+        }
     }
 }

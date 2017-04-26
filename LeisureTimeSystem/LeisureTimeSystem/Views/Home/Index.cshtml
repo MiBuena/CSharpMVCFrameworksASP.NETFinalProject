@@ -1,5 +1,11 @@
-﻿@{
+﻿@model LeisureTimeSystem.Models.EntityModels.Organization
+@{
     ViewBag.Title = "Home Page";
 }
 
+
+@foreach (var element in this.Model.Pictures)
+{
+    <p>@element</p>
+}
 

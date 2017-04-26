@@ -98,5 +98,14 @@ namespace LeisureTimeSystem.Services.Services
             return organizationsVms;
 
         }
+
+        public DetailsOrganizationViewModel GetDetailsOrganizationViewModel(int organizationId)
+        {
+            var organization = this.Context.Organizations.Find(organizationId);
+
+            var organizationVm = Mapper.Map<Organization, DetailsOrganizationViewModel>(organization);
+
+            return organizationVm;
+        }
     }
 }

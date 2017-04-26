@@ -16,7 +16,7 @@ namespace LeisureTimeSystem.Models.EntityModels
         {
             this.Courses = new HashSet<Course>();
             this.Representatives = new HashSet<Student>();
-            this.Pictures = new HashSet<string>();
+            this.Pictures = new HashSet<Picture>();
             this.Disciplines = new HashSet<Discipline>();
         }
 
@@ -25,7 +25,7 @@ namespace LeisureTimeSystem.Models.EntityModels
         [MaxLength(3000)]
         public string Description { get; set; }
 
-        public string ProfilePicturePath { get; set; }
+        public virtual Picture ProfilePicture { get; set; }
 
         public virtual ICollection<Discipline> Disciplines { get; set; }
 
@@ -33,6 +33,6 @@ namespace LeisureTimeSystem.Models.EntityModels
 
         public virtual ICollection<Student> Representatives { get; set; }
 
-        public virtual ICollection<string> Pictures { get; set; }
+        public virtual ICollection<Picture> Pictures { get; set; }
     }
 }

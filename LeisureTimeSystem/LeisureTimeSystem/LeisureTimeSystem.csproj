@@ -265,6 +265,7 @@
     <Content Include="Views\Course\RenderStudentCourses.cshtml" />
     <Content Include="Views\Home\_NamePartial.cshtml" />
     <Content Include="Views\Course\DeleteCourseApplication.cshtml" />
+    <Content Include="Views\Organization\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

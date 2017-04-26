@@ -8,7 +8,9 @@
 
 <div>
     <h4>DetailsProfileViewModel</h4>
-    <hr/>
+    <hr />
+
+    <h2>@this.Model.Name</h2>
 
 
 
@@ -19,7 +21,7 @@
         </dt>
 
         <dd>
-            
+
         </dd>
 
         <dt>
@@ -168,22 +170,22 @@
 
 @*<button on="update()">Click </button>
 
-<script>
-    function update() {
-        $("#container").load("/Organization/RenderStudentOrganizations/");
-    }
-</script>
-<table>
-    <tr>
-        <td>@Html.Action("RenderStudentOrganizations", "Organization", new { studentId = this.Model.Id })</td>
+    <script>
+        function update() {
+            $("#container").load("/Organization/RenderStudentOrganizations/");
+        }
+    </script>
+    <table>
+        <tr>
+            <td>@Html.Action("RenderStudentOrganizations", "Organization", new { studentId = this.Model.Id })</td>
 
-    </tr>
+        </tr>
 
-</table>*@
+    </table>*@
 
 
-    <p>
-        @Html.ActionLink("Edit profile", "Edit", "Profile", new { studentId = this.Model.Id }, null)
+<p>
+    @Html.ActionLink("Edit profile", "Edit", "Profile", new { studentId = this.Model.Id }, null)
 
-        @Html.ActionLink("To profile management", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-    </p>
+    @Html.ActionLink("To profile management", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+</p>
