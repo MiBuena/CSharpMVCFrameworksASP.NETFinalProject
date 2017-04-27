@@ -72,6 +72,27 @@ namespace LeisureTimeSystem.Controllers
             return this.View(this.service.GetEditOrganizationDataViewModel(model.Id));
         }
 
+        public ActionResult EditOrganizationDescription(int organizationId)
+        {
+            var organizationViewModel = this.service.GetEditOrganizationDescriptionViewModel(organizationId);
+
+            return this.PartialView(organizationViewModel);
+        }
+
+
+        [HttpPost]
+        public ActionResult EditOrganizationDescription(EditOrganizationDescriptionBindingModel model)
+        {
+            if (this.ModelState.IsValid)
+            {
+                this.service.EditOrganizationDescription(model);
+                return this.RedirectToAction("Details", new { organizationId = model.Id });
+            }
+
+            return this.View(this.service.GetEditOrganizationDescriptionViewModel(model.Id));
+        }
+
+
         public ActionResult All(int disciplineId)
         {
             var allViewModel = this.service.GetAllOrganizationsViewModels(disciplineId);

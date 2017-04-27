@@ -45,25 +45,24 @@
     </dl>
 </div>
 
-<h3>
+<h3>@Html.DisplayNameFor(model => model.Description) @Ajax.ActionLink("Edit", "EditOrganizationDescription", "Organization", new { organizationId = this.Model.Id }, new AjaxOptions()
+                                                        {
+                                                            HttpMethod = "GET",
+                                                            UpdateTargetId = "descriptionContainer",
+                                                            InsertionMode = InsertionMode.Replace
+                                                        })</h3>
+
+
+<hr />
+<div>
 
     <span id="descriptionContainer">
 
-        @Html.DisplayNameFor(model => model.Description)
-
-
-        @Ajax.ActionLink("Edit", "EditOrganizationData", "Organization", new { organizationId = this.Model.Id }, new AjaxOptions()
-           {
-               HttpMethod = "GET",
-               UpdateTargetId = "descriptionContainer",
-               InsertionMode = InsertionMode.Replace
-           })
-
     </span>
-</h3>
-<hr />
-<div>
-    @Html.DisplayFor(model => model.Description)
+
+        @Html.DisplayFor(model => model.Description)
+
+
 </div>
 
 <h3>Gallery</h3>

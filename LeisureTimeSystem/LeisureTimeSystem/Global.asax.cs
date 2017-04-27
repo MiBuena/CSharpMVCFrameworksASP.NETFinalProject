@@ -37,6 +37,8 @@ namespace LeisureTimeSystem
 
                 expression.CreateMap<Discipline, DisciplineViewModel>();
 
+                expression.CreateMap<Organization, EditOrganizationDescriptionViewModel>();
+
                 expression.CreateMap<Address, EditAddressModelView>()
                                                     .ForMember(address => address.AddressId,
                         m => m.MapFrom(address => address.Id));

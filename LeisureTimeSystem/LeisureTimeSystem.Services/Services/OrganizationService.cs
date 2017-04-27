@@ -25,22 +25,38 @@ namespace LeisureTimeSystem.Services.Services
             return editOrganizationDataViewModel;
         }
 
+        public EditOrganizationDescriptionViewModel GetEditOrganizationDescriptionViewModel(int organizationId)
+        {
+            var organization = this.Context.Organizations.Find(organizationId);
+
+            var editOrganizationDataViewModel = Mapper.Map<Organization, EditOrganizationDescriptionViewModel>(organization);
+
+            return editOrganizationDataViewModel;
+        }
+
+
+
         public void EditOrganizationData(EditOrganizationDataBindingModel model)
         {
             var organization = this.Context.Organizations.Find(model.Id);
 
             this.Context.Entry(organization).CurrentValues.SetValues(model);
 
-
             var address = this.Context.Addresses.Find(organization.Address.Id);
-
 
             this.Context.Entry(address).CurrentValues.SetValues(model.Address);
 
+            this.Context.SaveChanges();
+        }
+
+
+        public void EditOrganizationDescription(EditOrganizationDescriptionBindingModel model)
+        {
+            var organization = this.Context.Organizations.Find(model.Id);
+
+            organization.Description = model.Description;
 
             this.Context.SaveChanges();
-
-
         }
 
 
