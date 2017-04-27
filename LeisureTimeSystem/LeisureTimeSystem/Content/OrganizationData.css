@@ -1,0 +1,44 @@
+﻿body {
+}
+
+.picture {
+    width: 200px;
+    height: 80px;
+}
+
+.propertyNameDetails {
+    color: rgb(138, 139, 141);
+}
+
+.labelContainer {
+    float: left;
+    position: relative;
+    width: 100px;
+    font-weight: bold;
+    text-align: right;
+    margin-right: 10px;
+}
+
+.editorContainer {
+    position: relative;
+}
+
+.rowContainer {
+    margin-top: 32px;
+    margin-bottom: 32px;
+}
+
+.leftSide {
+    float: left;
+    position: relative;
+}
+
+.rightSide {
+    float: left;
+    position: relative;
+}
+
+textarea {
+    width: 100%;
+    min-height: 160px;
+}

@@ -1,4 +1,6 @@
-﻿@model LeisureTimeSystem.Models.ViewModels.Organization.DetailsOrganizationViewModel
+﻿<link href="@Url.Content("~/Content/OrganizationData.css")" rel="stylesheet" type="text/css" />
+
+@model LeisureTimeSystem.Models.ViewModels.Organization.DetailsOrganizationViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -7,38 +9,65 @@
 
 <div>
     <h3>@this.Model.Name</h3>
-    <hr/>
+    <hr />
 
     <dl class="dl-horizontal">
 
         <dt>
-            <img src=@this.Model.ProfilePicturePath alt="Smiley face" style="left; width: 200px; height: 80px;">
-            <br/>
+            <img src=@this.Model.ProfilePicturePath alt="Smiley face" class="picture">
+            <br />
         </dt>
         <dd>
-            <span style="color: #8a8b8d;">City:</span> @this.Model.City <br>
+            <span id="container">
+                <span class="propertyNameDetails">City:</span> @this.Model.City <br>
 
-            <span style="color: #8a8b8d;" class="left lh11 ">Address:</span> @this.Model.Address<br>
+                <span class="propertyNameDetails">Address:</span> @this.Model.Address<br>
 
-            <span style="color: #8a8b8d;"> Telephone:</span> @this.Model.Telephones <br>
+                <span class="propertyNameDetails">Telephone:</span> @this.Model.Telephones <br>
 
-            <span style="color: #8a8b8d;"> E-mail:</span> @this.Model.DisplayEmail <br>
+                <span class="propertyNameDetails">E-mail:</span> @this.Model.DisplayEmail <br>
 
-            <span style="color: #8a8b8d;"> Web-site:</span> @this.Model.Website <br>
+                <span class="propertyNameDetails"> Web-site:</span> @this.Model.Website <br>
+
+
+
+                @Ajax.ActionLink("Edit", "EditOrganizationData", "Organization", new { organizationId = this.Model.Id }, new AjaxOptions()
+       {
+           HttpMethod = "GET",
+           UpdateTargetId = "container",
+           InsertionMode = InsertionMode.Replace
+       })
+
+            </span>
+
+
         </dd>
     </dl>
 </div>
 
 <h3>
-    @Html.DisplayNameFor(model => model.Description)
+
+    <span id="descriptionContainer">
+
+        @Html.DisplayNameFor(model => model.Description)
+
+
+        @Ajax.ActionLink("Edit", "EditOrganizationData", "Organization", new { organizationId = this.Model.Id }, new AjaxOptions()
+           {
+               HttpMethod = "GET",
+               UpdateTargetId = "descriptionContainer",
+               InsertionMode = InsertionMode.Replace
+           })
+
+    </span>
 </h3>
-<hr/>
+<hr />
 <div>
     @Html.DisplayFor(model => model.Description)
 </div>
 
 <h3>Gallery</h3>
-<hr/>
+<hr />
 <div class="left presentation_gallery_photo">
     <table width="100" style="width:100%;height:103px;">
         <tbody>

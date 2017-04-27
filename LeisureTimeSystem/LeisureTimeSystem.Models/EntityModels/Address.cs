@@ -24,7 +24,7 @@ namespace LeisureTimeSystem.Models.EntityModels
         [MaxLength(20)]
         public string BlockNumber { get; set; }
 
-        [MinLength(2)]
+        [MinLength(1)]
         [MaxLength(20)]
         public string Entrance { get; set; }
 

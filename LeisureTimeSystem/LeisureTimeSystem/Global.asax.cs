@@ -37,6 +37,10 @@ namespace LeisureTimeSystem
 
                 expression.CreateMap<Discipline, DisciplineViewModel>();
 
+                expression.CreateMap<Address, EditAddressModelView>()
+                                                    .ForMember(address => address.AddressId,
+                        m => m.MapFrom(address => address.Id));
+
                 expression.CreateMap<Course, CourseViewModel>()
                     .ForMember(course => course.DisciplineName,
                         m => m.MapFrom(course => course.Discipline.Name))
@@ -65,14 +69,16 @@ namespace LeisureTimeSystem
                 expression.CreateMap<AddOrganizationBindingModel, AddOrganizationViewModel>();
 
                 expression.CreateMap<Organization, DetailsOrganizationViewModel>()
-                 .ForMember(organization => organization.DisciplineNames,
-        m => m.MapFrom(organization => organization.Disciplines.Select(x=>x.Name)))
-                         .ForMember(organization => organization.City,
-        m => m.MapFrom(organization => organization.Address.City))
-                         .ForMember(organization => organization.Address,
-        m => m.MapFrom(organization => organization.Address.ToString()))
-                                 .ForMember(organization => organization.Pictures,
-        m => m.MapFrom(organization => organization.Pictures.Select(x=>x.Path)));
+                    .ForMember(organization => organization.DisciplineNames,
+                        m => m.MapFrom(organization => organization.Disciplines.Select(x => x.Name)))
+                    .ForMember(organization => organization.City,
+                        m => m.MapFrom(organization => organization.Address.City))
+                    .ForMember(organization => organization.Address,
+                        m => m.MapFrom(organization => organization.Address.ToString()))
+                    .ForMember(organization => organization.Pictures,
+                        m => m.MapFrom(organization => organization.Pictures.Select(x => x.Path)))
+                    .ForMember(organization => organization.AddressId,
+                        m => m.MapFrom(organization => organization.Address.Id));
 
                 expression.CreateMap<Discipline, AddOrganizationDisciplineViewModel>()
                 .ForMember(discipline => discipline.Name,
@@ -80,15 +86,30 @@ namespace LeisureTimeSystem
 
                 expression.CreateMap<Organization, OrganizationViewModel>();
 
+                expression.CreateMap<Organization, EditOrganizationDataViewModel>()
+                                .ForMember(organization => organization.Address,
+        m => m.MapFrom(organization => organization.Address));
+
+
+                expression.CreateMap<Organization, EditOrganizationDataBindingModel>();
+
+
+                expression.CreateMap<EditOrganizationDataBindingModel, Organization>()
+                                    .ForMember(organization => organization.Address,
+                        m => m.MapFrom(organization => organization.Address));
+
+
                 expression.CreateMap<Address, AddressBindingModel>();
 
-                expression.CreateMap<AddressBindingModel, Address>();
+                expression.CreateMap<AddressBindingModel, Address>()
+                    .ForMember(address => address.Id,
+                        m => m.MapFrom(address => address.AddressId));
 
                 expression.CreateMap<Student, DetailsProfileViewModel>()
+                                       .ForMember(organization => organization.City,
+        m => m.MapFrom(organization => organization.Address.City))
                                 .ForMember(student => student.Address,
         m => m.MapFrom(student => student.Address.ToString()));
-
-                expression.CreateMap<Address, EditAddressModelView>();
 
                 expression.CreateMap<Student, EditProfileViewModel>()
                 .ForMember(student => student.Address,

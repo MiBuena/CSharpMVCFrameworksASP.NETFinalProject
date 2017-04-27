@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace LeisureTimeSystem.Models.ViewModels.Profile
+namespace LeisureTimeSystem.Models.BidningModels
 {
-    public class EditAddressModelView
+    public class EditAddressBindingModel
     {
-        public int AddressId { get; set; }
-
         [Required]
         [MinLength(2)]
         [MaxLength(100)]
@@ -22,16 +15,14 @@ namespace LeisureTimeSystem.Models.ViewModels.Profile
 
         [MinLength(1)]
         [MaxLength(20)]
-        [Display(Name = "Block")]
         public string BlockNumber { get; set; }
 
-        [MinLength(2)]
+        [MinLength(1)]
         [MaxLength(20)]
         public string Entrance { get; set; }
 
         [MinLength(1)]
         [MaxLength(20)]
-        [Display(Name = "Appartment")]
         public string AppartmentNumber { get; set; }
 
         [MinLength(2)]
@@ -40,7 +31,6 @@ namespace LeisureTimeSystem.Models.ViewModels.Profile
 
         [MinLength(2)]
         [MaxLength(20)]
-        [Display(Name = "Str. number")]
         public string StreetNumber { get; set; }
     }
 }

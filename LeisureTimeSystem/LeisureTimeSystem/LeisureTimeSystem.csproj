@@ -190,6 +190,7 @@
   <ItemGroup>
     <Content Include="Content\2.css" />
     <Content Include="Content\3.css" />
+    <Content Include="Content\OrganizationData.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\JavaScript.js" />
@@ -266,6 +267,7 @@
     <Content Include="Views\Home\_NamePartial.cshtml" />
     <Content Include="Views\Course\DeleteCourseApplication.cshtml" />
     <Content Include="Views\Organization\Details.cshtml" />
+    <Content Include="Views\Organization\EditOrganizationData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -275,6 +277,7 @@
     <Folder Include="Areas\Blog\Models\" />
     <Folder Include="Areas\Blog\Views\Articles\" />
     <Folder Include="Areas\Blog\Views\Shared\" />
+    <Folder Include="Views\Address\" />
     <Folder Include="Views\Controllers\" />
   </ItemGroup>
   <ItemGroup>

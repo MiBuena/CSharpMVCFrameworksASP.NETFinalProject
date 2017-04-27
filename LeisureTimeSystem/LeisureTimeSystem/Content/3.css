@@ -70,3 +70,13 @@
     background-color: bisque;
 }
 
+.picture {
+    width: 200px;
+    height: 80px;
+}
+
+.propertyName {
+    color: #8a8b8d;
+}
+
+

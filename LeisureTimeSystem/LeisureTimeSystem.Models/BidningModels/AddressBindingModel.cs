@@ -9,6 +9,8 @@ namespace LeisureTimeSystem.Models.BidningModels
 {
     public class AddressBindingModel
     {
+        public int AddressId { get; set; }
+
         [Required]
         [MinLength(2)]
         [MaxLength(100)]
@@ -22,7 +24,7 @@ namespace LeisureTimeSystem.Models.BidningModels
         [MaxLength(20)]
         public string BlockNumber { get; set; }
 
-        [MinLength(2)]
+        [MinLength(1)]
         [MaxLength(20)]
         public string Entrance { get; set; }
 

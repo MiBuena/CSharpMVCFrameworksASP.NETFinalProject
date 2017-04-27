@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,34 @@ namespace LeisureTimeSystem.Services.Services
 {
     public class OrganizationService : Service
     {
+        public EditOrganizationDataViewModel GetEditOrganizationDataViewModel(int organizationId)
+        {
+            var organization = this.Context.Organizations.Find(organizationId);
+
+            var editOrganizationDataViewModel = Mapper.Map<Organization, EditOrganizationDataViewModel>(organization);
+
+            return editOrganizationDataViewModel;
+        }
+
+        public void EditOrganizationData(EditOrganizationDataBindingModel model)
+        {
+            var organization = this.Context.Organizations.Find(model.Id);
+
+            this.Context.Entry(organization).CurrentValues.SetValues(model);
+
+
+            var address = this.Context.Addresses.Find(organization.Address.Id);
+
+
+            this.Context.Entry(address).CurrentValues.SetValues(model.Address);
+
+
+            this.Context.SaveChanges();
+
+
+        }
+
+
         public AddOrganizationViewModel GetViewModel()
         {
             AddOrganizationViewModel model = new AddOrganizationViewModel();
@@ -109,3 +138,4 @@ namespace LeisureTimeSystem.Services.Services
         }
     }
 }
+

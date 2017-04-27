@@ -1,0 +1,161 @@
+﻿<link href="@Url.Content("~/Content/OrganizationData.css")" rel="stylesheet" type="text/css" />
+
+@model LeisureTimeSystem.Models.ViewModels.Organization.EditOrganizationDataViewModel
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <form>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        @Html.HiddenFor(model=>model.Address.AddressId)
+
+
+        <div class="leftSide col-md-6">
+
+            <div class="rowContainer">
+                <div class="labelContainer">
+                    @Html.LabelFor(model => model.Name, htmlAttributes: new {@class = "propertyName"})
+                </div>
+
+                <div class="editorContainer">
+                    @Html.EditorFor(model => model.Name, new {htmlAttributes = new {@class = "form-control"}})
+                    @Html.ValidationMessageFor(model => model.Name, "", new {@class = "text-danger"})
+                </div>
+            </div>
+
+
+            <div class="rowContainer">
+                <div class="labelContainer">
+                    @Html.LabelFor(model => model.Website, htmlAttributes: new {@class = "propertyName"})
+                </div>
+
+                <div class="editorContainer">
+                    @Html.EditorFor(model => model.Website, new {htmlAttributes = new {@class = "form-control"}})
+                    @Html.ValidationMessageFor(model => model.Website, "", new {@class = "text-danger"})
+                </div>
+            </div>
+
+            <div class="rowContainer">
+                <div class="labelContainer">
+                    @Html.LabelFor(model => model.DisplayEmail, htmlAttributes: new {@class = "propertyName"})
+                </div>
+
+                <div class="editorContainer">
+
+                    @Html.EditorFor(model => model.DisplayEmail, new {htmlAttributes = new {@class = "form-control"}})
+                    @Html.ValidationMessageFor(model => model.DisplayEmail, "", new {@class = "text-danger"})
+
+                </div>
+            </div>
+
+            <div class="rowContainer">
+                <div class="labelContainer">
+                    @Html.LabelFor(model => model.Telephones, htmlAttributes: new {@class = "propertyName"})
+                </div>
+
+                <div class="editorContainer">
+                    @Html.EditorFor(model => model.Telephones, new {htmlAttributes = new {@class = "form-control"}})
+                    @Html.ValidationMessageFor(model => model.Telephones, "", new {@class = "text-danger"})
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="rightSide col-md-6">
+            <div class="rowContainer">
+                <div class="labelContainer">
+                    @Html.LabelFor(model => model.Address.City, htmlAttributes: new { @class = "propertyName" })
+                </div>
+
+                <div class="editorContainer">
+                    @Html.EditorFor(model => model.Address.City, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Address.City, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="rowContainer">
+
+                <div class="labelContainer">
+                    @Html.LabelFor(model => model.Address.District, htmlAttributes: new { @class = "propertyName" })
+                </div>
+
+                <div class="editorContainer">
+                    @Html.EditorFor(model => model.Address.District, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Address.District, "", new { @class = "text-danger" })
+                </div>
+
+            </div>
+
+            <div class="rowContainer">
+                <div class="labelContainer">
+                    @Html.LabelFor(model => model.Address.BlockNumber, htmlAttributes: new { @class = "propertyName" })
+                </div>
+
+                <div class="editorContainer">
+                    @Html.EditorFor(model => model.Address.BlockNumber, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Address.BlockNumber, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="rowContainer">
+
+                <div class="labelContainer">
+                    @Html.LabelFor(model => model.Address.Entrance, htmlAttributes: new { @class = "propertyName" })
+                </div>
+
+                <div class="editorContainer">
+                    @Html.EditorFor(model => model.Address.Entrance, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Address.Entrance, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="rowContainer">
+                <div class="labelContainer">
+                    @Html.LabelFor(model => model.Address.AppartmentNumber, htmlAttributes: new { @class = "propertyName" })
+                </div>
+
+                <div class="editorContainer">
+                    @Html.EditorFor(model => model.Address.AppartmentNumber, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Address.AppartmentNumber, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="rowContainer">
+                <div class="labelContainer">
+                    @Html.LabelFor(model => model.Address.Street, htmlAttributes: new { @class = "propertyName" })
+                </div>
+
+                <div class="editorContainer">
+                    @Html.EditorFor(model => model.Address.Street, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Address.Street, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="rowContainer">
+                <div class="labelContainer">
+                    @Html.LabelFor(model => model.Address.StreetNumber, htmlAttributes: new { @class = "propertyName" })
+                </div>
+
+                <div class="editorContainer">
+                    @Html.EditorFor(model => model.Address.StreetNumber, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Address.StreetNumber, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </form>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

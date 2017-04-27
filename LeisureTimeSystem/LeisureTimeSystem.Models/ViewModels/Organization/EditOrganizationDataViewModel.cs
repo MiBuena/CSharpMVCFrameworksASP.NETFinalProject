@@ -4,12 +4,11 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using LeisureTimeSystem.Models.EntityModels;
-using LeisureTimeSystem.Models.ViewModels.Course;
+using LeisureTimeSystem.Models.ViewModels.Profile;
 
 namespace LeisureTimeSystem.Models.ViewModels.Organization
 {
-    public class DetailsOrganizationViewModel
+    public class EditOrganizationDataViewModel
     {
         public int Id { get; set; }
 
@@ -26,26 +25,16 @@ namespace LeisureTimeSystem.Models.ViewModels.Organization
         [MinLength(2)]
         [MaxLength(100)]
         [EmailAddress]
+        [Display(Name = "Display email")]
         public string DisplayEmail { get; set; }
 
         [MinLength(2)]
         [MaxLength(100)]
         public string Telephones { get; set; }
 
-        public string AddressId { get; set; }
-
-        public string City { get; set; }
-
-        public string Address { get; set; }
-
         [MaxLength(3000)]
         public string Description { get; set; }
 
-        public string ProfilePicturePath { get; set; }
-
-        public virtual ICollection<string> DisciplineNames { get; set; }
-
-        public virtual ICollection<string> Pictures { get; set; }
-
+        public EditAddressModelView Address { get; set; }
     }
 }
