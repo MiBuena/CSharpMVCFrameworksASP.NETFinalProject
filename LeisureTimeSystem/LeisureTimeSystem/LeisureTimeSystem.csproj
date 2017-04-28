@@ -180,6 +180,7 @@
     <Compile Include="Controllers\DisciplineController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PicturesController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -269,6 +270,10 @@
     <Content Include="Views\Organization\Details.cshtml" />
     <Content Include="Views\Organization\EditOrganizationData.cshtml" />
     <Content Include="Views\Organization\EditOrganizationDescription.cshtml" />
+    <Content Include="Views\Organization\EditOrganizationPictures.cshtml" />
+    <Content Include="Views\Organization\UploadFile.cshtml" />
+    <Content Include="Views\Organization\DeletePicture.cshtml" />
+    <Content Include="Views\Organization\AllOrganizationCourses.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -280,6 +285,7 @@
     <Folder Include="Areas\Blog\Views\Shared\" />
     <Folder Include="Views\Address\" />
     <Folder Include="Views\Controllers\" />
+    <Folder Include="Views\Pictures\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

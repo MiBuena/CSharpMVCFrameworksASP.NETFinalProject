@@ -12,7 +12,7 @@ using LeisureTimeSystem.Models.ViewModels.Course;
 namespace LeisureTimeSystem.Services.Services
 {
     public class CourseService : Service
-    {
+    { 
         public void DeleteCourseApplication(DeleteCourseApplicationBindingModel model)
         {
             var application= this.Context.CoursesApplications.FirstOrDefault(x => x.CourseId == model.CourseId && x.StudentId == model.StudentId);

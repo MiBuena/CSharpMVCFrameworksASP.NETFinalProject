@@ -1,0 +1,11 @@
+﻿@model LeisureTimeSystem.Models.ViewModels.Organization.UploadOrganizationPictureViewModel
+
+@using (Html.BeginForm("Upload", "Organization", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    @Html.HiddenFor(model=>model.Id)
+    <input type="file" name="myFile" />
+
+    <input type="submit" name="Send" />
+
+}

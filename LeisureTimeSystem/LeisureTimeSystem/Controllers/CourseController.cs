@@ -18,6 +18,11 @@ namespace LeisureTimeSystem.Controllers
             this.service = new CourseService();
         }
 
+        //public ActionResult Add(int organizationId)
+        //{
+            
+        //}
+
         public ActionResult DisciplineCourses(int disciplineId)
         {
             var courses = this.service.GetCourseViewModelsByDiscipline(disciplineId);

@@ -2,13 +2,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using AutoMapper;
 using LeisureTimeSystem.Models.BidningModels;
 using LeisureTimeSystem.Models.EntityModels;
 using LeisureTimeSystem.Models.ViewModels;
+using LeisureTimeSystem.Models.ViewModels.Course;
 using LeisureTimeSystem.Models.ViewModels.Organization;
 using LeisureTimeSystem.Models.ViewModels.Profile;
 
@@ -16,6 +19,73 @@ namespace LeisureTimeSystem.Services.Services
 {
     public class OrganizationService : Service
     {
+        public IEnumerable<CourseViewModel> GetAllOrganizationCourses(int organizationId)
+        {
+            var courses = this.Context.Courses.Where(x => x.Organization.Id == organizationId);
+
+            var coursesVms = Mapper.Map<IEnumerable<Course>, IEnumerable<CourseViewModel>>(courses);
+
+            return coursesVms;
+        }
+        public void UploadPicture(UploadOrganizationPictureBindingModel model, HttpPostedFileBase file, HttpServerUtilityBase server)
+        {
+            var fileName = GetFileName(file, server);
+
+            string fullFilePath = "../UploadedFiles/" + fileName;
+
+            Picture newPicture = new Picture()
+            {
+                Path = fullFilePath
+            };
+
+            var organization = this.Context.Organizations.Find(model.Id);
+
+            organization.Pictures.Add(newPicture);
+
+            this.Context.SaveChanges();
+        }
+
+        private string GetFileName(HttpPostedFileBase file, HttpServerUtilityBase server)
+        {
+            string fileName = Path.GetFileName(file.FileName);
+
+            string path = Path.Combine(server.MapPath("~/UploadedFiles"), fileName);
+
+            file.SaveAs(path);
+
+            return fileName;
+        }
+
+        public UploadOrganizationPictureViewModel GetUploadOrganizationPictureViewModel(int organizationId)
+        {
+            UploadOrganizationPictureViewModel model = new UploadOrganizationPictureViewModel()
+            {
+                Id = organizationId
+            };
+
+            return model;
+        }
+
+
+        public DeletePictureViewModel GetDeletePictureViewModel(int pictureId, int organizationId)
+        {
+            var picture = this.Context.Pictures.Find(pictureId);
+
+            var pictureVm = Mapper.Map<Picture, DeletePictureViewModel>(picture);
+            pictureVm.OrganizationId = organizationId;
+
+            return pictureVm;
+        }
+
+        public void DeletePicture(DeletePictureBindingModel model)
+        {
+            var pictureToDelete = this.Context.Pictures.FirstOrDefault(x => x.Id == model.PictureId);
+
+            this.Context.Pictures.Remove(pictureToDelete);
+
+            this.Context.SaveChanges();
+        }
+
         public EditOrganizationDataViewModel GetEditOrganizationDataViewModel(int organizationId)
         {
             var organization = this.Context.Organizations.Find(organizationId);
@@ -32,6 +102,15 @@ namespace LeisureTimeSystem.Services.Services
             var editOrganizationDataViewModel = Mapper.Map<Organization, EditOrganizationDescriptionViewModel>(organization);
 
             return editOrganizationDataViewModel;
+        }
+
+        public EditOrganizationPicturesViewModel GetEditOrganizationPicturesViewModel(int organizationId)
+        {
+            var organization = this.Context.Organizations.Find(organizationId);
+
+            EditOrganizationPicturesViewModel model = Mapper.Map<Organization, EditOrganizationPicturesViewModel>(organization);
+
+            return model;
         }
 
 

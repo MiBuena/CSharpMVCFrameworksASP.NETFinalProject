@@ -1,4 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using System.IO;
+using System.Web;
+using System.Web.Mvc;
 using AutoMapper;
 using LeisureTimeSystem.Models.BidningModels;
 using LeisureTimeSystem.Models.EntityModels;
@@ -16,6 +18,13 @@ namespace LeisureTimeSystem.Controllers
         public OrganizationController()
         {
             this.service = new OrganizationService();
+        }
+
+        public ActionResult AllOrganizationCourses(int organizationid)
+        {
+            var coursesVms = this.service.GetAllOrganizationCourses(organizationid);
+
+            return this.PartialView(coursesVms);
         }
 
         public ActionResult Details(int organizationId)
@@ -86,11 +95,64 @@ namespace LeisureTimeSystem.Controllers
             if (this.ModelState.IsValid)
             {
                 this.service.EditOrganizationDescription(model);
-                return this.RedirectToAction("Details", new { organizationId = model.Id });
+                return this.RedirectToAction("Details", new {organizationId = model.Id});
             }
 
             return this.View(this.service.GetEditOrganizationDescriptionViewModel(model.Id));
         }
+
+        
+        public ActionResult EditOrganizationPictures(int organizationId)
+        {
+            var organizationViewModel = this.service.GetEditOrganizationPicturesViewModel(organizationId);
+
+            return this.PartialView(organizationViewModel);
+        }
+
+        public ActionResult DeletePicture(int pictureId, int organizationId)
+        {
+            var pictureVm = this.service.GetDeletePictureViewModel(pictureId, organizationId);
+
+            return View(pictureVm);
+        }
+
+        [HttpPost]
+        public ActionResult DeletePicture(DeletePictureBindingModel model)
+        {
+            if (this.ModelState.IsValid)
+            {
+                this.service.DeletePicture(model);
+                return this.RedirectToAction("Details", new {organizationId = model.OrganizationId});
+            }
+
+            return this.View(this.service.GetDeletePictureViewModel(model.PictureId, model.OrganizationId));
+        }
+
+        public ActionResult UploadFile(int organizationId)
+        {
+            var organizationViewModel = this.service.GetUploadOrganizationPictureViewModel(organizationId);
+
+            return this.PartialView(organizationViewModel);
+        }
+
+
+        [HttpPost]
+        public ActionResult Upload(UploadOrganizationPictureBindingModel model)
+        {
+            if (this.ModelState.IsValid)
+            {
+                HttpPostedFileBase file = this.Request.Files[0];
+
+                this.service.UploadPicture(model, file, Server);
+
+                return this.RedirectToAction("Details", new {organizationId = model.Id});
+            }
+
+            var organizationViewModel = this.service.GetUploadOrganizationPictureViewModel(model.Id);
+
+            return this.PartialView("UploadFile", organizationViewModel);
+        }
+
 
 
         public ActionResult All(int disciplineId)
