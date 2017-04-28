@@ -1,0 +1,47 @@
+﻿@model IEnumerable<LeisureTimeSystem.Models.ViewModels.Course.CourseApplicationViewModel>
+
+@{
+    ViewBag.Title = "AllCourseApplications";
+}
+
+<h2>@this.Model.FirstOrDefault().Course.Name Applications</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Student.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Student.Username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Student.Email)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(model => item.Student.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Student.Username)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Student.Email)
+            <td>
+
+                @Html.DisplayFor(model=>item.Status)
+            </td>
+
+
+        </tr>
+    }
+
+</table>

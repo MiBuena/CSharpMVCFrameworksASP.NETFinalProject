@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,19 @@ using LeisureTimeSystem.Models.ViewModels.Course;
 namespace LeisureTimeSystem.Services.Services
 {
     public class CourseService : Service
-    { 
+    {
+
+        public IEnumerable<CourseApplicationViewModel> GetAllCourseApplicationViewModels(int courseId)
+        {
+            var courseApplications = this.Context.CoursesApplications.Where(x => x.CourseId == courseId);
+
+            var courseApplicationsVms =
+                Mapper.Map<IEnumerable<CourseApplicationData>, IEnumerable<CourseApplicationViewModel>>(
+                    courseApplications);
+
+            return courseApplicationsVms;
+        } 
+
         public void DeleteCourseApplication(DeleteCourseApplicationBindingModel model)
         {
             var application= this.Context.CoursesApplications.FirstOrDefault(x => x.CourseId == model.CourseId && x.StudentId == model.StudentId);

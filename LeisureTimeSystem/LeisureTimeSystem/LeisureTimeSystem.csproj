@@ -274,6 +274,7 @@
     <Content Include="Views\Organization\UploadFile.cshtml" />
     <Content Include="Views\Organization\DeletePicture.cshtml" />
     <Content Include="Views\Organization\AllOrganizationCourses.cshtml" />
+    <Content Include="Views\Course\AllCourseApplications.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

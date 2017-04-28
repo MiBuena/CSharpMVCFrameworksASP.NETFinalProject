@@ -56,12 +56,16 @@
 
             @if (item.CanStudentsSignUp)
             {
-                @Html.ActionLink("Apply", "Apply", "Course", new { courseId = item.Id }, null)
+                @Html.ActionLink("Apply", "Apply", "Course", new {courseId = item.Id}, null)
             }
             else
             {
                 <p>No</p>
             }
+        </td>
+
+        <td>
+            @Html.ActionLink("View all applications", "AllCourseApplications", "Course", new {courseId = item.Id }, null)
         </td>
 
 

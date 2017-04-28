@@ -60,10 +60,17 @@
 
     </span>
 
-        @Html.DisplayFor(model => model.Description)
+    @Html.DisplayFor(model => model.Description)
 
 
 </div>
+
+<h3>Courses</h3>
+
+@Html.Action("AllOrganizationCourses", new { organizationId = this.Model.Id })
+
+
+
 
 <h3>Gallery</h3>
 
@@ -92,9 +99,6 @@
 
 </div>
 
-<h3>Courses</h3>
-
-@Html.Action("AllOrganizationCourses", new {organizationId = this.Model.Id})
 
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |

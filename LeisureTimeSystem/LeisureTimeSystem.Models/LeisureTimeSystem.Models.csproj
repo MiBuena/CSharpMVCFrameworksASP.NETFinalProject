@@ -77,6 +77,9 @@
     <Compile Include="BidningModels\AddOrganizationBindingModel.cs" />
     <Compile Include="EntityModels\Picture.cs" />
     <Compile Include="Enums\ApplicationStatus.cs" />
+    <Compile Include="ViewModels\Course\ApplicationCourseViewModel.cs" />
+    <Compile Include="ViewModels\Course\ApplicationStudentViewModel.cs" />
+    <Compile Include="ViewModels\Course\CourseApplicationViewModel.cs" />
     <Compile Include="ViewModels\Course\DeleteCourseViewModel.cs" />
     <Compile Include="ViewModels\Organization\AddOrganizationDisciplineViewModel.cs" />
     <Compile Include="EntityModels\Address.cs" />

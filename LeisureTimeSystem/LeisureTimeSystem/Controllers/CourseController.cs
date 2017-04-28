@@ -20,8 +20,15 @@ namespace LeisureTimeSystem.Controllers
 
         //public ActionResult Add(int organizationId)
         //{
-            
+
         //}
+
+        public ActionResult AllCourseApplications(int courseId)
+        {
+            var allCourseApplicationVms = this.service.GetAllCourseApplicationViewModels(courseId);
+
+            return View(allCourseApplicationVms);
+        }
 
         public ActionResult DisciplineCourses(int disciplineId)
         {

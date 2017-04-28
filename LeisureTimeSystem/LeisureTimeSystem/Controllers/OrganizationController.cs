@@ -20,6 +20,7 @@ namespace LeisureTimeSystem.Controllers
             this.service = new OrganizationService();
         }
 
+
         public ActionResult AllOrganizationCourses(int organizationid)
         {
             var coursesVms = this.service.GetAllOrganizationCourses(organizationid);

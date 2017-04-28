@@ -71,6 +71,21 @@ namespace LeisureTimeSystem
                                     .ForMember(student => student.Name,
         m => m.MapFrom(student => student.Name));
 
+                expression.CreateMap<Course, ApplicationCourseViewModel>();
+
+                expression.CreateMap<Student, ApplicationStudentViewModel>()
+                .ForMember(student => student.Username,
+        m => m.MapFrom(student => student.User.UserName))
+                        .ForMember(student => student.Email,
+        m => m.MapFrom(student => student.DisplayEmail));
+
+                expression.CreateMap<CourseApplicationData, CourseApplicationViewModel>()
+                                                    .ForMember(data => data.Course,
+        m => m.MapFrom(data => data.Course))
+                                                            .ForMember(data => data.Student,
+        m => m.MapFrom(data => data.Student));
+
+
                 expression.CreateMap<AddressBindingModel, Address>();
 
                 expression.CreateMap<Course, DeleteCourseViewModel>()
