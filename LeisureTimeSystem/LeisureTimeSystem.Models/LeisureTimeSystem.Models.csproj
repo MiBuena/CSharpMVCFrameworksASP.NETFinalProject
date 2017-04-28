@@ -66,6 +66,7 @@
     <Compile Include="Attributes\StartDateAttribute.cs" />
     <Compile Include="BidningModels\AddressBindingModel.cs" />
     <Compile Include="BidningModels\ApplicationBindingModel.cs" />
+    <Compile Include="BidningModels\ChangeStatusApplicationBindingModel.cs" />
     <Compile Include="BidningModels\DeleteCourseApplicationBindingModel.cs" />
     <Compile Include="BidningModels\DeletePictureBindingModel.cs" />
     <Compile Include="BidningModels\EditAddressBindingModel.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="BidningModels\AddOrganizationBindingModel.cs" />
     <Compile Include="EntityModels\Picture.cs" />
     <Compile Include="Enums\ApplicationStatus.cs" />
+    <Compile Include="ViewModels\ChangeStatusApplicationViewModel.cs" />
     <Compile Include="ViewModels\Course\ApplicationCourseViewModel.cs" />
     <Compile Include="ViewModels\Course\ApplicationStudentViewModel.cs" />
     <Compile Include="ViewModels\Course\CourseApplicationViewModel.cs" />

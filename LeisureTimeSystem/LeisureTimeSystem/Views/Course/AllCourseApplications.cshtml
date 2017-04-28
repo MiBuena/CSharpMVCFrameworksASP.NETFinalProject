@@ -37,10 +37,22 @@
                 @Html.DisplayFor(model => item.Student.Email)
             <td>
 
-                @Html.DisplayFor(model=>item.Status)
+                @Html.DisplayFor(model => item.Status)
             </td>
+           @* @Html.Action("ChangeStatusApplication", new {studentId = item.Student.Id, courseId = item.Course.Id})*@
 
+            @using (Html.BeginForm("ChangeStatusApplication", "Course", FormMethod.Post))
+            {
+                @Html.Hidden("CourseId", item.Course.Id)
+                @Html.Hidden("StudentId", item.Student.Id)
 
+                @Html.EnumDropDownListFor(model => item.Status, "Change Status", new { @class = "form-control" })
+
+                <div class="form-group">
+                    <input type="submit">
+                </div>
+
+            }
         </tr>
     }
 

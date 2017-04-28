@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using LeisureTimeSystem.Models.BidningModels;
 using LeisureTimeSystem.Models.EntityModels;
+using LeisureTimeSystem.Models.Enums;
 using LeisureTimeSystem.Models.ViewModels;
 using LeisureTimeSystem.Models.ViewModels.Course;
 
@@ -14,6 +15,28 @@ namespace LeisureTimeSystem.Services.Services
 {
     public class CourseService : Service
     {
+
+        public ChangeStatusApplicationViewModel GetChangeStatusApplicationViewModel(int studentId, int courseId)
+        {
+            ChangeStatusApplicationViewModel changeStatusApplicationVm = new ChangeStatusApplicationViewModel()
+            {
+                StudentId = studentId,
+                CourseId = courseId
+            };
+
+            return changeStatusApplicationVm;
+        }
+
+        public void ChangeStatus(ChangeStatusApplicationBindingModel model)
+        {
+            var application =
+                this.Context.CoursesApplications.FirstOrDefault(x => x.CourseId == model.CourseId && x.StudentId == model.StudentId);
+
+            application.Status = model.Status;
+
+
+            this.Context.SaveChanges();
+        }
 
         public IEnumerable<CourseApplicationViewModel> GetAllCourseApplicationViewModels(int courseId)
         {

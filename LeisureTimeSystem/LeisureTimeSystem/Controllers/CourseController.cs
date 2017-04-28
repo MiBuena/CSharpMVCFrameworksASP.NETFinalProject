@@ -23,6 +23,27 @@ namespace LeisureTimeSystem.Controllers
 
         //}
 
+        //public ActionResult ChangeStatusApplication(int courseId, int studentId)
+        //{
+        //    var changeStatusViewModel = this.service.GetChangeStatusApplicationViewModel(studentId, courseId);
+
+        //    return this.PartialView(changeStatusViewModel);
+        //}
+
+        [HttpPost]
+        public ActionResult ChangeStatusApplication(ChangeStatusApplicationBindingModel model)
+        {
+            if (this.ModelState.IsValid)
+            {
+                this.service.ChangeStatus(model);
+                return RedirectToAction("AllCourseApplications", new {studentId = model.StudentId, courseId = model.CourseId});
+            }
+
+            var changeStatusViewModel = this.service.GetChangeStatusApplicationViewModel(model.StudentId, model.CourseId);
+
+            return this.PartialView(changeStatusViewModel);
+        }
+
         public ActionResult AllCourseApplications(int courseId)
         {
             var allCourseApplicationVms = this.service.GetAllCourseApplicationViewModels(courseId);
@@ -95,6 +116,6 @@ namespace LeisureTimeSystem.Controllers
             return this.PartialView(coursesViewModels);
         }
 
-        
+
     }
 }
