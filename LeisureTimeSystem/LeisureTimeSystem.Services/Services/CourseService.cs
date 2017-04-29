@@ -17,6 +17,24 @@ namespace LeisureTimeSystem.Services.Services
     public class CourseService : Service
     {
 
+        public void DeleteCourse(DeleteCourseBindingModel model)
+        {
+            var course = this.Context.Courses.Find(model.CourseId);
+
+            this.Context.Courses.Remove(course);
+
+            this.Context.SaveChanges();
+        }
+
+        public DeleteCourseViewModel GetDeleteCourseViewModel(int courseId)
+        {
+            var course = this.Context.Courses.Find(courseId);
+
+            var courseViewModel = Mapper.Map<Course, DeleteCourseViewModel>(course);
+
+            return courseViewModel;
+        }
+        
         public void EditCourse(EditCourseBindingModel model)
         {
             var discipline = this.Context.Disciplines.Find(model.DisciplineId);
@@ -124,11 +142,11 @@ namespace LeisureTimeSystem.Services.Services
             this.Context.SaveChanges();
         }
 
-        public DeleteCourseViewModel GetDeleteCourseViewModel(int courseId, string userId)
+        public DeleteCourseApplicationViewModel GetDeleteCourseApplicationViewModel(int courseId, string userId)
         {
             var course = this.Context.Courses.Find(courseId);
 
-            var courseViewModel = Mapper.Map<Course, DeleteCourseViewModel>(course);
+            var courseViewModel = Mapper.Map<Course, DeleteCourseApplicationViewModel>(course);
 
             var student = this.Context.Students.FirstOrDefault(x => x.UserId == userId);
 

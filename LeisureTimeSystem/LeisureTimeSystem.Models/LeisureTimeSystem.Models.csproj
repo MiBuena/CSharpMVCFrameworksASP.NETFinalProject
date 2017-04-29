@@ -69,6 +69,7 @@
     <Compile Include="BidningModels\AddressBindingModel.cs" />
     <Compile Include="BidningModels\ApplicationBindingModel.cs" />
     <Compile Include="BidningModels\ChangeStatusApplicationBindingModel.cs" />
+    <Compile Include="BidningModels\DeleteCourseBindingModel.cs" />
     <Compile Include="BidningModels\DeleteOrganizationBindingModel.cs" />
     <Compile Include="BidningModels\EditCourseBindingModel.cs" />
     <Compile Include="BidningModels\ManageCourseApplicationBindingModel.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="ViewModels\Course\ApplicationCourseViewModel.cs" />
     <Compile Include="ViewModels\Course\ApplicationStudentViewModel.cs" />
     <Compile Include="ViewModels\Course\CourseApplicationViewModel.cs" />
+    <Compile Include="ViewModels\Course\DeleteCourseApplicationViewModel.cs" />
     <Compile Include="ViewModels\Course\DeleteCourseViewModel.cs" />
     <Compile Include="ViewModels\Course\EditCourseViewModel.cs" />
     <Compile Include="ViewModels\Course\NewCourseViewModel.cs" />

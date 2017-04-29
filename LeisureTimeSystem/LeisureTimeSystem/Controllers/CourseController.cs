@@ -70,6 +70,30 @@ namespace LeisureTimeSystem.Controllers
         }
 
 
+        public ActionResult Delete(int courseId)
+        {
+            var deleteCourseViewModel = this.service.GetDeleteCourseViewModel(courseId);
+
+            return View(deleteCourseViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Delete(DeleteCourseBindingModel model)
+        {
+            if (this.ModelState.IsValid)
+            {
+                this.service.DeleteCourse(model);
+
+                return this.RedirectToAction("ManageOrganizationCourses", "Organization",
+                    new {organizationId = model.OrganizationId});
+            }
+
+            var deleteCourseViewModel = this.service.GetDeleteCourseViewModel(model.CourseId);
+
+            return View(deleteCourseViewModel);
+        }
+
+
 
         public ActionResult ManageCourseApplications(int courseId)
         {
@@ -128,7 +152,7 @@ namespace LeisureTimeSystem.Controllers
         {
             string currentUserId = User.Identity.GetUserId();
 
-            var applicationToDelete = this.service.GetDeleteCourseViewModel(courseId, currentUserId);
+            var applicationToDelete = this.service.GetDeleteCourseApplicationViewModel(courseId, currentUserId);
 
             return View(applicationToDelete);
         }
@@ -145,7 +169,7 @@ namespace LeisureTimeSystem.Controllers
 
             string currentUserId = User.Identity.GetUserId();
 
-            var applicationToDelete = this.service.GetDeleteCourseViewModel(model.CourseId, currentUserId);
+            var applicationToDelete = this.service.GetDeleteCourseApplicationViewModel(model.CourseId, currentUserId);
 
             return View(applicationToDelete);
         }

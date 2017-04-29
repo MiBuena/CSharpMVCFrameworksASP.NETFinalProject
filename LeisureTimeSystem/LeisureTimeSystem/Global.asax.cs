@@ -103,12 +103,18 @@ namespace LeisureTimeSystem
 
                 expression.CreateMap<Organization, DeleteOrganizationViewModel>();
 
-                
+                expression.CreateMap<Course, DeleteCourseViewModel>()
+                                 .ForMember(course => course.CourseId,
+        m => m.MapFrom(course => course.Id))
+                                         .ForMember(course => course.OrganizationId,
+        m => m.MapFrom(course => course.Organization.Id));
+
+
                 expression.CreateMap<Student, RepresentativesStudentViewModel>()
                  .ForMember(student => student.Username,
         m => m.MapFrom(student => student.User.UserName));
 
-                expression.CreateMap<Course, DeleteCourseViewModel>()
+                expression.CreateMap<Course, DeleteCourseApplicationViewModel>()
                     .ForMember(course => course.OrganizationName,
                         m => m.MapFrom(course => course.Organization.Name));
 
