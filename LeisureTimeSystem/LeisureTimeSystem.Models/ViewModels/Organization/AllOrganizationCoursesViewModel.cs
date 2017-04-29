@@ -9,6 +9,8 @@ namespace LeisureTimeSystem.Models.ViewModels.Organization
 {
     public class AllOrganizationCoursesViewModel
     {
+        public int OrganizationId { get; set; }
+
 
         public IEnumerable<CourseViewModel> Courses { get; set; } 
     }

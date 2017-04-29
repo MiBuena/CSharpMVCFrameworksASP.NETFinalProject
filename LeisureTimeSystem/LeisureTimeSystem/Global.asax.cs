@@ -63,6 +63,18 @@ namespace LeisureTimeSystem
                     .ForMember(course => course.OrganizationName,
                         m => m.MapFrom(course => course.Organization.Name));
 
+                expression.CreateMap<NewCourseBindingModel, Course>();
+
+                expression.CreateMap<NewCourseBindingModel, NewCourseViewModel>();
+
+                expression.CreateMap<EditCourseBindingModel, Course>();
+
+                expression.CreateMap<Course, EditCourseViewModel>()
+                                    .ForMember(course => course.DisciplineId,
+                        m => m.MapFrom(course => course.Discipline.Id));
+
+
+
                 expression.CreateMap<Course, ApplyCourseViewModel>()
                     .ForMember(course => course.OrganizationName,
         m => m.MapFrom(course => course.Organization.Name));
@@ -91,6 +103,7 @@ namespace LeisureTimeSystem
 
                 expression.CreateMap<Organization, DeleteOrganizationViewModel>();
 
+                
                 expression.CreateMap<Student, RepresentativesStudentViewModel>()
                  .ForMember(student => student.Username,
         m => m.MapFrom(student => student.User.UserName));

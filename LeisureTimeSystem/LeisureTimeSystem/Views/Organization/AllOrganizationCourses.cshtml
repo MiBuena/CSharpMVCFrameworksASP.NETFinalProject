@@ -1,4 +1,4 @@
-﻿@model IEnumerable<LeisureTimeSystem.Models.ViewModels.Course.CourseViewModel>
+﻿@model LeisureTimeSystem.Models.ViewModels.Organization.AllOrganizationCoursesViewModel
 
 @{
     ViewBag.Title = "View";
@@ -9,30 +9,30 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.Courses.FirstOrDefault().Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
+            @Html.DisplayNameFor(model => model.Courses.FirstOrDefault().Description)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.StartDate)
+            @Html.DisplayNameFor(model => model.Courses.FirstOrDefault().StartDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EndDate)
+            @Html.DisplayNameFor(model => model.Courses.FirstOrDefault().EndDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.SubscriptionDeadLine)
+            @Html.DisplayNameFor(model => model.Courses.FirstOrDefault().SubscriptionDeadLine)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.OrganizationName)
+            @Html.DisplayNameFor(model => model.Courses.FirstOrDefault().OrganizationName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CanStudentsSignUp)
+            @Html.DisplayNameFor(model => model.Courses.FirstOrDefault().CanStudentsSignUp)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model.Courses) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Name)

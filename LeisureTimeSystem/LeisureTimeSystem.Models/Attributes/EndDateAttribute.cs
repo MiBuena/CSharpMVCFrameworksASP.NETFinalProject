@@ -16,7 +16,7 @@ namespace LeisureTimeSystem.Models.Attributes
 
             DateTime maxDate = DateTime.Now.AddYears(Constants.Constatnts.EndCourseYearConstant);
 
-            if (date >= maxDate)
+            if (date <= maxDate)
             {
                 return ValidationResult.Success;
             }

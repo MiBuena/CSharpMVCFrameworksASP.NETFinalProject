@@ -282,6 +282,8 @@
     <Content Include="Views\Organization\ManageRepresentatives.cshtml" />
     <Content Include="Views\Organization\AddRepresentative.cshtml" />
     <Content Include="Views\Organization\RemoveRepresentative.cshtml" />
+    <Content Include="Views\Course\Add.cshtml" />
+    <Content Include="Views\Course\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

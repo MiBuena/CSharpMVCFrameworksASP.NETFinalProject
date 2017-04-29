@@ -15,7 +15,7 @@ namespace LeisureTimeSystem.Models.Attributes
 
             DateTime minDate = DateTime.Now.AddYears(-Constants.Constatnts.StartCourseYearConstant);
 
-            if (date <= minDate)
+            if (date >= minDate)
             {
                 return ValidationResult.Success;
             }

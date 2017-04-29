@@ -64,11 +64,13 @@
   <ItemGroup>
     <Compile Include="Attributes\EndDateAttribute.cs" />
     <Compile Include="Attributes\StartDateAttribute.cs" />
+    <Compile Include="BidningModels\AddNewCourseBindingModel.cs" />
     <Compile Include="BidningModels\AddRepresentativeBindingModel.cs" />
     <Compile Include="BidningModels\AddressBindingModel.cs" />
     <Compile Include="BidningModels\ApplicationBindingModel.cs" />
     <Compile Include="BidningModels\ChangeStatusApplicationBindingModel.cs" />
     <Compile Include="BidningModels\DeleteOrganizationBindingModel.cs" />
+    <Compile Include="BidningModels\EditCourseBindingModel.cs" />
     <Compile Include="BidningModels\ManageCourseApplicationBindingModel.cs" />
     <Compile Include="BidningModels\DeleteCourseApplicationBindingModel.cs" />
     <Compile Include="BidningModels\DeletePictureBindingModel.cs" />
@@ -76,6 +78,7 @@
     <Compile Include="BidningModels\EditOrganizationDataBindingModel.cs" />
     <Compile Include="BidningModels\EditOrganizationDescriptionBindingModel.cs" />
     <Compile Include="BidningModels\EditProfileBindingModel.cs" />
+    <Compile Include="BidningModels\NewCourseBindingModel.cs" />
     <Compile Include="BidningModels\RemoveRepresentativeBindingModel.cs" />
     <Compile Include="BidningModels\UploadOrganizationPictureBindingModel.cs" />
     <Compile Include="Constants\Constatnts.cs" />
@@ -83,10 +86,13 @@
     <Compile Include="EntityModels\Picture.cs" />
     <Compile Include="Enums\ApplicationStatus.cs" />
     <Compile Include="ViewModels\ChangeStatusApplicationViewModel.cs" />
+    <Compile Include="ViewModels\Course\AddNewCourseViewModel.cs" />
     <Compile Include="ViewModels\Course\ApplicationCourseViewModel.cs" />
     <Compile Include="ViewModels\Course\ApplicationStudentViewModel.cs" />
     <Compile Include="ViewModels\Course\CourseApplicationViewModel.cs" />
     <Compile Include="ViewModels\Course\DeleteCourseViewModel.cs" />
+    <Compile Include="ViewModels\Course\EditCourseViewModel.cs" />
+    <Compile Include="ViewModels\Course\NewCourseViewModel.cs" />
     <Compile Include="ViewModels\Organization\AddOrganizationDisciplineViewModel.cs" />
     <Compile Include="EntityModels\Address.cs" />
     <Compile Include="EntityModels\AbstractClasses\ContactableObject.cs" />

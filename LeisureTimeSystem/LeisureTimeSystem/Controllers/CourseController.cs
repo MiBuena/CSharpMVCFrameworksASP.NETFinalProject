@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
 using LeisureTimeSystem.Models.BidningModels;
+using LeisureTimeSystem.Models.ViewModels.Course;
 using LeisureTimeSystem.Services.Services;
 using Microsoft.AspNet.Identity;
 
@@ -18,19 +20,56 @@ namespace LeisureTimeSystem.Controllers
             this.service = new CourseService();
         }
 
-        //public ActionResult Add(int organizationId)
-        //{
+        public ActionResult Add(int organizationId)
+        {
+            var addNewCourseViewModel = this.service.GetAddNewCourseViewModel(organizationId);
 
-        //}
+            return View(addNewCourseViewModel);
+        }
 
-        //public ActionResult ChangeStatusApplication(int courseId, int studentId)
-        //{
-        //    var changeStatusViewModel = this.service.GetChangeStatusApplicationViewModel(studentId, courseId);
+        [HttpPost]
+        public ActionResult Add(AddNewCourseBindingModel model)
+        {
+            if (this.ModelState.IsValid)
+            {
+                this.service.AddNewCourse(model);
+                return this.RedirectToAction("ManageOrganizationCourses", "Organization",
+                    new {organizationId = model.OrganizationId});
+             }
 
-        //    return this.PartialView(changeStatusViewModel);
-        //}
+            var courseViewModel = Mapper.Map<NewCourseBindingModel, NewCourseViewModel>(model.Course);
 
- 
+            var addNewCourseViewModel = this.service.GetAddNewCourseViewModel(model.OrganizationId);
+
+            addNewCourseViewModel.Course = courseViewModel;
+
+            return View(addNewCourseViewModel);
+        }
+
+        public ActionResult Edit(int courseId)
+        {
+            var editViewModel = this.service.GetEditCourseViewModel(courseId);
+
+            return this.View(editViewModel);
+        }
+
+
+
+        [HttpPost]
+        public ActionResult Edit(EditCourseBindingModel model)
+        {
+            if (this.ModelState.IsValid)
+            {
+                this.service.EditCourse(model);
+                return this.RedirectToAction("ManageOrganizationCourses", "Organization", new {organizationId = model.OrganizationId});
+            }
+
+            var editViewModel = this.service.GetEditCourseViewModel(model.Id);
+
+            return this.View(editViewModel);
+        }
+
+
 
         public ActionResult ManageCourseApplications(int courseId)
         {

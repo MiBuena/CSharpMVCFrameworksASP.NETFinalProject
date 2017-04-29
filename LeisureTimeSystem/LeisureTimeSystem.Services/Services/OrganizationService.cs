@@ -116,14 +116,23 @@ namespace LeisureTimeSystem.Services.Services
 
             return deleteOrganizationViewModel;
         }
-        public IEnumerable<CourseViewModel> GetAllOrganizationCourses(int organizationId)
+        public AllOrganizationCoursesViewModel GetAllOrganizationCourses(int organizationId)
         {
             var courses = this.Context.Courses.Where(x => x.Organization.Id == organizationId);
 
-            var coursesVms = Mapper.Map<IEnumerable<Course>, IEnumerable<CourseViewModel>>(courses);
+            var courseViewModels = Mapper.Map<IEnumerable<Course>, IEnumerable<CourseViewModel>>(courses);
 
-            return coursesVms;
+            
+            AllOrganizationCoursesViewModel model = new AllOrganizationCoursesViewModel()
+            {
+                Courses = courseViewModels,
+                OrganizationId = organizationId
+            };
+
+            return model;
         }
+
+
         public void UploadPicture(UploadOrganizationPictureBindingModel model, HttpPostedFileBase file, HttpServerUtilityBase server)
         {
             var fileName = GetFileName(file, server);

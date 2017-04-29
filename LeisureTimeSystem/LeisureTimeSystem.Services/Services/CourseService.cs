@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,71 @@ namespace LeisureTimeSystem.Services.Services
 {
     public class CourseService : Service
     {
+
+        public void EditCourse(EditCourseBindingModel model)
+        {
+            var discipline = this.Context.Disciplines.Find(model.DisciplineId);
+
+
+            var courseFromDB = this.Context.Courses.Find(model.Id);
+
+            courseFromDB.Discipline = discipline;
+
+
+            this.Context.Entry(courseFromDB).CurrentValues.SetValues(model);
+
+            this.Context.SaveChanges();
+        }
+
+        public EditCourseViewModel GetEditCourseViewModel(int courseId)
+        {
+            var course = this.Context.Courses.Find(courseId);
+
+            var courseViewModel = Mapper.Map<Course, EditCourseViewModel>(course);
+
+            var disciplies = this.Context.Disciplines;
+
+            var disciplinesViewModels = Mapper.Map<IEnumerable<Discipline>, IEnumerable<DisciplineViewModel>>(disciplies);
+
+            courseViewModel.Disciplines = disciplinesViewModels;
+
+            return courseViewModel;
+        }
+
+        public void AddNewCourse(AddNewCourseBindingModel model)
+        {
+            var course = Mapper.Map<NewCourseBindingModel, Course>(model.Course);
+
+            var organization = this.Context.Organizations.Find(model.OrganizationId);
+
+            var discipline = this.Context.Disciplines.Find(model.DisciplineId);
+
+            course.Organization = organization;
+
+            course.Discipline = discipline;
+
+            this.Context.Courses.Add(course);
+
+            this.Context.SaveChanges();
+        }
+
+        public AddNewCourseViewModel GetAddNewCourseViewModel(int organizationId)
+        {
+            var disciplies = this.Context.Disciplines;
+
+            var organization = this.Context.Organizations.Find(organizationId);
+
+            var disciplinesViewModels = Mapper.Map<IEnumerable<Discipline>, IEnumerable<DisciplineViewModel>>(disciplies);
+
+            AddNewCourseViewModel model = new AddNewCourseViewModel()
+            {
+                Disciplines = disciplinesViewModels,
+                OrganizationId = organizationId,
+                OrganizationName = organization.Name
+            };
+
+            return model;
+        }
 
         public ChangeStatusApplicationViewModel GetChangeStatusApplicationViewModel(int studentId, int courseId)
         {
