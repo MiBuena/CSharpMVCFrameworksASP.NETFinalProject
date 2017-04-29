@@ -32,7 +32,7 @@ namespace LeisureTimeSystem.Services.Services
             var application =
                 this.Context.CoursesApplications.FirstOrDefault(x => x.CourseId == model.CourseId && x.StudentId == model.StudentId);
 
-            application.Status = model.Status;
+            //application.Status = model.Status;
 
 
             this.Context.SaveChanges();

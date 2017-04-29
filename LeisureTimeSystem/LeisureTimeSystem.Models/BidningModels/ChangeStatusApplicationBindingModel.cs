@@ -1,4 +1,6 @@
-﻿using LeisureTimeSystem.Models.Enums;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Text;
+using LeisureTimeSystem.Models.Enums;
 
 namespace LeisureTimeSystem.Models.BidningModels
 {
@@ -9,5 +11,6 @@ namespace LeisureTimeSystem.Models.BidningModels
         public int CourseId { get; set; }
 
         public ApplicationStatus Status { get; set; }
+
     }
 }

@@ -13,6 +13,7 @@ using LeisureTimeSystem.Models.ViewModels.Category;
 using LeisureTimeSystem.Models.ViewModels.Course;
 using LeisureTimeSystem.Models.ViewModels.Organization;
 using LeisureTimeSystem.Models.ViewModels.Profile;
+using LeisureTimeSystem.Models.ViewModels.Student;
 
 namespace LeisureTimeSystem
 {
@@ -87,6 +88,12 @@ namespace LeisureTimeSystem
 
 
                 expression.CreateMap<AddressBindingModel, Address>();
+
+                expression.CreateMap<Organization, DeleteOrganizationViewModel>();
+
+                expression.CreateMap<Student, RepresentativesStudentViewModel>()
+                 .ForMember(student => student.Username,
+        m => m.MapFrom(student => student.User.UserName));
 
                 expression.CreateMap<Course, DeleteCourseViewModel>()
                     .ForMember(course => course.OrganizationName,

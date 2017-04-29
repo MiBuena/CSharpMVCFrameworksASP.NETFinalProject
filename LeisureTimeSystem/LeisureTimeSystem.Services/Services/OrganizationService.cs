@@ -14,11 +14,110 @@ using LeisureTimeSystem.Models.ViewModels;
 using LeisureTimeSystem.Models.ViewModels.Course;
 using LeisureTimeSystem.Models.ViewModels.Organization;
 using LeisureTimeSystem.Models.ViewModels.Profile;
+using LeisureTimeSystem.Models.ViewModels.Student;
 
 namespace LeisureTimeSystem.Services.Services
 {
     public class OrganizationService : Service
     {
+
+        public void RemoveRepresentative(RemoveRepresentativeBindingModel model)
+        {
+            var representative = this.Context.Students.Find(model.RepresentativeId);
+
+            var organization = this.Context.Organizations.Find(model.OrganizationId);
+
+            organization.Representatives.Remove(representative);
+
+            this.Context.SaveChanges();
+        }
+
+        public RemoveRepresentativeViewModel GetRemoveRepresentativeViewModel(int studentId, int organizationId)
+        {
+            var student = this.Context.Students.Find(studentId);
+
+            var organization = this.Context.Organizations.Find(organizationId);
+
+            var currentRepresentatives = organization.Representatives;
+
+            RemoveRepresentativeViewModel model = new RemoveRepresentativeViewModel()
+            {
+                OrganizationId = organizationId,
+                RepresentativeId = studentId,
+                RepresentativeName = student.Name,
+            };
+
+            return model;
+        }
+
+        public void AddRepresentative(AddRepresentativeBindingModel model)
+        {
+            var student = this.Context.Students.Find(model.StudentId);
+
+            var organization = this.Context.Organizations.Find(model.OrganizationId);
+
+            organization.Representatives.Add(student);
+
+            this.Context.SaveChanges();
+        }
+
+        public AddRepresentativeViewModel GetAddRepresentativeViewModel(int organizationId)
+        {
+            var allStudents = this.Context.Students.ToList();
+
+            var allStudentsViewModels =
+                Mapper.Map<IEnumerable<Student>, IEnumerable<RepresentativesStudentViewModel>>(allStudents);
+
+            AddRepresentativeViewModel model = new AddRepresentativeViewModel();
+
+            model.AllStudents = allStudentsViewModels;
+
+            model.OrganizationId = organizationId;
+
+            return model;
+        }
+
+        public ManageRepresentativesViewModel GetManageRepresentativesViewModel(int organizationId)
+        {
+            var organization = this.Context.Organizations.Find(organizationId);
+
+            var currentRepresentatives = organization.Representatives;
+
+            var currentRepresentativesViewModels =
+                Mapper.Map<IEnumerable<Student>, IEnumerable<RepresentativesStudentViewModel>>(currentRepresentatives);
+
+            ManageRepresentativesViewModel model = new ManageRepresentativesViewModel();
+
+            model.OrganizationId = organizationId;
+
+            model.OrganizationName = organization.Name;
+
+            model.CurrentRepresentatives = currentRepresentativesViewModels;
+
+            return model;
+        }
+
+
+
+
+        public void DeleteOrganization(int organizationId)
+        {
+            var organization = this.Context.Organizations.Find(organizationId);
+
+            this.Context.Organizations.Remove(organization);
+
+            this.Context.SaveChanges();
+        }
+
+
+        public DeleteOrganizationViewModel GetDeleteOrganizationViewModel(int organizationId)
+        {
+            var organization = this.Context.Organizations.Find(organizationId);
+
+            var deleteOrganizationViewModel = Mapper.Map<Organization, DeleteOrganizationViewModel>(organization);
+
+            return deleteOrganizationViewModel;
+        }
         public IEnumerable<CourseViewModel> GetAllOrganizationCourses(int organizationId)
         {
             var courses = this.Context.Courses.Where(x => x.Organization.Id == organizationId);

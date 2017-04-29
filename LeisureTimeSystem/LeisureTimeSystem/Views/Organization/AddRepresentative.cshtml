@@ -1,0 +1,17 @@
+﻿@model LeisureTimeSystem.Models.ViewModels.Organization.AddRepresentativeViewModel
+
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model=>model.OrganizationId)
+
+@Html.DropDownList("StudentId",
+                new SelectList(@Model.AllStudents,
+                               "Id", "Username"), "Select representative")
+
+
+        <div class="form-group">
+        <input type = "submit" >
+    </div>
+
+}

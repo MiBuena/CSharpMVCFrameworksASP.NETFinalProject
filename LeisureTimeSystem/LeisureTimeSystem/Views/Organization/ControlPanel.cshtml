@@ -1,0 +1,20 @@
+﻿@model LeisureTimeSystem.Models.ViewModels.Organization.DetailsOrganizationViewModel
+
+@{
+    ViewBag.Title = "ControlPanel";
+}
+
+<h2>ControlPanel</h2>
+
+<p>
+    @Html.ActionLink("Manage organization courses", "ManageOrganizationCourses", new {organizationId = this.Model.Id})
+</p>
+
+<p>@Html.ActionLink("Delete organization", "Delete", new {organizationId = this.Model.Id})</p>
+
+<p>
+
+    @Html.ActionLink("Manage representatives", "ManageRepresentatives", new { organizationId = this.Model.Id })
+
+
+</p>

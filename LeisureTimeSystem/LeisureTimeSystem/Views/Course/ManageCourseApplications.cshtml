@@ -10,7 +10,7 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 
-<table class="table">
+    <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.FirstOrDefault().Student.Name)
@@ -26,34 +26,35 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(model => item.Student.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.Student.Username)
-            </td>
-            <td>
+        using (Html.BeginForm())
+        {
+            @Html.Hidden("CourseId", item.Course.Id)
+            @Html.Hidden("StudentId", item.Student.Id)
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => item.Student.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Student.Username)
+                </td>
+                <td>
                 @Html.DisplayFor(model => item.Student.Email)
-            <td>
+                <td>
 
-                @Html.DisplayFor(model => item.Status)
-            </td>
-           @* @Html.Action("ChangeStatusApplication", new {studentId = item.Student.Id, courseId = item.Course.Id})*@
+                    @Html.DisplayFor(model => item.Status)
+                </td>
 
-            @using (Html.BeginForm("ChangeStatusApplication", "Course", FormMethod.Post))
-            {
-                @Html.Hidden("CourseId", item.Course.Id)
-                @Html.Hidden("StudentId", item.Student.Id)
 
-                @Html.EnumDropDownListFor(model => item.Status, "Change Status", new { @class = "form-control" })
+                    @Html.EnumDropDownListFor(model => item.Status, "Change Status", new { @class = "form-control" })
+
+
 
                 <div class="form-group">
                     <input type="submit">
                 </div>
-
-            }
-        </tr>
+            </tr>
+        }
     }
 
-</table>
+    </table>

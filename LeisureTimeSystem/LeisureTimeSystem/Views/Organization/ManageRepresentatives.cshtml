@@ -1,0 +1,54 @@
+﻿@model LeisureTimeSystem.Models.ViewModels.Organization.ManageRepresentativesViewModel
+
+@{
+    ViewBag.Title = "AddRepresentatives";
+}
+
+<h2>AddRepresentatives</h2>
+
+    <h4>ManageRepresentativesViewModel</h4>
+<hr/>
+
+
+<p>Organization name: @this.Model.OrganizationName</p>
+
+<p>Current representatives:</p>
+
+@foreach (var student in this.Model.CurrentRepresentatives)
+{
+    <p> @student.Username</p>
+}
+
+@Ajax.ActionLink("Add Representative", "AddRepresentative", "Organization", new { organizationId = this.Model.OrganizationId, @class = "btn btn-lg" }, new AjaxOptions()
+{
+    HttpMethod = "GET",
+    UpdateTargetId = "addContainer",
+    InsertionMode = InsertionMode.Replace
+})
+
+<div id="addContainer">
+</div>
+
+@Ajax.ActionLink("Remove representative", "RemoveRepresentative", "Organization", new { organizationId = this.Model.OrganizationId, @class = "btn btn-lg" }, new AjaxOptions()
+{
+    HttpMethod = "GET",
+    UpdateTargetId = "removeContainer",
+    InsertionMode = InsertionMode.Replace
+})
+
+<div id="removeContainer">
+
+    @foreach (var student in this.Model.CurrentRepresentatives)
+    {
+        <p> @student.Username @Html.ActionLink("Remove representative", "RemoveRepresentative", "Organization", new { organizationId = this.Model.OrganizationId, studentId = student.Id, @class = "btn btn-lg" }, null)</p>
+    }
+</div>
+
+
+
+
+
+
+
+
+

@@ -20,19 +20,111 @@ namespace LeisureTimeSystem.Controllers
             this.service = new OrganizationService();
         }
 
-
-        public ActionResult AllOrganizationCourses(int organizationid)
+        public ActionResult AddRepresentative(int organizationId)
         {
-            var coursesVms = this.service.GetAllOrganizationCourses(organizationid);
+            var addRepresentativeViewModel = this.service.GetAddRepresentativeViewModel(organizationId);
 
-            return this.PartialView(coursesVms);
+            return this.PartialView(addRepresentativeViewModel);
+        }
+
+
+        [HttpPost]
+        public ActionResult AddRepresentative(AddRepresentativeBindingModel model)
+        {
+            if (this.ModelState.IsValid)
+            {
+                this.service.AddRepresentative(model);
+
+                return this.RedirectToAction("ManageRepresentatives", new {organizationId = model.OrganizationId});
+            }
+
+            var addRepresentativeViewModel = this.service.GetAddRepresentativeViewModel(model.OrganizationId);
+
+            return this.PartialView(addRepresentativeViewModel);
+        }
+
+
+        public ActionResult RemoveRepresentative(int organizationId, int studentId)
+        {
+            var removeRepresentativeViewModel = this.service.GetRemoveRepresentativeViewModel(studentId, organizationId);
+
+            return this.PartialView(removeRepresentativeViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult RemoveRepresentative(RemoveRepresentativeBindingModel model)
+        {
+            if (this.ModelState.IsValid)
+            {
+                this.service.RemoveRepresentative(model);
+
+                return this.RedirectToAction("ManageRepresentatives", new {organizationId = model.OrganizationId});
+            }
+
+            var removeRepresentativeViewModel = this.service.GetRemoveRepresentativeViewModel(model.RepresentativeId, model.OrganizationId);
+
+            return this.PartialView(removeRepresentativeViewModel);
+        }
+
+
+        public ActionResult ManageRepresentatives(int organizationId)
+        {
+            var addRepresentativesViewModel = this.service.GetManageRepresentativesViewModel(organizationId);
+
+            return this.View(addRepresentativesViewModel);
+        }
+
+        public ActionResult Delete(int organizationId)
+        {
+            var deleteorganizationViewModel = this.service.GetDeleteOrganizationViewModel(organizationId);
+
+            return View(deleteorganizationViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Delete(DeleteOrganizationBindingModel model)
+        {
+            if (this.ModelState.IsValid)
+            {
+                this.service.DeleteOrganization(model.Id);
+
+                return this.RedirectToAction("Index", "Home");
+            }
+
+            var deleteViewModel = this.service.GetDeleteOrganizationViewModel(model.Id);
+
+            return this.View(deleteViewModel);
+        }
+
+        public ActionResult ControlPanel(int organizationId)
+        {
+            var organizationViewModel = this.service.GetDetailsOrganizationViewModel(organizationId);
+
+            return View(organizationViewModel);
+
+        }
+
+        public ActionResult ManageOrganizationCourses(int organizationId)
+        {
+            var courseViewModels = this.service.GetAllOrganizationCourses(organizationId);
+
+            return this.View(courseViewModels);
+        }
+
+
+
+        public ActionResult AllOrganizationCourses(int organizationId)
+        {
+            var courseViewModels = this.service.GetAllOrganizationCourses(organizationId);
+
+            return this.PartialView(courseViewModels);
         }
 
         public ActionResult Details(int organizationId)
         {
-            var organizationVm = this.service.GetDetailsOrganizationViewModel(organizationId);
+            var organizationViewModel = this.service.GetDetailsOrganizationViewModel(organizationId);
 
-            return View(organizationVm);
+            return View(organizationViewModel);
         }
 
         public ActionResult Create()
