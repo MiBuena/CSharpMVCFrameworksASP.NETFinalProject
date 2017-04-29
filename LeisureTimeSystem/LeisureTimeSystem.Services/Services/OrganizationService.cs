@@ -21,6 +21,7 @@ namespace LeisureTimeSystem.Services.Services
     public class OrganizationService : Service
     {
 
+
         public void RemoveRepresentative(RemoveRepresentativeBindingModel model)
         {
             var representative = this.Context.Students.Find(model.RepresentativeId);
@@ -36,10 +37,6 @@ namespace LeisureTimeSystem.Services.Services
         {
             var student = this.Context.Students.Find(studentId);
 
-            var organization = this.Context.Organizations.Find(organizationId);
-
-            var currentRepresentatives = organization.Representatives;
-
             RemoveRepresentativeViewModel model = new RemoveRepresentativeViewModel()
             {
                 OrganizationId = organizationId,
@@ -49,6 +46,7 @@ namespace LeisureTimeSystem.Services.Services
 
             return model;
         }
+
 
         public void AddRepresentative(AddRepresentativeBindingModel model)
         {

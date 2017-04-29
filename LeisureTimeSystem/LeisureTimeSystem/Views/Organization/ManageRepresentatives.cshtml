@@ -16,7 +16,7 @@
 
 @foreach (var student in this.Model.CurrentRepresentatives)
 {
-    <p> @student.Username</p>
+    <p> @student.Username </p>
 }
 
 @Ajax.ActionLink("Add Representative", "AddRepresentative", "Organization", new { organizationId = this.Model.OrganizationId, @class = "btn btn-lg" }, new AjaxOptions()
@@ -29,20 +29,20 @@
 <div id="addContainer">
 </div>
 
-@Ajax.ActionLink("Remove representative", "RemoveRepresentative", "Organization", new { organizationId = this.Model.OrganizationId, @class = "btn btn-lg" }, new AjaxOptions()
+<br/>
+<br/>
+<p>Remove representative</p>
+@foreach (var student in this.Model.CurrentRepresentatives)
 {
-    HttpMethod = "GET",
-    UpdateTargetId = "removeContainer",
-    InsertionMode = InsertionMode.Replace
-})
 
-<div id="removeContainer">
 
-    @foreach (var student in this.Model.CurrentRepresentatives)
-    {
-        <p> @student.Username @Html.ActionLink("Remove representative", "RemoveRepresentative", "Organization", new { organizationId = this.Model.OrganizationId, studentId = student.Id, @class = "btn btn-lg" }, null)</p>
+    <span>@student.Username</span> @Html.ActionLink("Remove", "RemoveRepresentative", "Organization", new { organizationId = this.Model.OrganizationId, @class = "btn btn-lg" }, null)
+    <br/>
+
     }
-</div>
+
+
+
 
 
 

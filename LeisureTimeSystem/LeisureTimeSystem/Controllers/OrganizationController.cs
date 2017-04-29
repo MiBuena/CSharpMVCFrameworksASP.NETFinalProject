@@ -44,6 +44,7 @@ namespace LeisureTimeSystem.Controllers
         }
 
 
+
         public ActionResult RemoveRepresentative(int organizationId, int studentId)
         {
             var removeRepresentativeViewModel = this.service.GetRemoveRepresentativeViewModel(studentId, organizationId);
