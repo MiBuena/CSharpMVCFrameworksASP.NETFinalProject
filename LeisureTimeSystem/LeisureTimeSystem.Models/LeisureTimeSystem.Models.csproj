@@ -69,6 +69,7 @@
     <Compile Include="BidningModels\AddressBindingModel.cs" />
     <Compile Include="BidningModels\ApplicationBindingModel.cs" />
     <Compile Include="BidningModels\Article\CreateArticleBindingModel.cs" />
+    <Compile Include="BidningModels\Article\DeleteArticleBindingModel.cs" />
     <Compile Include="BidningModels\Article\EditArticleBindingModel.cs" />
     <Compile Include="BidningModels\Article\NewArticleBindingModel.cs" />
     <Compile Include="BidningModels\ChangeStatusApplicationBindingModel.cs" />
@@ -99,6 +100,7 @@
     <Compile Include="ViewModels\Article\AllArticlesViewModel.cs" />
     <Compile Include="ViewModels\Article\CreateArticleViewModel.cs" />
     <Compile Include="ViewModels\Article\DetailsArticleViewModel.cs" />
+    <Compile Include="ViewModels\Article\DeleteArticleViewModel.cs" />
     <Compile Include="ViewModels\Article\EditArticleViewModel.cs" />
     <Compile Include="ViewModels\Article\NewArticleViewModel.cs" />
     <Compile Include="ViewModels\ChangeStatusApplicationViewModel.cs" />

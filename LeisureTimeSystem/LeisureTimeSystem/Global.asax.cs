@@ -245,6 +245,9 @@ namespace LeisureTimeSystem
                         m => m.MapFrom(comment => comment.Author.User.UserName))
                                          .ForMember(comment => comment.CommentedEntityId,
                         m => m.MapFrom(comment => comment.Article.Id));
+
+                expression.CreateMap<Article, DeleteArticleViewModel>();
+
             });
         }
     }

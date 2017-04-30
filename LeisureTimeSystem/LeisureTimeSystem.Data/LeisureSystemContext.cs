@@ -55,6 +55,11 @@ namespace LeisureTimeSystem.Data
         {
             modelBuilder.Entity<Category>().HasMany(x => x.Subcategories).WithOptional(x => x.ParentCategory);
 
+            modelBuilder.Entity<Article>()
+.HasMany(art => art.Comments)
+.WithRequired(x=>x.Article)
+.WillCascadeOnDelete(true);
+
             modelBuilder.Entity<Student>()
 .HasMany(st => st.AllCourseApplicationsAsAStudent)
 .WithRequired(x => x.Student)

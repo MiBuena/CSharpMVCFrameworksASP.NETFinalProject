@@ -212,6 +212,7 @@
     <Content Include="Areas\Blog\Views\Articles\All.cshtml" />
     <Content Include="Areas\Blog\Views\Articles\Edit.cshtml" />
     <Content Include="Areas\Blog\Views\Articles\Details.cshtml" />
+    <Content Include="Areas\Blog\Views\Articles\Delete.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

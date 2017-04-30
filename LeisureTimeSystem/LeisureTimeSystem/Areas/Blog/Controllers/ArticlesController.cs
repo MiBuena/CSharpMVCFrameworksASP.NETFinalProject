@@ -84,6 +84,27 @@ namespace LeisureTimeSystem.Areas.Blog.Controllers
             return View(editArticleViewModel);
         }
 
+        public ActionResult Delete(int articleId)
+        {
+            var editArticleViewModel = this.service.GetDeleteArticleViewModel(articleId);
+
+            return View(editArticleViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Delete(DeleteArticleBindingModel model)
+        {
+            if (this.ModelState.IsValid)
+            {
+                this.service.DeleteArticle(model);
+                return this.RedirectToAction("All");
+            }
+
+            var deleteArticleViewModel = this.service.GetDeleteArticleViewModel(model.ArticleId);
+
+            return View(deleteArticleViewModel);
+        }
+
         public ActionResult Details(int articleId)
         {
             var detailsArticleViewModel = this.service.GetDetailsArticleViewModel(articleId);
