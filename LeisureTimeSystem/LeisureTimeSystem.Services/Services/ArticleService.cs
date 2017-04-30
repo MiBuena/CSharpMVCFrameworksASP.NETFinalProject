@@ -28,11 +28,29 @@ namespace LeisureTimeSystem.Services.Services
 
             var dbArticle = this.Context.Articles.Find(model.Id);
 
+            ClearAllPresentTags(dbArticle);
+
+
+            dbArticle.Tags = new HashSet<Tag>(article.Tags);
+
             this.Context.Entry(dbArticle).CurrentValues.SetValues(article);
 
-            this.Context.Entry(dbArticle.Tags).CurrentValues.SetValues(article.Tags);
+            this.Context.SaveChanges();
+        }
+
+        private void ClearAllPresentTags(Article article)
+        {
+            article.Tags.Clear();
+
+            if (this.Context.Tags.Any(x => x.Articles.Any(y => y.Id == article.Id)))
+            {
+                var tag = this.Context.Tags.FirstOrDefault(x => x.Articles.Any(y => y.Id == article.Id));
+
+                tag.Articles.Remove(article);
+            }
 
             this.Context.SaveChanges();
+
         }
 
         public EditArticleViewModel GetEditArticleViewModel(int articleId)
