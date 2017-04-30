@@ -7,8 +7,10 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using AutoMapper;
 using LeisureTimeSystem.Models.BidningModels;
+using LeisureTimeSystem.Models.BidningModels.Article;
 using LeisureTimeSystem.Models.EntityModels;
 using LeisureTimeSystem.Models.ViewModels;
+using LeisureTimeSystem.Models.ViewModels.Article;
 using LeisureTimeSystem.Models.ViewModels.Category;
 using LeisureTimeSystem.Models.ViewModels.Course;
 using LeisureTimeSystem.Models.ViewModels.Organization;
@@ -179,7 +181,15 @@ namespace LeisureTimeSystem
                 expression.CreateMap<Organization, StudentProfileOrganizationViewModel>();
 
 
+                expression.CreateMap<NewArticleBindingModel, Article>();
 
+                expression.CreateMap<NewArticleBindingModel, NewArticleViewModel>();
+
+                expression.CreateMap<Article, AllArticlesViewModel>();
+
+                expression.CreateMap<Article, EditArticleViewModel>();
+
+                expression.CreateMap<EditArticleBindingModel, Article>();
 
             });
         }

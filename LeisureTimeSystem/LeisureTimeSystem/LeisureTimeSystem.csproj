@@ -204,6 +204,12 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Blog\Views\web.config" />
     <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Blog\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Blog\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Blog\Views\Articles\Index.cshtml" />
+    <Content Include="Areas\Blog\Views\Articles\Create.cshtml" />
+    <Content Include="Areas\Blog\Views\Articles\All.cshtml" />
+    <Content Include="Areas\Blog\Views\Articles\Edit.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -292,8 +298,6 @@
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Areas\Blog\Models\" />
-    <Folder Include="Areas\Blog\Views\Articles\" />
-    <Folder Include="Areas\Blog\Views\Shared\" />
     <Folder Include="Views\Address\" />
     <Folder Include="Views\Controllers\" />
     <Folder Include="Views\OrganizationRepresentative\" />

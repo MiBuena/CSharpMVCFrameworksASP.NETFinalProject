@@ -39,14 +39,17 @@
                     @Html.DisplayFor(model => item.Student.Username)
                 </td>
                 <td>
-                @Html.DisplayFor(model => item.Student.Email)
+                    @Html.DisplayFor(model => item.Student.Email)
                 <td>
 
                     @Html.DisplayFor(model => item.Status)
                 </td>
 
+                
+                    @Html.EnumDropDownListFor(x=>item.Status, "Change Status", new { @class = "form-control" })
 
-                    @Html.EnumDropDownListFor(model => item.Status, "Change Status", new { @class = "form-control" })
+               
+
 
 
 

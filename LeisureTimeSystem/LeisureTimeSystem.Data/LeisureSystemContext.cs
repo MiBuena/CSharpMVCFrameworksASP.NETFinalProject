@@ -41,6 +41,15 @@ namespace LeisureTimeSystem.Data
 
         public virtual DbSet<Picture> Pictures { get; set; }
 
+        public virtual DbSet<Comment> Comments { get; set; }
+
+        public virtual DbSet<Tag> Tags { get; set; }
+
+        public virtual DbSet<Article> Articles { get; set; }
+
+
+
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

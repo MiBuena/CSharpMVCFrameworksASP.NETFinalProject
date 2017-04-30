@@ -16,6 +16,7 @@ namespace LeisureTimeSystem.Models.EntityModels
         {
             this.AllCourseApplicationsAsAStudent = new HashSet<CourseApplicationData>();
             this.OrganizationsTheyRepresent = new HashSet<Organization>();
+            this.Articles = new HashSet<Article>();
         }
 
         public int Id { get; set; }
@@ -36,5 +37,8 @@ namespace LeisureTimeSystem.Models.EntityModels
         public virtual ICollection<CourseApplicationData> AllCourseApplicationsAsAStudent { get; set; }
 
         public virtual ICollection<Organization> OrganizationsTheyRepresent { get; set; }
+
+        public virtual ICollection<Article> Articles { get; set; }
+
     }
 }
