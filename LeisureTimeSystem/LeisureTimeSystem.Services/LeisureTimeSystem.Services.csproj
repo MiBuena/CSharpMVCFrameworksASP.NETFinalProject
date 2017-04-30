@@ -66,6 +66,7 @@
     <Compile Include="Service.cs" />
     <Compile Include="Services\AccountService.cs" />
     <Compile Include="Services\ArticleService.cs" />
+    <Compile Include="Services\CommentService.cs" />
     <Compile Include="Services\CourseService.cs" />
     <Compile Include="Services\DisciplineService.cs" />
     <Compile Include="Services\HomeService.cs" />

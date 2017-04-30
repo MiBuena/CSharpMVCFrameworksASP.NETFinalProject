@@ -72,6 +72,10 @@
     <Compile Include="BidningModels\Article\EditArticleBindingModel.cs" />
     <Compile Include="BidningModels\Article\NewArticleBindingModel.cs" />
     <Compile Include="BidningModels\ChangeStatusApplicationBindingModel.cs" />
+    <Compile Include="BidningModels\Comment\AddArticleCommentBindingModel.cs" />
+    <Compile Include="BidningModels\Comment\DeleteCommentBindingModel.cs" />
+    <Compile Include="BidningModels\Comment\DetailsCommentViewModel.cs" />
+    <Compile Include="BidningModels\Comment\EditCommentBindingModel.cs" />
     <Compile Include="BidningModels\DeleteCourseBindingModel.cs" />
     <Compile Include="BidningModels\DeleteOrganizationBindingModel.cs" />
     <Compile Include="BidningModels\EditCourseBindingModel.cs" />
@@ -94,9 +98,15 @@
     <Compile Include="Enums\ApplicationStatus.cs" />
     <Compile Include="ViewModels\Article\AllArticlesViewModel.cs" />
     <Compile Include="ViewModels\Article\CreateArticleViewModel.cs" />
+    <Compile Include="ViewModels\Article\DetailsArticleViewModel.cs" />
     <Compile Include="ViewModels\Article\EditArticleViewModel.cs" />
     <Compile Include="ViewModels\Article\NewArticleViewModel.cs" />
     <Compile Include="ViewModels\ChangeStatusApplicationViewModel.cs" />
+    <Compile Include="ViewModels\CommentViewModel.cs" />
+    <Compile Include="ViewModels\Comment\AddArticleCommentViewModel.cs" />
+    <Compile Include="ViewModels\Comment\ArticleCommentViewModel.cs" />
+    <Compile Include="ViewModels\Comment\DeleteCommentViewModel.cs" />
+    <Compile Include="ViewModels\Comment\EditCommentViewModel.cs" />
     <Compile Include="ViewModels\Course\AddNewCourseViewModel.cs" />
     <Compile Include="ViewModels\Course\ApplicationCourseViewModel.cs" />
     <Compile Include="ViewModels\Course\ApplicationStudentViewModel.cs" />
@@ -141,6 +151,7 @@
     <Compile Include="ViewModels\Organization\EditPictureViewModel.cs" />
     <Compile Include="ViewModels\Organization\RemoveRepresentativeViewModel.cs" />
     <Compile Include="ViewModels\Organization\UploadOrganizationPictureViewModel.cs" />
+    <Compile Include="ViewModels\Pictures\PictureViewModel.cs" />
     <Compile Include="ViewModels\Profile\EditAddressModelView.cs" />
     <Compile Include="ViewModels\Profile\StudentProfileOrganizationViewModel.cs" />
     <Compile Include="ViewModels\Profile\EditProfileViewModel.cs" />
@@ -162,6 +173,8 @@
     <Compile Include="ViewModels\NavbarViewModel.cs" />
     <Compile Include="ViewModels\Course\ApplyStudentViewModel.cs" />
     <Compile Include="ViewModels\Organization\AddOrganizationViewModel.cs" />
+    <Compile Include="ViewModels\Student\CommentAuthorViewModel.cs" />
+    <Compile Include="ViewModels\Student\ArticleAuthorStudentViewModel.cs" />
     <Compile Include="ViewModels\Student\RepresentativesStudentViewModel.cs" />
     <Compile Include="ViewModels\Tag\TagViewModel.cs" />
   </ItemGroup>

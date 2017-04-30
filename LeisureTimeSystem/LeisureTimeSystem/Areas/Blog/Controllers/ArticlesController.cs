@@ -86,8 +86,25 @@ namespace LeisureTimeSystem.Areas.Blog.Controllers
 
         public ActionResult Details(int articleId)
         {
+            var detailsArticleViewModel = this.service.GetDetailsArticleViewModel(articleId);
+
+
+            return View(detailsArticleViewModel);
+        }
+
+        public ActionResult DisplayTagSearchResults(int tagId)
+        {
             return View();
         }
+
+        public ActionResult AddALike(int articleId)
+        {
+            this.service.IncreaseLikeCounter(articleId);
+
+            return this.RedirectToAction("Details", new {articleId = articleId});
+        }
+
+
 
     }
 }

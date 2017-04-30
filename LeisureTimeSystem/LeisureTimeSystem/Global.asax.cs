@@ -8,14 +8,18 @@ using System.Web.Routing;
 using AutoMapper;
 using LeisureTimeSystem.Models.BidningModels;
 using LeisureTimeSystem.Models.BidningModels.Article;
+using LeisureTimeSystem.Models.BidningModels.Comment;
 using LeisureTimeSystem.Models.EntityModels;
 using LeisureTimeSystem.Models.ViewModels;
 using LeisureTimeSystem.Models.ViewModels.Article;
 using LeisureTimeSystem.Models.ViewModels.Category;
+using LeisureTimeSystem.Models.ViewModels.Comment;
 using LeisureTimeSystem.Models.ViewModels.Course;
 using LeisureTimeSystem.Models.ViewModels.Organization;
+using LeisureTimeSystem.Models.ViewModels.Pictures;
 using LeisureTimeSystem.Models.ViewModels.Profile;
 using LeisureTimeSystem.Models.ViewModels.Student;
+using LeisureTimeSystem.Models.ViewModels.Tag;
 
 namespace LeisureTimeSystem
 {
@@ -191,6 +195,56 @@ namespace LeisureTimeSystem
 
                 expression.CreateMap<EditArticleBindingModel, Article>();
 
+                expression.CreateMap<Article, DetailsArticleViewModel>()
+                    .ForMember(article => article.Pictures,
+                        m => m.MapFrom(article => article.Pictures))
+                    .ForMember(article => article.Author,
+                        m => m.MapFrom(article => article.Author))
+                    .ForMember(article => article.Comments,
+                        m => m.MapFrom(article => article.Comments))
+                    .ForMember(article => article.Tags,
+                        m => m.MapFrom(article => article.Tags));
+
+
+                expression.CreateMap<Student, ArticleAuthorStudentViewModel>()
+                    .ForMember(student => student.Username,
+                        m => m.MapFrom(student => student.User.UserName));
+
+                expression.CreateMap<Student, CommentAuthorViewModel>();
+
+
+                expression.CreateMap<Comment, CommentViewModel>()
+                    .ForMember(comment => comment.Author,
+                        m => m.MapFrom(comment => comment.Author));
+
+                expression.CreateMap<Comment, EditCommentViewModel>()
+                    .ForMember(comment => comment.AuthorId,
+                        m => m.MapFrom(comment => comment.Author.Id))
+                    .ForMember(comment => comment.ArticleId,
+                        m => m.MapFrom(comment => comment.Article.Id));
+
+                expression.CreateMap<EditCommentBindingModel, EditCommentViewModel>();
+
+                expression.CreateMap<Comment, DeleteCommentViewModel>()
+                                    .ForMember(comment => comment.ArticleId,
+                        m => m.MapFrom(comment => comment.Article.Id))
+                                            .ForMember(comment => comment.CommentId,
+                        m => m.MapFrom(comment => comment.Id));
+
+
+                expression.CreateMap<Tag, TagViewModel>();
+
+                expression.CreateMap<Picture, PictureViewModel>();
+
+                expression.CreateMap<Comment, ArticleCommentViewModel>()
+                                    .ForMember(comment => comment.Author,
+                        m => m.MapFrom(comment => comment.Author));
+
+                expression.CreateMap<Comment, DetailsCommentViewModel>()
+                    .ForMember(comment => comment.AuthorUsername,
+                        m => m.MapFrom(comment => comment.Author.User.UserName))
+                                         .ForMember(comment => comment.CommentedEntityId,
+                        m => m.MapFrom(comment => comment.Article.Id));
             });
         }
     }

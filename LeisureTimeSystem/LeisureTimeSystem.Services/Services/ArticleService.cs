@@ -13,6 +13,24 @@ namespace LeisureTimeSystem.Services.Services
 {
     public class ArticleService : Service
     {
+        public void IncreaseLikeCounter(int articleId)
+        {
+            var article = this.Context.Articles.Find(articleId);
+
+            article.LikeCounter++;
+
+            this.Context.SaveChanges();
+        }
+
+        public DetailsArticleViewModel GetDetailsArticleViewModel(int articleId)
+        {
+            var article = this.Context.Articles.Find(articleId);
+
+            var detailsArticleViewModel = Mapper.Map<Article, DetailsArticleViewModel>(article);
+
+            return detailsArticleViewModel;
+        }
+
         public void EditArticle(EditArticleBindingModel model)
         {
             var article = Mapper.Map<EditArticleBindingModel, Article>(model);

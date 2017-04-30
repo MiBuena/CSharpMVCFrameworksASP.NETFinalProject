@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using LeisureTimeSystem.Models.EntityModels.AbstractClasses;
+using LeisureTimeSystem.Models.EntityModels.Interfaces;
 
 namespace LeisureTimeSystem.Models.EntityModels
 {

@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using LeisureTimeSystem.Models.Attributes;
 using LeisureTimeSystem.Models.EntityModels.AbstractClasses;
+using LeisureTimeSystem.Models.EntityModels.Interfaces;
 
 namespace LeisureTimeSystem.Models.EntityModels
 {
@@ -63,6 +64,5 @@ namespace LeisureTimeSystem.Models.EntityModels
         public virtual Organization Organization { get; set; }
 
         public virtual ICollection<CourseApplicationData> CoursesSubscriptionData { get; set; }
-
     }
 }

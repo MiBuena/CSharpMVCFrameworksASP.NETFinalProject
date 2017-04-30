@@ -1,0 +1,39 @@
+﻿@model LeisureTimeSystem.Models.ViewModels.Comment.AddArticleCommentViewModel
+
+
+@{
+    ViewBag.Title = "AddArticleComment";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    if (this.Model != null)
+    {
+        @Html.Hidden("AuthorId", this.Model.AuthorId)
+
+        @Html.Hidden("ArticleId", this.Model.ArticleId)
+    }
+
+
+    <div class="">
+        <h4>Add a comment</h4>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="">
+            <div class="">
+                @Html.TextBoxFor(model => model.Body, new {style = "width: 10000px; height: 100px"})
+                @Html.ValidationMessageFor(model => model.Body, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="">
+            <div class="">
+                <input type="submit" value="Add" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+
+}
+

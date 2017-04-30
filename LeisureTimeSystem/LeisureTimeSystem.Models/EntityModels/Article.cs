@@ -4,6 +4,8 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LeisureTimeSystem.Models.EntityModels.AbstractClasses;
+using LeisureTimeSystem.Models.EntityModels.Interfaces;
 
 namespace LeisureTimeSystem.Models.EntityModels
 {
@@ -40,10 +42,11 @@ namespace LeisureTimeSystem.Models.EntityModels
 
         public int LikeCounter { get; set; }
 
-        public virtual ICollection<Comment> Comments { get; set; }
-
         public virtual ICollection<Tag> Tags { get; set; }
 
         public virtual ICollection<Picture> Pictures { get; set; }
+
+        public virtual ICollection<Comment> Comments { get; set; }
+
     }
 }

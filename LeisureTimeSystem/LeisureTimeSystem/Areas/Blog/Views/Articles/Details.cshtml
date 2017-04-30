@@ -1,0 +1,94 @@
+﻿@using Microsoft.AspNet.Identity
+@model LeisureTimeSystem.Models.ViewModels.Article.DetailsArticleViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DetailsArticleViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Body)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Body)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LikeCounter)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LikeCounter)
+        </dd>
+
+    </dl>
+</div>
+
+<div>
+    <dl>
+        <dt>
+            <span>Tags</span>
+        </dt>
+        <dd>
+            @foreach (var tag in Model.Tags)
+            {
+                <span class="tags">
+                    @Html.ActionLink(tag.Name, "DisplayTagSearchResults", new { tagId = tag.Id })
+                </span>
+            }
+        </dd>
+    </dl>
+
+    <div class="liked">
+        @Model.LikeCounter Likes
+    </div>
+    <p class="footer">
+        @Html.ActionLink("Back to List", "All")
+        |
+        @Html.ActionLink("Like", "AddALike", new { articleId = this.Model.Id })
+    </p>
+    <div>
+        @if (User.Identity.GetUserId() != null)
+        {
+            Html.RenderAction("AddArticleComment", "Comment", new { articleId = this.Model.Id, area = ""});
+        }
+        <br />
+        @if (User.Identity.GetUserId() == null)
+        {
+            @Html.ActionLink("Write a comment---->", "Login", "Account", new { @returnUrl = "/Posts/Details/" + @Model.Id }, null)
+        }
+        <br />
+        @{
+            Html.RenderAction("AllArticleComments", "Comment", new { articleId = Model.Id, area = "" });
+        }
+        <br />
+    </div>
+
+</div>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

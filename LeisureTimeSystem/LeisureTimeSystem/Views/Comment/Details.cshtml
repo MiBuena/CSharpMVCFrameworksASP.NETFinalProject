@@ -1,0 +1,58 @@
+﻿@model LeisureTimeSystem.Models.BidningModels.Comment.DetailsCommentViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DetailsCommentViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Body)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Body)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TimeOfLastChange)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TimeOfLastChange)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AuthorUsername)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AuthorUsername)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AuthorOfLastChangeUsername)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AuthorOfLastChangeUsername)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

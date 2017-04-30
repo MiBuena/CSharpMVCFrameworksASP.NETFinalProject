@@ -1,0 +1,37 @@
+﻿@using Microsoft.AspNet.Identity
+@model IEnumerable<LeisureTimeSystem.Models.ViewModels.Comment.ArticleCommentViewModel>
+
+@foreach(var item in this.Model)
+{
+    <div class="commentsTable">
+        <div>
+            <span><i>Author: </i></span>@if (item.Author != null)
+                {
+                @item.Author.Username
+            },<i> <span>Published on: @item.Date</span></i>
+        </div>
+        <br />
+        <div>
+            @Html.DisplayFor(modelItem => item.Body)
+            <br />
+            <br />
+            @if (item.AuthorOfLastChangeUsername != null)
+                {
+                <span><i>Last change on @item.TimeOfLastChange by @item.AuthorOfLastChangeUsername</i></span>
+                    <br />
+                    <br />
+
+
+            }
+        </div>
+        <div class="commentsOptions">
+
+                @Html.ActionLink("Edit", "Edit", "Comment", new { commentId = item.Id, area="" }, null)
+                | @Html.ActionLink("Delete", "Delete", "Comment", new { commentId = item.Id, area="" }, null) |
+
+            @Html.ActionLink("Details", "Details", "Comment", new { commentId = item.Id, area = "" }, null)
+        </div>
+
+    </div>
+}
+
