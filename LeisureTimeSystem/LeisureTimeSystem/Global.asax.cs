@@ -11,6 +11,7 @@ using LeisureTimeSystem.Models.BidningModels.Article;
 using LeisureTimeSystem.Models.BidningModels.Comment;
 using LeisureTimeSystem.Models.EntityModels;
 using LeisureTimeSystem.Models.ViewModels;
+using LeisureTimeSystem.Models.ViewModels.Admin;
 using LeisureTimeSystem.Models.ViewModels.Article;
 using LeisureTimeSystem.Models.ViewModels.Category;
 using LeisureTimeSystem.Models.ViewModels.Comment;
@@ -20,6 +21,7 @@ using LeisureTimeSystem.Models.ViewModels.Pictures;
 using LeisureTimeSystem.Models.ViewModels.Profile;
 using LeisureTimeSystem.Models.ViewModels.Student;
 using LeisureTimeSystem.Models.ViewModels.Tag;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace LeisureTimeSystem
 {
@@ -247,6 +249,12 @@ namespace LeisureTimeSystem
                         m => m.MapFrom(comment => comment.Article.Id));
 
                 expression.CreateMap<Article, DeleteArticleViewModel>();
+
+                expression.CreateMap<IdentityRole, RoleViewModel>();
+
+                expression.CreateMap<ApplicationUser, PersonRoleViewModel>();
+
+
 
             });
         }

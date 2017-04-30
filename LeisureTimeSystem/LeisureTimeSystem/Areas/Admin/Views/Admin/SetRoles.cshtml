@@ -1,0 +1,75 @@
+﻿@model LeisureTimeSystem.Models.ViewModels.Admin.SetRolesViewModel
+
+@{
+    ViewBag.Title = "SetRoles";
+}
+
+<h2>SetRoles</h2>
+
+@using (Html.BeginForm())
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.LabelFor(model => model.PersonRoles[0].UserName)
+            </th>
+
+            <th>
+
+                @Html.LabelFor(model => model.PersonRoles[0].CurrentRoleViewModels[0].Name)
+
+
+            </th>
+
+            <th>
+                @Html.LabelFor(model => model.PersonRoles[0].CurrentRoleViewModels)
+            </th>
+
+        </tr>
+
+        @for (int i = 0; i < Model.PersonRoles.Count; ++i)
+                {
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(m => m.PersonRoles[i].UserName)
+                </td>
+
+                <td>
+                    @foreach (var role in this.Model.PersonRoles[i].CurrentRoleViewModels)
+                    {
+                        <p>@role.Name</p>
+                    }
+                </td>
+
+                <td>
+                    @Html.HiddenFor(m => m.PersonRoles[i].Id)
+
+                    @Html.DropDownListFor(m => m.PersonRoles[i].NewRoleName,
+                        new SelectList(@Model.AllRoles,
+                            "Name", "Name"), "Select role")
+
+
+
+                </td>
+
+                <td>
+                    @foreach (var role in this.Model.PersonRoles[i].CurrentRoleViewModels)
+                    {
+                        <p>@role.Name @Html.ActionLink("Remove", "RemoveRoles", new {roleName = role.Name, userId = this.Model.PersonRoles[i].Id })</p>
+                    }
+                </td>
+
+            </tr>
+
+        }
+
+
+
+    </table>
+
+    <div class="form-group">
+        <input type="submit">
+    </div>
+}
+
