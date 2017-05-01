@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
+using LeisureTimeSystem.Attributes;
 using LeisureTimeSystem.Models.BidningModels.Comment;
 using LeisureTimeSystem.Models.ViewModels.Comment;
 using LeisureTimeSystem.Services.Services;
@@ -20,26 +21,38 @@ namespace LeisureTimeSystem.Controllers
             this.service = new CommentService();
         }
 
-        // GET: Comment
-        public ActionResult Index()
-        {
-            return View();
-        }
-
+        [LeisureTimeAuthorize]
         public ActionResult Edit(int commentId)
         {
+            string currentUserId = User.Identity.GetUserId();
+
+            var isAllowedToModifyTheComment = this.service.IsAllowedToModifyTheComment(currentUserId, commentId);
+
+            if (!isAllowedToModifyTheComment)
+            {
+               throw new ArgumentException(); 
+            }
+
             var editCommentViewModel = this.service.GetEditCommentViewModel(commentId);
 
             return this.View(editCommentViewModel);
         }
 
         [HttpPost]
+        [LeisureTimeAuthorize]
         public ActionResult Edit(EditCommentBindingModel model)
         {
+            string currentUserId = User.Identity.GetUserId();
+
+            var isAllowedToModifyTheComment = this.service.IsAllowedToModifyTheComment(currentUserId, model.CommentId);
+
+            if (!isAllowedToModifyTheComment)
+            {
+                throw new ArgumentException();
+            }
+
             if (this.ModelState.IsValid)
             {
-                string currentUserId = User.Identity.GetUserId();
-
                 model.LastChangeUserId = currentUserId;
 
                 this.service.EditComment(model);
@@ -52,8 +65,18 @@ namespace LeisureTimeSystem.Controllers
             return this.View(commentViewModel);
         }
 
+        [LeisureTimeAuthorize]
         public ActionResult Delete(int commentId)
         {
+            string currentUserId = User.Identity.GetUserId();
+
+            var isAllowedToModifyTheComment = this.service.IsAllowedToModifyTheComment(currentUserId, commentId);
+
+            if (!isAllowedToModifyTheComment)
+            {
+                throw new ArgumentException();
+            }
+
             var commentViewModel = this.service.GetDeleteCommentViewModel(commentId);
 
             return this.View(commentViewModel);
@@ -62,6 +85,16 @@ namespace LeisureTimeSystem.Controllers
         [HttpPost]
         public ActionResult Delete(DeleteCommentBindingModel model)
         {
+            string currentUserId = User.Identity.GetUserId();
+
+            var isAllowedToModifyTheComment = this.service.IsAllowedToModifyTheComment(currentUserId, model.CommentId);
+
+            if (!isAllowedToModifyTheComment)
+            {
+                throw new ArgumentException();
+            }
+
+
             if (this.ModelState.IsValid)
             {
                 this.service.DeleteComment(model);
@@ -81,6 +114,7 @@ namespace LeisureTimeSystem.Controllers
             return this.View(editCommentViewModel);
         }
 
+        [LeisureTimeAuthorize]
         public ActionResult AddArticleComment(int articleId)
         {
             string currentUserId = User.Identity.GetUserId();
@@ -91,6 +125,7 @@ namespace LeisureTimeSystem.Controllers
         }
 
         [HttpPost]
+        [LeisureTimeAuthorize]
         public ActionResult AddArticleComment(AddArticleCommentBindingModel model)
         {
             if (this.ModelState.IsValid)

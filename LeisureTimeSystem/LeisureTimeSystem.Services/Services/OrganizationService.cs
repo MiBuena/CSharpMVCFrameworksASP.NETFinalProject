@@ -21,6 +21,31 @@ namespace LeisureTimeSystem.Services.Services
     public class OrganizationService : Service
     {
 
+        public bool IsOrganizationFounder(string userId, int organizationId)
+        {
+            var organization = this.Context.Organizations.Find(organizationId);
+
+            var founder = organization.Representatives.FirstOrDefault();
+
+            if (founder.UserId == userId)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool IsOrganizationRepresentative(string userId, int organizationId)
+        {
+            var organization = this.Context.Organizations.Find(organizationId);
+
+            if (organization.Representatives.Any(x => x.UserId == userId))
+            {
+                return true;
+            }
+
+            return false;
+        }
 
         public void RemoveRepresentative(RemoveRepresentativeBindingModel model)
         {

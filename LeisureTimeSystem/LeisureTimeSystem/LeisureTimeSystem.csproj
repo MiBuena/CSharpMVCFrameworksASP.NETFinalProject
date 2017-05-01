@@ -175,6 +175,7 @@
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Areas\Blog\BlogAreaRegistration.cs" />
     <Compile Include="Areas\Blog\Controllers\ArticlesController.cs" />
+    <Compile Include="Attributes\LeisureTimeAuthorizeAttribute.cs" />
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\OrganizationController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -289,7 +290,6 @@
     <Content Include="Views\Organization\DeletePicture.cshtml" />
     <Content Include="Views\Organization\AllOrganizationCourses.cshtml" />
     <Content Include="Views\Course\ManageCourseApplications.cshtml" />
-    <Content Include="Views\Course\ChangeStatusApplication.cshtml" />
     <Content Include="Views\Organization\ControlPanel.cshtml" />
     <Content Include="Views\Organization\ManageOrganizationCourses.cshtml" />
     <Content Include="Views\Organization\Delete.cshtml" />
@@ -310,7 +310,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Blog\Models\" />
-    <Folder Include="Attributes\" />
     <Folder Include="Views\Address\" />
     <Folder Include="Views\Controllers\" />
     <Folder Include="Views\OrganizationRepresentative\" />

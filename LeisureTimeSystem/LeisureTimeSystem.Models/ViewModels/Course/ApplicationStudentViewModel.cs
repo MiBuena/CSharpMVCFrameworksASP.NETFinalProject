@@ -9,7 +9,7 @@ namespace LeisureTimeSystem.Models.ViewModels.Course
 {
     public class ApplicationStudentViewModel
     {
-        public int Id { get; set; }
+        public int StudentId { get; set; }
 
         [Required]
         [MinLength(2)]

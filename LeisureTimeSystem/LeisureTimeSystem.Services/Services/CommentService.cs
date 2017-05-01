@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,11 +8,44 @@ using AutoMapper;
 using LeisureTimeSystem.Models.BidningModels.Comment;
 using LeisureTimeSystem.Models.EntityModels;
 using LeisureTimeSystem.Models.ViewModels.Comment;
+using Microsoft.AspNet.Identity;
 
 namespace LeisureTimeSystem.Services.Services
 {
     public class CommentService : Service
     {
+
+        public bool IsAllowedToModifyTheComment(string userId, int commentId)
+        {
+            bool isAuthorOfTheComment = this.IsAuthorOfTheComment(userId, commentId);
+
+            bool isUserAdministrator = this.IsCurrentUserAdministrator(userId);
+
+            return isAuthorOfTheComment || isUserAdministrator;
+        }
+
+        public bool IsCurrentUserAdministrator(string userId)
+        {
+            if (this.UserManager.IsInRole(userId, "Administrator"))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool IsAuthorOfTheComment(string userId, int commentId)
+        {
+            var comment = this.Context.Comments.Include(x => x.Author.User).FirstOrDefault(x => x.Id == commentId);
+
+            if (comment.Author.User.Id == userId)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         public DetailsCommentViewModel GetDetailsCommentViewModel(int commentId)
         {
             var comment = this.Context.Comments.Find(commentId);

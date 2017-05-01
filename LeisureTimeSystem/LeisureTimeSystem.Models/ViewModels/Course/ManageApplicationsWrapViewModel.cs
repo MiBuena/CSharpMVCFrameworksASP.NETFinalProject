@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace LeisureTimeSystem.Models.ViewModels.Course
 {
-    public class ApplicationCourseViewModel
+    public class ManageApplicationsWrapViewModel
     {
-        public int CourseId { get; set; }
-
-        public string Name { get; set; }
+        public List<CourseApplicationViewModel> Applications { get; set; } 
     }
 }

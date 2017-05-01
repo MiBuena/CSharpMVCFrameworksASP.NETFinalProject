@@ -79,6 +79,9 @@
     <Compile Include="BidningModels\Comment\DeleteCommentBindingModel.cs" />
     <Compile Include="BidningModels\Comment\DetailsCommentViewModel.cs" />
     <Compile Include="BidningModels\Comment\EditCommentBindingModel.cs" />
+    <Compile Include="BidningModels\Course\CourseApplicationBindingModel.cs" />
+    <Compile Include="BidningModels\Course\CourseApplicationCourseBindingModel.cs" />
+    <Compile Include="BidningModels\Course\ManageApplicationsWrapBindingModel.cs" />
     <Compile Include="BidningModels\DeleteCourseBindingModel.cs" />
     <Compile Include="BidningModels\DeleteOrganizationBindingModel.cs" />
     <Compile Include="BidningModels\EditCourseBindingModel.cs" />
@@ -91,6 +94,7 @@
     <Compile Include="BidningModels\EditProfileBindingModel.cs" />
     <Compile Include="BidningModels\NewCourseBindingModel.cs" />
     <Compile Include="BidningModels\RemoveRepresentativeBindingModel.cs" />
+    <Compile Include="BidningModels\StudentApplicationStudentBindingModel.cs" />
     <Compile Include="BidningModels\UploadOrganizationPictureBindingModel.cs" />
     <Compile Include="Constants\Constatnts.cs" />
     <Compile Include="BidningModels\AddOrganizationBindingModel.cs" />
@@ -121,6 +125,7 @@
     <Compile Include="ViewModels\Course\DeleteCourseApplicationViewModel.cs" />
     <Compile Include="ViewModels\Course\DeleteCourseViewModel.cs" />
     <Compile Include="ViewModels\Course\EditCourseViewModel.cs" />
+    <Compile Include="ViewModels\Course\ManageApplicationsWrapViewModel.cs" />
     <Compile Include="ViewModels\Course\NewCourseViewModel.cs" />
     <Compile Include="ViewModels\Organization\AddOrganizationDisciplineViewModel.cs" />
     <Compile Include="EntityModels\Address.cs" />

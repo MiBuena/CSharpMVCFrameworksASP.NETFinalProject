@@ -1,7 +1,9 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
+using LeisureTimeSystem.Attributes;
 using LeisureTimeSystem.Models.BidningModels;
 using LeisureTimeSystem.Models.EntityModels;
 using LeisureTimeSystem.Models.ViewModels;
@@ -20,8 +22,18 @@ namespace LeisureTimeSystem.Controllers
             this.service = new OrganizationService();
         }
 
+        [LeisureTimeAuthorize]
         public ActionResult AddRepresentative(int organizationId)
         {
+            string currentUserId = User.Identity.GetUserId();
+
+            var isOrganizationFounder = this.service.IsOrganizationFounder(currentUserId, organizationId);
+
+            if (!isOrganizationFounder)
+            {
+                throw new ArgumentException();
+            }
+
             var addRepresentativeViewModel = this.service.GetAddRepresentativeViewModel(organizationId);
 
             return this.PartialView(addRepresentativeViewModel);
@@ -31,6 +43,15 @@ namespace LeisureTimeSystem.Controllers
         [HttpPost]
         public ActionResult AddRepresentative(AddRepresentativeBindingModel model)
         {
+            string currentUserId = User.Identity.GetUserId();
+
+            var isOrganizationFounder = this.service.IsOrganizationFounder(currentUserId, model.OrganizationId);
+
+            if (!isOrganizationFounder)
+            {
+                throw new ArgumentException();
+            }
+
             if (this.ModelState.IsValid)
             {
                 this.service.AddRepresentative(model);
@@ -47,6 +68,15 @@ namespace LeisureTimeSystem.Controllers
 
         public ActionResult RemoveRepresentative(int organizationId, int studentId)
         {
+            string currentUserId = User.Identity.GetUserId();
+
+            var isOrganizationFounder = this.service.IsOrganizationFounder(currentUserId, organizationId);
+
+            if (!isOrganizationFounder)
+            {
+                throw new ArgumentException();
+            }
+
             var removeRepresentativeViewModel = this.service.GetRemoveRepresentativeViewModel(studentId, organizationId);
 
             return this.PartialView(removeRepresentativeViewModel);
@@ -55,6 +85,17 @@ namespace LeisureTimeSystem.Controllers
         [HttpPost]
         public ActionResult RemoveRepresentative(RemoveRepresentativeBindingModel model)
         {
+
+            string currentUserId = User.Identity.GetUserId();
+
+            var isOrganizationFounder = this.service.IsOrganizationFounder(currentUserId, model.OrganizationId);
+
+            if (!isOrganizationFounder)
+            {
+                throw new ArgumentException();
+            }
+
+
             if (this.ModelState.IsValid)
             {
                 this.service.RemoveRepresentative(model);
@@ -70,6 +111,16 @@ namespace LeisureTimeSystem.Controllers
 
         public ActionResult ManageRepresentatives(int organizationId)
         {
+            string currentUserId = User.Identity.GetUserId();
+
+            var isOrganizationFounder = this.service.IsOrganizationFounder(currentUserId, organizationId);
+
+            if (!isOrganizationFounder)
+            {
+                throw new ArgumentException();
+            }
+
+
             var addRepresentativesViewModel = this.service.GetManageRepresentativesViewModel(organizationId);
 
             return this.View(addRepresentativesViewModel);
@@ -77,6 +128,15 @@ namespace LeisureTimeSystem.Controllers
 
         public ActionResult Delete(int organizationId)
         {
+            string currentUserId = User.Identity.GetUserId();
+
+            var isOrganizationFounder = this.service.IsOrganizationFounder(currentUserId, organizationId);
+
+            if (!isOrganizationFounder)
+            {
+                throw new ArgumentException();
+            }
+
             var deleteorganizationViewModel = this.service.GetDeleteOrganizationViewModel(organizationId);
 
             return View(deleteorganizationViewModel);
@@ -85,6 +145,15 @@ namespace LeisureTimeSystem.Controllers
         [HttpPost]
         public ActionResult Delete(DeleteOrganizationBindingModel model)
         {
+            string currentUserId = User.Identity.GetUserId();
+
+            var isOrganizationFounder = this.service.IsOrganizationFounder(currentUserId, model.Id);
+
+            if (!isOrganizationFounder)
+            {
+                throw new ArgumentException();
+            }
+
             if (this.ModelState.IsValid)
             {
                 this.service.DeleteOrganization(model.Id);
@@ -99,6 +168,15 @@ namespace LeisureTimeSystem.Controllers
 
         public ActionResult ControlPanel(int organizationId)
         {
+            string currentUserId = User.Identity.GetUserId();
+
+            var isOrganizationRepresentative = this.service.IsOrganizationRepresentative(currentUserId, organizationId);
+
+            if (!isOrganizationRepresentative)
+            {
+                throw new ArgumentException();
+            }
+
             var organizationViewModel = this.service.GetDetailsOrganizationViewModel(organizationId);
 
             return View(organizationViewModel);
@@ -107,6 +185,15 @@ namespace LeisureTimeSystem.Controllers
 
         public ActionResult ManageOrganizationCourses(int organizationId)
         {
+            string currentUserId = User.Identity.GetUserId();
+
+            var isOrganizationRepresentative = this.service.IsOrganizationRepresentative(currentUserId, organizationId);
+
+            if (!isOrganizationRepresentative)
+            {
+                throw new ArgumentException();
+            }
+
             var courseViewModels = this.service.GetAllOrganizationCourses(organizationId);
 
             return this.View(courseViewModels);
@@ -128,6 +215,7 @@ namespace LeisureTimeSystem.Controllers
             return View(organizationViewModel);
         }
 
+        [LeisureTimeAuthorize]
         public ActionResult Create()
         {
             var addOrganizationViewModel = this.service.GetViewModel();
@@ -136,6 +224,7 @@ namespace LeisureTimeSystem.Controllers
         }
 
         [HttpPost]
+        [LeisureTimeAuthorize]
         public ActionResult Create(AddOrganizationBindingModel bindingModel)
         {
             if (this.ModelState.IsValid)
@@ -158,6 +247,15 @@ namespace LeisureTimeSystem.Controllers
 
         public ActionResult EditOrganizationData(int organizationId)
         {
+            string currentUserId = User.Identity.GetUserId();
+
+            var isOrganizationRepresentative = this.service.IsOrganizationRepresentative(currentUserId, organizationId);
+
+            if (!isOrganizationRepresentative)
+            {
+                throw new ArgumentException();
+            }
+
             var organizationViewModel = this.service.GetEditOrganizationDataViewModel(organizationId);
 
             return this.PartialView(organizationViewModel);
@@ -166,6 +264,16 @@ namespace LeisureTimeSystem.Controllers
         [HttpPost]
         public ActionResult EditOrganizationData(EditOrganizationDataBindingModel model)
         {
+
+            string currentUserId = User.Identity.GetUserId();
+
+            var isOrganizationRepresentative = this.service.IsOrganizationRepresentative(currentUserId, model.Id);
+
+            if (!isOrganizationRepresentative)
+            {
+                throw new ArgumentException();
+            }
+
             if (this.ModelState.IsValid)
             {
                 this.service.EditOrganizationData(model);
@@ -177,6 +285,16 @@ namespace LeisureTimeSystem.Controllers
 
         public ActionResult EditOrganizationDescription(int organizationId)
         {
+
+            string currentUserId = User.Identity.GetUserId();
+
+            var isOrganizationRepresentative = this.service.IsOrganizationRepresentative(currentUserId, organizationId);
+
+            if (!isOrganizationRepresentative)
+            {
+                throw new ArgumentException();
+            }
+
             var organizationViewModel = this.service.GetEditOrganizationDescriptionViewModel(organizationId);
 
             return this.PartialView(organizationViewModel);
@@ -186,6 +304,16 @@ namespace LeisureTimeSystem.Controllers
         [HttpPost]
         public ActionResult EditOrganizationDescription(EditOrganizationDescriptionBindingModel model)
         {
+
+            string currentUserId = User.Identity.GetUserId();
+
+            var isOrganizationRepresentative = this.service.IsOrganizationRepresentative(currentUserId, model.Id);
+
+            if (!isOrganizationRepresentative)
+            {
+                throw new ArgumentException();
+            }
+
             if (this.ModelState.IsValid)
             {
                 this.service.EditOrganizationDescription(model);
@@ -198,6 +326,16 @@ namespace LeisureTimeSystem.Controllers
         
         public ActionResult EditOrganizationPictures(int organizationId)
         {
+
+            string currentUserId = User.Identity.GetUserId();
+
+            var isOrganizationRepresentative = this.service.IsOrganizationRepresentative(currentUserId, organizationId);
+
+            if (!isOrganizationRepresentative)
+            {
+                throw new ArgumentException();
+            }
+
             var organizationViewModel = this.service.GetEditOrganizationPicturesViewModel(organizationId);
 
             return this.PartialView(organizationViewModel);
@@ -205,6 +343,16 @@ namespace LeisureTimeSystem.Controllers
 
         public ActionResult DeletePicture(int pictureId, int organizationId)
         {
+
+            string currentUserId = User.Identity.GetUserId();
+
+            var isOrganizationRepresentative = this.service.IsOrganizationRepresentative(currentUserId, organizationId);
+
+            if (!isOrganizationRepresentative)
+            {
+                throw new ArgumentException();
+            }
+
             var pictureVm = this.service.GetDeletePictureViewModel(pictureId, organizationId);
 
             return View(pictureVm);
@@ -213,6 +361,15 @@ namespace LeisureTimeSystem.Controllers
         [HttpPost]
         public ActionResult DeletePicture(DeletePictureBindingModel model)
         {
+            string currentUserId = User.Identity.GetUserId();
+
+            var isOrganizationRepresentative = this.service.IsOrganizationRepresentative(currentUserId, model.OrganizationId);
+
+            if (!isOrganizationRepresentative)
+            {
+                throw new ArgumentException();
+            }
+
             if (this.ModelState.IsValid)
             {
                 this.service.DeletePicture(model);
@@ -224,6 +381,16 @@ namespace LeisureTimeSystem.Controllers
 
         public ActionResult UploadFile(int organizationId)
         {
+
+            string currentUserId = User.Identity.GetUserId();
+
+            var isOrganizationRepresentative = this.service.IsOrganizationRepresentative(currentUserId, organizationId);
+
+            if (!isOrganizationRepresentative)
+            {
+                throw new ArgumentException();
+            }
+
             var organizationViewModel = this.service.GetUploadOrganizationPictureViewModel(organizationId);
 
             return this.PartialView(organizationViewModel);
@@ -233,6 +400,16 @@ namespace LeisureTimeSystem.Controllers
         [HttpPost]
         public ActionResult Upload(UploadOrganizationPictureBindingModel model)
         {
+
+            string currentUserId = User.Identity.GetUserId();
+
+            var isOrganizationRepresentative = this.service.IsOrganizationRepresentative(currentUserId, model.Id);
+
+            if (!isOrganizationRepresentative)
+            {
+                throw new ArgumentException();
+            }
+
             if (this.ModelState.IsValid)
             {
                 HttpPostedFileBase file = this.Request.Files[0];
@@ -258,6 +435,7 @@ namespace LeisureTimeSystem.Controllers
 
         public ActionResult RenderStudentOrganizations(int studentId)
         {
+
             var organizationsViewModels = this.service.GetOrganizations(studentId);
 
             return this.PartialView(organizationsViewModels);

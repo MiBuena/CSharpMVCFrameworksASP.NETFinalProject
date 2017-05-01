@@ -1,63 +1,63 @@
-﻿@model IEnumerable<LeisureTimeSystem.Models.ViewModels.Course.CourseApplicationViewModel>
+﻿@model LeisureTimeSystem.Models.ViewModels.Course.ManageApplicationsWrapViewModel
 
 @{
     ViewBag.Title = "AllCourseApplications";
 }
 
-<h2>@this.Model.FirstOrDefault().Course.Name Applications</h2>
+<h2>@this.Model.Applications[0].Course.Name</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 
+@using (Html.BeginForm())
+{
     <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().Student.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().Student.Username)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().Student.Email)
-        </th>
-        <th></th>
-    </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Applications[0].Student.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Applications[0].Student.Username)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Applications[0].Student.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Applications[0].Status)
+            </th>
+        </tr>
 
-    @foreach (var item in Model)
-    {
-        using (Html.BeginForm())
+        @for (int i = 0; i < this.Model.Applications.Count; i++)
         {
-            @Html.Hidden("CourseId", item.Course.Id)
-            @Html.Hidden("StudentId", item.Student.Id)
+
+            @Html.HiddenFor(model => model.Applications[i].Course.CourseId)
+            @Html.HiddenFor(model => model.Applications[i].Student.StudentId)
 
             <tr>
                 <td>
-                    @Html.DisplayFor(model => item.Student.Name)
+                    @Html.DisplayFor(model => model.Applications[i].Student.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(model => item.Student.Username)
+                    @Html.DisplayFor(model => model.Applications[i].Student.Username)
                 </td>
                 <td>
-                    @Html.DisplayFor(model => item.Student.Email)
+                    @Html.DisplayFor(model => model.Applications[i].Student.Email)
+                </td>
                 <td>
-
-                    @Html.DisplayFor(model => item.Status)
+                    @Html.DisplayFor(model => model.Applications[i].Status)
                 </td>
 
-                
-                    @Html.EnumDropDownListFor(x=>item.Status, "Change Status", new { @class = "form-control" })
+                <td>
+                    @Html.EnumDropDownListFor(model => model.Applications[i].Status, "Change Status", new {@class = "form-control"})
+                </td>
 
-               
-
-
-
-
-                <div class="form-group">
-                    <input type="submit">
-                </div>
             </tr>
+
         }
-    }
+
+
 
     </table>
+
+    <div class="form-group">
+        <input type="submit">
+    </div>
+}

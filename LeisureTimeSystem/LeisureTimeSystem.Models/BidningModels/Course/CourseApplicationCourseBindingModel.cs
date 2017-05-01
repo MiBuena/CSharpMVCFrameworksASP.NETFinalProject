@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LeisureTimeSystem.Models.ViewModels.Course
+namespace LeisureTimeSystem.Models.BidningModels.Course
 {
-    public class ApplicationCourseViewModel
+    public class CourseApplicationCourseBindingModel
     {
         public int CourseId { get; set; }
-
-        public string Name { get; set; }
     }
 }
