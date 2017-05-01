@@ -341,18 +341,7 @@ namespace LeisureTimeSystem.Services.Services
             return model;
         }
 
-        public IEnumerable<StudentProfileOrganizationViewModel> GetOrganizations(int studentId)
-        {
-            var student = this.Context.Students.Find(studentId);
 
-            var organizations = student.OrganizationsTheyRepresent;
-
-            var organizationsVms =
-                Mapper.Map<IEnumerable<Organization>, IEnumerable<StudentProfileOrganizationViewModel>>(organizations);
-
-            return organizationsVms;
-
-        }
 
         public DetailsOrganizationViewModel GetDetailsOrganizationViewModel(int organizationId)
         {

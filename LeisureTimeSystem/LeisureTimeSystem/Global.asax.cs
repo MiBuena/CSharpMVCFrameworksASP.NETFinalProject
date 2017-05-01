@@ -36,6 +36,13 @@ namespace LeisureTimeSystem
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
 
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            Exception exception = Server.GetLastError();
+            Server.ClearError();
+            Response.Redirect("/Home/About");
+        }
+
         private void RegisterMaps()
         {
             Mapper.Initialize(expression =>

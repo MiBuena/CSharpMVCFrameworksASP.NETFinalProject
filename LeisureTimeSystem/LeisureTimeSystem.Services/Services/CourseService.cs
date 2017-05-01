@@ -271,22 +271,7 @@ namespace LeisureTimeSystem.Services.Services
             this.Context.SaveChanges();
         }
 
-        public IEnumerable<CourseViewModel> GetCourseViewModelsByStudent(int studentId)
-        {
-            IList<Course> courses = this.Context.Courses.Where(x => x.CoursesSubscriptionData.Any(y => y.StudentId == studentId)).ToList();
 
-            var courseViewModels = Mapper.Map<IList<Course>, IList<CourseViewModel>>(courses);
-
-            for (int i = 0; i < courseViewModels.Count; i++)
-            {
-                courseViewModels[i].Status =
-                    courses[i].CoursesSubscriptionData.FirstOrDefault(x => x.StudentId == studentId)
-                        .Status;
-            }
-
-
-            return courseViewModels;
-        }
 
         public bool IsOwnProfile(int studentId, string userId)
         {

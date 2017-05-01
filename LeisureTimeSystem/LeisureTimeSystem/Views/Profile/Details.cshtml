@@ -95,14 +95,14 @@
     </dl>
 </div>
 
-@Ajax.ActionLink("Render student organizations", "RenderStudentOrganizations", "Organization", new { studentId = this.Model.Id, @class = "btn btn-lg" }, new AjaxOptions()
+@Ajax.ActionLink("Render student organizations", "RenderStudentOrganizations", "Profile", new { studentId = this.Model.Id, @class = "btn btn-lg" }, new AjaxOptions()
 {
     HttpMethod = "GET",
     UpdateTargetId = "container",
     InsertionMode = InsertionMode.Replace
 })
 
-@Ajax.ActionLink("Render student courses", "RenderStudentCourses", "Course", new { studentId = this.Model.Id, @class = "btn btn-lg" }, new AjaxOptions()
+@Ajax.ActionLink("Render student courses", "RenderStudentCourses", "Profile", new { studentId = this.Model.Id, @class = "btn btn-lg" }, new AjaxOptions()
 {
     HttpMethod = "GET",
     UpdateTargetId = "container",

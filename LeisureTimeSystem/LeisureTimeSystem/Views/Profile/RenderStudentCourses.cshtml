@@ -63,7 +63,7 @@
             @Html.DisplayFor(modelItem => item.Status)
         </td>
         <td>
-            @Html.ActionLink("Delete Application", "DeleteCourseApplication", new { courseId=item.Id })
+            @Html.ActionLink("Delete Application", "DeleteCourseApplication", "Course", new { courseId=item.Id }, null)
         </td>
     </tr>
 }

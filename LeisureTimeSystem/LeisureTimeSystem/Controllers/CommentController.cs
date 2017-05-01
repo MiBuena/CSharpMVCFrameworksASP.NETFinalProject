@@ -5,13 +5,16 @@ using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
 using LeisureTimeSystem.Attributes;
+using LeisureTimeSystem.Exceptions;
 using LeisureTimeSystem.Models.BidningModels.Comment;
 using LeisureTimeSystem.Models.ViewModels.Comment;
 using LeisureTimeSystem.Services.Services;
 using Microsoft.AspNet.Identity;
+using Constants = LeisureTimeSystem.Models.Utils.Constants;
 
 namespace LeisureTimeSystem.Controllers
 {
+    [HandleError(ExceptionType = typeof (NotAuthorizedException), View = "Error")]
     public class CommentController : Controller
     {
         private CommentService service;
@@ -24,41 +27,31 @@ namespace LeisureTimeSystem.Controllers
         [LeisureTimeAuthorize]
         public ActionResult Edit(int commentId)
         {
-            string currentUserId = User.Identity.GetUserId();
-
-            var isAllowedToModifyTheComment = this.service.IsAllowedToModifyTheComment(currentUserId, commentId);
-
-            if (!isAllowedToModifyTheComment)
-            {
-               throw new ArgumentException(); 
-            }
+            CheckIfUserIsAuthorizedToModifyThisComment(commentId);
 
             var editCommentViewModel = this.service.GetEditCommentViewModel(commentId);
 
             return this.View(editCommentViewModel);
         }
 
+
+
         [HttpPost]
         [LeisureTimeAuthorize]
         public ActionResult Edit(EditCommentBindingModel model)
         {
-            string currentUserId = User.Identity.GetUserId();
-
-            var isAllowedToModifyTheComment = this.service.IsAllowedToModifyTheComment(currentUserId, model.CommentId);
-
-            if (!isAllowedToModifyTheComment)
-            {
-                throw new ArgumentException();
-            }
+            CheckIfUserIsAuthorizedToModifyThisComment(model.CommentId);
 
             if (this.ModelState.IsValid)
             {
+                string currentUserId = User.Identity.GetUserId();
+
                 model.LastChangeUserId = currentUserId;
 
                 this.service.EditComment(model);
 
                 return this.RedirectToAction("Details", "Articles", new {articleId = model.ArticleId, area = "Blog"});
-             }
+            }
 
             var commentViewModel = Mapper.Map<EditCommentBindingModel, EditCommentViewModel>(model);
 
@@ -68,14 +61,7 @@ namespace LeisureTimeSystem.Controllers
         [LeisureTimeAuthorize]
         public ActionResult Delete(int commentId)
         {
-            string currentUserId = User.Identity.GetUserId();
-
-            var isAllowedToModifyTheComment = this.service.IsAllowedToModifyTheComment(currentUserId, commentId);
-
-            if (!isAllowedToModifyTheComment)
-            {
-                throw new ArgumentException();
-            }
+            CheckIfUserIsAuthorizedToModifyThisComment(commentId);
 
             var commentViewModel = this.service.GetDeleteCommentViewModel(commentId);
 
@@ -85,15 +71,7 @@ namespace LeisureTimeSystem.Controllers
         [HttpPost]
         public ActionResult Delete(DeleteCommentBindingModel model)
         {
-            string currentUserId = User.Identity.GetUserId();
-
-            var isAllowedToModifyTheComment = this.service.IsAllowedToModifyTheComment(currentUserId, model.CommentId);
-
-            if (!isAllowedToModifyTheComment)
-            {
-                throw new ArgumentException();
-            }
-
+            CheckIfUserIsAuthorizedToModifyThisComment(model.CommentId);
 
             if (this.ModelState.IsValid)
             {
@@ -150,6 +128,18 @@ namespace LeisureTimeSystem.Controllers
             var commentsViewModels = this.service.GetAllArticleCommentViewModels(articleId);
 
             return this.PartialView(commentsViewModels);
+        }
+
+        private void CheckIfUserIsAuthorizedToModifyThisComment(int commentId)
+        {
+            string currentUserId = User.Identity.GetUserId();
+
+            var isAllowedToModifyTheComment = this.service.IsAllowedToModifyTheComment(currentUserId, commentId);
+
+            if (!isAllowedToModifyTheComment)
+            {
+                throw new NotAuthorizedException(Constants.ModifyCommentsExceptionMessage);
+            }
         }
     }
 }

@@ -103,6 +103,7 @@
     <Compile Include="EntityModels\Picture.cs" />
     <Compile Include="EntityModels\Tag.cs" />
     <Compile Include="Enums\ApplicationStatus.cs" />
+    <Compile Include="Utils\Constants.cs" />
     <Compile Include="ViewModels\Admin\PersonRoleViewModel.cs" />
     <Compile Include="ViewModels\Admin\RoleViewModel.cs" />
     <Compile Include="ViewModels\Admin\SetRolesViewModel.cs" />

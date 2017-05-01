@@ -4,15 +4,18 @@ using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
 using LeisureTimeSystem.Attributes;
+using LeisureTimeSystem.Exceptions;
 using LeisureTimeSystem.Models.BidningModels;
 using LeisureTimeSystem.Models.EntityModels;
 using LeisureTimeSystem.Models.ViewModels;
 using LeisureTimeSystem.Models.ViewModels.Organization;
 using LeisureTimeSystem.Services.Services;
 using Microsoft.AspNet.Identity;
+using Constants = LeisureTimeSystem.Models.Utils.Constants;
 
 namespace LeisureTimeSystem.Controllers
 {
+    [HandleError(ExceptionType = typeof(NotAuthorizedException), View = "Error")]
     public class OrganizationController : Controller
     {
         private OrganizationService service;
@@ -25,32 +28,18 @@ namespace LeisureTimeSystem.Controllers
         [LeisureTimeAuthorize]
         public ActionResult AddRepresentative(int organizationId)
         {
-            string currentUserId = User.Identity.GetUserId();
-
-            var isOrganizationFounder = this.service.IsOrganizationFounder(currentUserId, organizationId);
-
-            if (!isOrganizationFounder)
-            {
-                throw new ArgumentException();
-            }
+            CheckIfUserIsAllowedToPerformThisAction(organizationId, Constants.ManageOrganizationMembersExceptionMessage);
 
             var addRepresentativeViewModel = this.service.GetAddRepresentativeViewModel(organizationId);
 
             return this.PartialView(addRepresentativeViewModel);
         }
 
-
         [HttpPost]
+        [LeisureTimeAuthorize]
         public ActionResult AddRepresentative(AddRepresentativeBindingModel model)
         {
-            string currentUserId = User.Identity.GetUserId();
-
-            var isOrganizationFounder = this.service.IsOrganizationFounder(currentUserId, model.OrganizationId);
-
-            if (!isOrganizationFounder)
-            {
-                throw new ArgumentException();
-            }
+            CheckIfUserIsAllowedToPerformThisAction(model.OrganizationId, Constants.ManageOrganizationMembersExceptionMessage);
 
             if (this.ModelState.IsValid)
             {
@@ -65,17 +54,10 @@ namespace LeisureTimeSystem.Controllers
         }
 
 
-
+        [LeisureTimeAuthorize]
         public ActionResult RemoveRepresentative(int organizationId, int studentId)
         {
-            string currentUserId = User.Identity.GetUserId();
-
-            var isOrganizationFounder = this.service.IsOrganizationFounder(currentUserId, organizationId);
-
-            if (!isOrganizationFounder)
-            {
-                throw new ArgumentException();
-            }
+            CheckIfUserIsAllowedToPerformThisAction(organizationId, Constants.ManageOrganizationMembersExceptionMessage);
 
             var removeRepresentativeViewModel = this.service.GetRemoveRepresentativeViewModel(studentId, organizationId);
 
@@ -83,18 +65,10 @@ namespace LeisureTimeSystem.Controllers
         }
 
         [HttpPost]
+        [LeisureTimeAuthorize]
         public ActionResult RemoveRepresentative(RemoveRepresentativeBindingModel model)
         {
-
-            string currentUserId = User.Identity.GetUserId();
-
-            var isOrganizationFounder = this.service.IsOrganizationFounder(currentUserId, model.OrganizationId);
-
-            if (!isOrganizationFounder)
-            {
-                throw new ArgumentException();
-            }
-
+            CheckIfUserIsAllowedToPerformThisAction(model.OrganizationId, Constants.ManageOrganizationMembersExceptionMessage);
 
             if (this.ModelState.IsValid)
             {
@@ -108,34 +82,20 @@ namespace LeisureTimeSystem.Controllers
             return this.PartialView(removeRepresentativeViewModel);
         }
 
-
+        [LeisureTimeAuthorize]
         public ActionResult ManageRepresentatives(int organizationId)
         {
-            string currentUserId = User.Identity.GetUserId();
-
-            var isOrganizationFounder = this.service.IsOrganizationFounder(currentUserId, organizationId);
-
-            if (!isOrganizationFounder)
-            {
-                throw new ArgumentException();
-            }
-
+            CheckIfUserIsAllowedToPerformThisAction(organizationId, Constants.ManageOrganizationMembersExceptionMessage);
 
             var addRepresentativesViewModel = this.service.GetManageRepresentativesViewModel(organizationId);
 
             return this.View(addRepresentativesViewModel);
         }
 
+        [LeisureTimeAuthorize]
         public ActionResult Delete(int organizationId)
         {
-            string currentUserId = User.Identity.GetUserId();
-
-            var isOrganizationFounder = this.service.IsOrganizationFounder(currentUserId, organizationId);
-
-            if (!isOrganizationFounder)
-            {
-                throw new ArgumentException();
-            }
+            CheckIfUserIsAllowedToPerformThisAction(organizationId, Constants.ManageOrganizationMembersExceptionMessage);
 
             var deleteorganizationViewModel = this.service.GetDeleteOrganizationViewModel(organizationId);
 
@@ -143,16 +103,10 @@ namespace LeisureTimeSystem.Controllers
         }
 
         [HttpPost]
+        [LeisureTimeAuthorize]
         public ActionResult Delete(DeleteOrganizationBindingModel model)
         {
-            string currentUserId = User.Identity.GetUserId();
-
-            var isOrganizationFounder = this.service.IsOrganizationFounder(currentUserId, model.Id);
-
-            if (!isOrganizationFounder)
-            {
-                throw new ArgumentException();
-            }
+            CheckIfUserIsAllowedToPerformThisAction(model.Id, Constants.ManageOrganizationMembersExceptionMessage);
 
             if (this.ModelState.IsValid)
             {
@@ -166,33 +120,20 @@ namespace LeisureTimeSystem.Controllers
             return this.View(deleteViewModel);
         }
 
+        [LeisureTimeAuthorize]
         public ActionResult ControlPanel(int organizationId)
         {
-            string currentUserId = User.Identity.GetUserId();
-
-            var isOrganizationRepresentative = this.service.IsOrganizationRepresentative(currentUserId, organizationId);
-
-            if (!isOrganizationRepresentative)
-            {
-                throw new ArgumentException();
-            }
+            CheckIfUserIsAllowedToPerformThisAction(organizationId, Constants.ManageOrganizationMembersExceptionMessage);
 
             var organizationViewModel = this.service.GetDetailsOrganizationViewModel(organizationId);
 
             return View(organizationViewModel);
-
         }
 
+        [LeisureTimeAuthorize]
         public ActionResult ManageOrganizationCourses(int organizationId)
         {
-            string currentUserId = User.Identity.GetUserId();
-
-            var isOrganizationRepresentative = this.service.IsOrganizationRepresentative(currentUserId, organizationId);
-
-            if (!isOrganizationRepresentative)
-            {
-                throw new ArgumentException();
-            }
+            CheckIfUserIsAllowedToPerformThisAction(organizationId, Constants.ManageOrganizationCoursesExceptionMessage);
 
             var courseViewModels = this.service.GetAllOrganizationCourses(organizationId);
 
@@ -245,16 +186,11 @@ namespace LeisureTimeSystem.Controllers
 
         }
 
+        [LeisureTimeAuthorize]
         public ActionResult EditOrganizationData(int organizationId)
         {
-            string currentUserId = User.Identity.GetUserId();
+            CheckIfUserIsAllowedToPerformThisAction(organizationId, Constants.EditOrganizationProfileExceptionMessage);
 
-            var isOrganizationRepresentative = this.service.IsOrganizationRepresentative(currentUserId, organizationId);
-
-            if (!isOrganizationRepresentative)
-            {
-                throw new ArgumentException();
-            }
 
             var organizationViewModel = this.service.GetEditOrganizationDataViewModel(organizationId);
 
@@ -262,17 +198,10 @@ namespace LeisureTimeSystem.Controllers
         }
 
         [HttpPost]
+        [LeisureTimeAuthorize]
         public ActionResult EditOrganizationData(EditOrganizationDataBindingModel model)
         {
-
-            string currentUserId = User.Identity.GetUserId();
-
-            var isOrganizationRepresentative = this.service.IsOrganizationRepresentative(currentUserId, model.Id);
-
-            if (!isOrganizationRepresentative)
-            {
-                throw new ArgumentException();
-            }
+            CheckIfUserIsAllowedToPerformThisAction(model.Id, Constants.ManageOrganizationCoursesExceptionMessage);
 
             if (this.ModelState.IsValid)
             {
@@ -283,17 +212,10 @@ namespace LeisureTimeSystem.Controllers
             return this.View(this.service.GetEditOrganizationDataViewModel(model.Id));
         }
 
+        [LeisureTimeAuthorize]
         public ActionResult EditOrganizationDescription(int organizationId)
         {
-
-            string currentUserId = User.Identity.GetUserId();
-
-            var isOrganizationRepresentative = this.service.IsOrganizationRepresentative(currentUserId, organizationId);
-
-            if (!isOrganizationRepresentative)
-            {
-                throw new ArgumentException();
-            }
+            CheckIfUserIsAllowedToPerformThisAction(organizationId, Constants.EditOrganizationProfileExceptionMessage);
 
             var organizationViewModel = this.service.GetEditOrganizationDescriptionViewModel(organizationId);
 
@@ -302,17 +224,10 @@ namespace LeisureTimeSystem.Controllers
 
 
         [HttpPost]
+        [LeisureTimeAuthorize]
         public ActionResult EditOrganizationDescription(EditOrganizationDescriptionBindingModel model)
         {
-
-            string currentUserId = User.Identity.GetUserId();
-
-            var isOrganizationRepresentative = this.service.IsOrganizationRepresentative(currentUserId, model.Id);
-
-            if (!isOrganizationRepresentative)
-            {
-                throw new ArgumentException();
-            }
+            CheckIfUserIsAllowedToPerformThisAction(model.Id, Constants.EditOrganizationProfileExceptionMessage);
 
             if (this.ModelState.IsValid)
             {
@@ -323,35 +238,21 @@ namespace LeisureTimeSystem.Controllers
             return this.View(this.service.GetEditOrganizationDescriptionViewModel(model.Id));
         }
 
-        
+
+        [LeisureTimeAuthorize]
         public ActionResult EditOrganizationPictures(int organizationId)
         {
-
-            string currentUserId = User.Identity.GetUserId();
-
-            var isOrganizationRepresentative = this.service.IsOrganizationRepresentative(currentUserId, organizationId);
-
-            if (!isOrganizationRepresentative)
-            {
-                throw new ArgumentException();
-            }
+            CheckIfUserIsAllowedToPerformThisAction(organizationId, Constants.EditOrganizationProfileExceptionMessage);
 
             var organizationViewModel = this.service.GetEditOrganizationPicturesViewModel(organizationId);
 
             return this.PartialView(organizationViewModel);
         }
 
+        [LeisureTimeAuthorize]
         public ActionResult DeletePicture(int pictureId, int organizationId)
         {
-
-            string currentUserId = User.Identity.GetUserId();
-
-            var isOrganizationRepresentative = this.service.IsOrganizationRepresentative(currentUserId, organizationId);
-
-            if (!isOrganizationRepresentative)
-            {
-                throw new ArgumentException();
-            }
+            CheckIfUserIsAllowedToPerformThisAction(organizationId, Constants.EditOrganizationProfileExceptionMessage);
 
             var pictureVm = this.service.GetDeletePictureViewModel(pictureId, organizationId);
 
@@ -359,16 +260,10 @@ namespace LeisureTimeSystem.Controllers
         }
 
         [HttpPost]
+        [LeisureTimeAuthorize]
         public ActionResult DeletePicture(DeletePictureBindingModel model)
         {
-            string currentUserId = User.Identity.GetUserId();
-
-            var isOrganizationRepresentative = this.service.IsOrganizationRepresentative(currentUserId, model.OrganizationId);
-
-            if (!isOrganizationRepresentative)
-            {
-                throw new ArgumentException();
-            }
+            CheckIfUserIsAllowedToPerformThisAction(model.OrganizationId, Constants.EditOrganizationProfileExceptionMessage);
 
             if (this.ModelState.IsValid)
             {
@@ -379,17 +274,10 @@ namespace LeisureTimeSystem.Controllers
             return this.View(this.service.GetDeletePictureViewModel(model.PictureId, model.OrganizationId));
         }
 
+        [LeisureTimeAuthorize]
         public ActionResult UploadFile(int organizationId)
         {
-
-            string currentUserId = User.Identity.GetUserId();
-
-            var isOrganizationRepresentative = this.service.IsOrganizationRepresentative(currentUserId, organizationId);
-
-            if (!isOrganizationRepresentative)
-            {
-                throw new ArgumentException();
-            }
+            CheckIfUserIsAllowedToPerformThisAction(organizationId, Constants.EditOrganizationProfileExceptionMessage);
 
             var organizationViewModel = this.service.GetUploadOrganizationPictureViewModel(organizationId);
 
@@ -398,17 +286,10 @@ namespace LeisureTimeSystem.Controllers
 
 
         [HttpPost]
+        [LeisureTimeAuthorize]
         public ActionResult Upload(UploadOrganizationPictureBindingModel model)
         {
-
-            string currentUserId = User.Identity.GetUserId();
-
-            var isOrganizationRepresentative = this.service.IsOrganizationRepresentative(currentUserId, model.Id);
-
-            if (!isOrganizationRepresentative)
-            {
-                throw new ArgumentException();
-            }
+            CheckIfUserIsAllowedToPerformThisAction(model.Id, Constants.EditOrganizationProfileExceptionMessage);
 
             if (this.ModelState.IsValid)
             {
@@ -433,12 +314,16 @@ namespace LeisureTimeSystem.Controllers
             return View(allViewModel);
         }
 
-        public ActionResult RenderStudentOrganizations(int studentId)
+        private void CheckIfUserIsAllowedToPerformThisAction(int organizationId, string message)
         {
+            string currentUserId = User.Identity.GetUserId();
 
-            var organizationsViewModels = this.service.GetOrganizations(studentId);
+            var isOrganizationRepresentative = this.service.IsOrganizationRepresentative(currentUserId, organizationId);
 
-            return this.PartialView(organizationsViewModels);
+            if (!isOrganizationRepresentative)
+            {
+                throw new NotAuthorizedException(message);
+            }
         }
     }
 }

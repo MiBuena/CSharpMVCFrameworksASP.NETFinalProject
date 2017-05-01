@@ -5,14 +5,17 @@ using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
 using LeisureTimeSystem.Attributes;
+using LeisureTimeSystem.Exceptions;
 using LeisureTimeSystem.Models.BidningModels;
 using LeisureTimeSystem.Models.BidningModels.Course;
 using LeisureTimeSystem.Models.ViewModels.Course;
 using LeisureTimeSystem.Services.Services;
 using Microsoft.AspNet.Identity;
+using Constants = LeisureTimeSystem.Models.Utils.Constants;
 
 namespace LeisureTimeSystem.Controllers
 {
+    [HandleError(ExceptionType = typeof(NotAuthorizedException), View = "Error")]
     public class CourseController : Controller
     {
         private CourseService service;
@@ -25,33 +28,30 @@ namespace LeisureTimeSystem.Controllers
         [LeisureTimeAuthorize]
         public ActionResult Add(int organizationId)
         {
-            string currentUserId = User.Identity.GetUserId();
-
-            bool isAllowedToAddAcourse = this.service.IsAllowedToAddAcourse(currentUserId, organizationId);
-
-            if (!isAllowedToAddAcourse)
-            {
-                throw new ArgumentException();
-            }
+            CheckIfUserIsAllowedToAddACourse(organizationId, Constants.AddCoursesExceptionMessage);
 
             var addNewCourseViewModel = this.service.GetAddNewCourseViewModel(organizationId);
 
             return View(addNewCourseViewModel);
         }
 
+        private void CheckIfUserIsAllowedToAddACourse(int organizationId, string exceptionMessage)
+        {
+            string currentUserId = User.Identity.GetUserId();
+
+            bool isAllowedToAddAcourse = this.service.IsAllowedToAddAcourse(currentUserId, organizationId);
+
+            if (!isAllowedToAddAcourse)
+            {
+                throw new NotAuthorizedException(exceptionMessage);
+            }
+        }
+
         [HttpPost]
         [LeisureTimeAuthorize]
         public ActionResult Add(AddNewCourseBindingModel model)
         {
-            string currentUserId = User.Identity.GetUserId();
-
-            bool isAllowedToAddAcourse = this.service.IsAllowedToAddAcourse(currentUserId, model.OrganizationId);
-
-            if (!isAllowedToAddAcourse)
-            {
-                throw new ArgumentException();
-            }
-
+            CheckIfUserIsAllowedToAddACourse(model.OrganizationId, Constants.AddCoursesExceptionMessage);
 
             if (this.ModelState.IsValid)
             {
@@ -72,36 +72,17 @@ namespace LeisureTimeSystem.Controllers
         [LeisureTimeAuthorize]
         public ActionResult Edit(int courseId)
         {
-            string currentUserId = User.Identity.GetUserId();
-
-            bool isAllowedToModifyCourse = this.service.IsAllowedToModifyCourse(courseId, currentUserId);
-
-            if (!isAllowedToModifyCourse)
-            {
-                throw new ArgumentException();
-            }
-
-
+            CheckIfIsAllowedToModifyCourse(courseId, Constants.ModifyCourseExceptionMessage);
+            
             var editViewModel = this.service.GetEditCourseViewModel(courseId);
 
             return this.View(editViewModel);
         }
-
-
-
         [HttpPost]
         [LeisureTimeAuthorize]
         public ActionResult Edit(EditCourseBindingModel model)
         {
-
-            string currentUserId = User.Identity.GetUserId();
-
-            bool isAllowedToModifyCourse = this.service.IsAllowedToModifyCourse(model.Id, currentUserId);
-
-            if (!isAllowedToModifyCourse)
-            {
-                throw new ArgumentException();
-            }
+            CheckIfIsAllowedToModifyCourse(model.Id, Constants.ModifyCourseExceptionMessage);
 
             if (this.ModelState.IsValid)
             {
@@ -117,14 +98,7 @@ namespace LeisureTimeSystem.Controllers
         [LeisureTimeAuthorize]
         public ActionResult Delete(int courseId)
         {
-            string currentUserId = User.Identity.GetUserId();
-
-            bool isAllowedToModifyCourse = this.service.IsAllowedToModifyCourse(courseId, currentUserId);
-
-            if (!isAllowedToModifyCourse)
-            {
-                throw new ArgumentException();
-            }
+            CheckIfIsAllowedToModifyCourse(courseId, Constants.ModifyCourseExceptionMessage);
 
             var deleteCourseViewModel = this.service.GetDeleteCourseViewModel(courseId);
 
@@ -135,14 +109,7 @@ namespace LeisureTimeSystem.Controllers
         [LeisureTimeAuthorize]
         public ActionResult Delete(DeleteCourseBindingModel model)
         {
-            string currentUserId = User.Identity.GetUserId();
-
-            bool isAllowedToModifyCourse = this.service.IsAllowedToModifyCourse(model.CourseId, currentUserId);
-
-            if (!isAllowedToModifyCourse)
-            {
-                throw new ArgumentException();
-            }
+            CheckIfIsAllowedToModifyCourse(model.CourseId, Constants.ModifyCourseExceptionMessage);
 
             if (this.ModelState.IsValid)
             {
@@ -161,14 +128,7 @@ namespace LeisureTimeSystem.Controllers
         [LeisureTimeAuthorize]
         public ActionResult ManageCourseApplications(int courseId)
         {
-            string currentUserId = User.Identity.GetUserId();
-
-            bool isAllowedToModifyCourse = this.service.IsAllowedToModifyCourse(courseId, currentUserId);
-
-            if (!isAllowedToModifyCourse)
-            {
-                throw new ArgumentException();
-            }
+            CheckIfIsAllowedToModifyCourse(courseId, Constants.ModifyCourseApplicationsExceptionMessage);
 
             var allCourseApplicationVms = this.service.GetManageCourseApplicationsViewModel(courseId);
 
@@ -181,14 +141,7 @@ namespace LeisureTimeSystem.Controllers
         [LeisureTimeAuthorize]
         public ActionResult ManageCourseApplications(ManageApplicationsWrapBindingModel model)
         {
-            string currentUserId = User.Identity.GetUserId();
-
-            bool isAllowedToModifyCourse = this.service.IsAllowedToModifyCourse(model.Applications[0].Course.CourseId, currentUserId);
-
-            if (!isAllowedToModifyCourse)
-            {
-                throw new ArgumentException();
-            }
+            CheckIfIsAllowedToModifyCourse(model.Applications[0].Course.CourseId, Constants.ModifyCourseApplicationsExceptionMessage);
 
             if (this.ModelState.IsValid)
             {
@@ -239,15 +192,9 @@ namespace LeisureTimeSystem.Controllers
         [LeisureTimeAuthorize]
         public ActionResult DeleteCourseApplication(int courseId)
         {
+            CheckIfIsAllowedToModifyCourse(courseId, Constants.ModifyCourseApplicationsExceptionMessage);
+
             string currentUserId = User.Identity.GetUserId();
-
-            bool isAllowedToModifyCourse = this.service.IsAllowedToModifyCourse(courseId, currentUserId);
-
-            if (!isAllowedToModifyCourse)
-            {
-                throw new ArgumentException();
-            }
-
 
             var applicationToDelete = this.service.GetDeleteCourseApplicationViewModel(courseId, currentUserId);
 
@@ -258,14 +205,7 @@ namespace LeisureTimeSystem.Controllers
         [LeisureTimeAuthorize]
         public ActionResult DeleteCourseApplication(DeleteCourseApplicationBindingModel model)
         {
-            string currentUserId = User.Identity.GetUserId();
-
-            bool isAllowedToModifyCourse = this.service.IsAllowedToModifyCourse(model.CourseId, currentUserId);
-
-            if (!isAllowedToModifyCourse)
-            {
-                throw new ArgumentException();
-            }
+            CheckIfIsAllowedToModifyCourse(model.CourseId, Constants.ModifyCourseApplicationsExceptionMessage);
 
             if (this.ModelState.IsValid)
             {
@@ -274,28 +214,23 @@ namespace LeisureTimeSystem.Controllers
                 return this.RedirectToAction("Details", "Profile");
             }
 
+            string currentUserId = User.Identity.GetUserId();
+
             var applicationToDelete = this.service.GetDeleteCourseApplicationViewModel(model.CourseId, currentUserId);
 
             return View(applicationToDelete);
         }
 
-        [LeisureTimeAuthorize]
-        public ActionResult RenderStudentCourses(int studentId)
+        private void CheckIfIsAllowedToModifyCourse(int courseId, string message)
         {
             string currentUserId = User.Identity.GetUserId();
 
-            bool isOwnProfile = this.service.IsOwnProfile(studentId, currentUserId);
+            bool isAllowedToModifyCourse = this.service.IsAllowedToModifyCourse(courseId, currentUserId);
 
-            if (!isOwnProfile)
+            if (!isAllowedToModifyCourse)
             {
-                throw new ArgumentException();
+                throw new NotAuthorizedException(message);
             }
-
-            var coursesViewModels = this.service.GetCourseViewModelsByStudent(studentId);
-
-            return this.PartialView(coursesViewModels);
         }
-
-
     }
 }

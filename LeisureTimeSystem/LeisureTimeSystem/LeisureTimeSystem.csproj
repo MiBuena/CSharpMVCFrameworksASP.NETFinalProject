@@ -183,8 +183,8 @@
     <Compile Include="Controllers\DisciplineController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\PicturesController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
+    <Compile Include="Exceptions\NotAuthorizedException.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -278,8 +278,8 @@
     <Content Include="Views\Organization\All.cshtml" />
     <Content Include="Views\Profile\Details.cshtml" />
     <Content Include="Views\Profile\Edit.cshtml" />
-    <Content Include="Views\Organization\RenderStudentOrganizations.cshtml" />
-    <Content Include="Views\Course\RenderStudentCourses.cshtml" />
+    <Content Include="Views\Profile\RenderStudentOrganizations.cshtml" />
+    <Content Include="Views\Profile\RenderStudentCourses.cshtml" />
     <Content Include="Views\Home\_NamePartial.cshtml" />
     <Content Include="Views\Course\DeleteCourseApplication.cshtml" />
     <Content Include="Views\Organization\Details.cshtml" />
