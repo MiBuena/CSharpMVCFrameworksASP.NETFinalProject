@@ -112,6 +112,7 @@
     <Compile Include="ViewModels\Article\DetailsArticleViewModel.cs" />
     <Compile Include="ViewModels\Article\DeleteArticleViewModel.cs" />
     <Compile Include="ViewModels\Article\EditArticleViewModel.cs" />
+    <Compile Include="ViewModels\Article\HomePageArticle.cs" />
     <Compile Include="ViewModels\Article\NewArticleViewModel.cs" />
     <Compile Include="ViewModels\ChangeStatusApplicationViewModel.cs" />
     <Compile Include="ViewModels\CommentViewModel.cs" />

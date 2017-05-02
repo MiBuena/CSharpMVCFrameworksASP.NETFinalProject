@@ -29,7 +29,7 @@ namespace LeisureTimeSystem.Models.BidningModels
         [MaxLength(70)]
         public string Street { get; set; }
 
-        [MinLength(2)]
+        [MinLength(1)]
         [MaxLength(20)]
         public string StreetNumber { get; set; }
     }

@@ -1,4 +1,6 @@
-﻿body {
+﻿
+
+body {
     padding-top: 0px;
 }
 
@@ -38,6 +40,9 @@
 .navbar-inverse .navbar-nav > li > a:hover {
     color: black;
 }
+
+
+
 
 .img {
     padding: 10px 10px 10px 10px;
@@ -113,3 +118,40 @@
         background-color: #f9bf55;
         padding: 8px 14px;
     }
+
+    .title {
+        font-size: 16px;
+    color: #019587;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+    .articleTitle {
+            font-weight: bold;
+                    text-decoration: none;
+
+    }
+
+    .articleTitle a:hover {
+                          text-decoration: none;
+  
+    }
+
+    .articleBody {
+        font-size: 13px;
+    }
+
+    .moreWord a {
+        text-decoration: none;
+    }
+
+    .moreWord {
+        font-weight: normal;
+        color: black;
+    }
+
+    .title a {
+                text-decoration: none;
+
+    }
+

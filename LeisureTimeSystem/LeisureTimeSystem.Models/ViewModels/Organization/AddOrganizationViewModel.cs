@@ -40,7 +40,7 @@ namespace LeisureTimeSystem.Models.ViewModels.Organization
         [MaxLength(70)]
         public string Street { get; set; }
 
-        [MinLength(2)]
+        [MinLength(1)]
         [MaxLength(20)]
         [Display(Name = "Street number")]
         public string StreetNumber { get; set; }

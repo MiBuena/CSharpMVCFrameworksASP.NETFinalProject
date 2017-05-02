@@ -24,7 +24,7 @@ namespace LeisureTimeSystem.Models.EntityModels
         public int Id { get; set; }
 
         [MinLength(2)]
-        [MaxLength(70)]
+        [MaxLength(2000)]
         public string Description { get; set; }
 
         [Required]

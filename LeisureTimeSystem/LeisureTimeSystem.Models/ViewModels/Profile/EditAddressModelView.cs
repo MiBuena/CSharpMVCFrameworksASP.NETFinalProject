@@ -38,7 +38,7 @@ namespace LeisureTimeSystem.Models.ViewModels.Profile
         [MaxLength(70)]
         public string Street { get; set; }
 
-        [MinLength(2)]
+        [MinLength(1)]
         [MaxLength(20)]
         [Display(Name = "Str. number")]
         public string StreetNumber { get; set; }

@@ -3,33 +3,99 @@
     ViewBag.Title = "Home Page";
 }
 
-
-<aside class="menu">
-    @*<span class="asideHeader">Последни публикации</span>
-        <ul>
-            @foreach (var post in Model)
-                {
-                <li>
-                    <a href="/Posts/Details/@post.Id">@post.Title</a>
-                </li>
-            }
-        </ul>
-        <br />*@
-    <div class="popularTags">
-        <span class="asideHeader">Popular tags</span>
-        <br />
-        @foreach (var tag in this.Model.Tags)
-        {
-
-
-            if (!string.IsNullOrEmpty(tag.Name))
+<main float="nofloat">
+    <aside class="menu">
+        @*<span class="asideHeader">Последни публикации</span>
+            <ul>
+                @foreach (var post in Model)
+                    {
+                    <li>
+                        <a href="/Posts/Details/@post.Id">@post.Title</a>
+                    </li>
+                }
+            </ul>
+            <br />*@
+        <div class="popularTags">
+            <span class="asideHeader">Popular tags</span>
+            <br />
+            @foreach (var tag in this.Model.Tags)
             {
-                <span class="tags">
-                    @Html.ActionLink(tag.Name, "ArticlesByTag", "Articles", new { tagId = tag.Id, area="Blog" }, null)
-                </span>
+
+
+                if (!string.IsNullOrEmpty(tag.Name))
+                {
+                    <span class="tags">
+                        @Html.ActionLink(tag.Name, "ArticlesByTag", "Articles", new { tagId = tag.Id, area = "Blog" }, null)
+                    </span>
+                }
+
+            }
+        </div>
+    </aside>
+    <div>
+        <div class="col-md-4">
+            <div class="title">@Html.ActionLink("Articles", "All", "Articles")</div>
+            <br/>
+
+            <div class="articleTitle">@Html.ActionLink(this.Model.Articles.FirstOrDefault().Title, "Details", "Articles", new {articleId = this.Model.Articles.FirstOrDefault().Id, area = "Blog"}, null)</div>
+
+            <div class="articleBody">@this.Model.Articles.FirstOrDefault().Body <span class="moreWord">@Html.ActionLink("more", "Details", "Articles", new { articleId = this.Model.Articles.FirstOrDefault().Id, area = "Blog" }, null)</span></div>
+
+            <br/>
+            @foreach (var article in this.Model.Articles.Skip(1))
+            {
+                <div class="articleTitle">@Html.ActionLink(@article.Title, "Details", "Articles", new {articleId = article.Id, area = "Blog"}, null) <span class="moreWord">@Html.ActionLink("read more...", "Details", "Articles", new { articleId = this.Model.Articles.FirstOrDefault().Id, area = "Blog" }, null)</span></div>
             }
 
-        }
-    </div>
-</aside>
+        </div>
 
+        <div class="col-md-3">
+            <div class="title">Courses</div>
+            
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Courses.FirstOrDefault().Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Courses.FirstOrDefault().StartDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Courses.FirstOrDefault().EndDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Courses.FirstOrDefault().OrganizationName)
+                    </th>
+
+                    <th>
+                        <p>Apply</p>
+                    </th>
+                </tr>
+
+                @foreach (var item in Model.Courses)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StartDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EndDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OrganizationName)
+                        </td>
+
+                        <td>
+                            @Html.ActionLink("Apply", "Apply", "Course", new { courseId = item.Id }, null)
+                        </td>
+                    </tr>
+                }
+
+            </table>
+
+        </div>
+    </div>
+</main>

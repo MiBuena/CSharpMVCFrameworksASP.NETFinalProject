@@ -36,12 +36,12 @@ namespace LeisureTimeSystem
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
 
-        protected void Application_Error(object sender, EventArgs e)
-        {
-            Exception exception = Server.GetLastError();
-            Server.ClearError();
-            Response.Redirect("/Home/About");
-        }
+        //protected void Application_Error(object sender, EventArgs e)
+        //{
+        //    Exception exception = Server.GetLastError();
+        //    Server.ClearError();
+        //    Response.Redirect("/Home/About");
+        //}
 
         private void RegisterMaps()
         {
@@ -159,7 +159,11 @@ namespace LeisureTimeSystem
                 .ForMember(discipline => discipline.Name,
         m => m.MapFrom(discipline => discipline.Name));
 
-                expression.CreateMap<Organization, OrganizationViewModel>();
+                expression.CreateMap<Organization, OrganizationViewModel>()
+                                                .ForMember(organization => organization.Address,
+        m => m.MapFrom(organization => organization.Address))
+                                                        .ForMember(organization => organization.City,
+        m => m.MapFrom(organization => organization.Address.City));
 
                 expression.CreateMap<Organization, EditOrganizationDataViewModel>()
                                 .ForMember(organization => organization.Address,
@@ -184,7 +188,9 @@ namespace LeisureTimeSystem
                                        .ForMember(organization => organization.City,
         m => m.MapFrom(organization => organization.Address.City))
                                 .ForMember(student => student.Address,
-        m => m.MapFrom(student => student.Address.ToString()));
+        m => m.MapFrom(student => student.Address.ToString()))
+                                        .ForMember(student => student.DisplayEmail,
+        m => m.MapFrom(student => student.DisplayEmail ?? student.User.Email));
 
                 expression.CreateMap<Student, EditProfileViewModel>()
                 .ForMember(student => student.Address,
@@ -202,7 +208,8 @@ namespace LeisureTimeSystem
 
                 expression.CreateMap<NewArticleBindingModel, NewArticleViewModel>();
 
-                expression.CreateMap<Article, AllArticlesViewModel>();
+                expression.CreateMap<Article, AllArticlesViewModel>().ForMember(article => article.CommentsCount,
+                    m => m.MapFrom(article => article.Comments.Count));
 
                 expression.CreateMap<Article, EditArticleViewModel>();
 
@@ -226,6 +233,9 @@ namespace LeisureTimeSystem
                 expression.CreateMap<Student, CommentAuthorViewModel>();
 
                 expression.CreateMap<Tag, TagViewModel>();
+
+                expression.CreateMap<Article, HomePageArticle>();
+
 
                 expression.CreateMap<Course, CourseHomeViewModel>();
 

@@ -24,7 +24,7 @@ namespace LeisureTimeSystem.Data.Migrations
 
         private static void AddRoles(LeisureSystemContext context)
         {
-            if (!context.Roles.Any(x => x.Name == "BeginnerUser"))
+            if (!context.Roles.Any(x => x.Name == "User"))
             {
                 var roleManager = new RoleManager<IdentityRole>(
                     new RoleStore<IdentityRole>(context));
@@ -32,22 +32,7 @@ namespace LeisureTimeSystem.Data.Migrations
                 roleManager.Create(new IdentityRole("BeginnerUser"));
             }
 
-            if (!context.Roles.Any(x => x.Name == "ClientUser"))
-            {
-                var roleManager = new RoleManager<IdentityRole>(
-                    new RoleStore<IdentityRole>(context));
-
-                roleManager.Create(new IdentityRole("ClientUser"));
-            }
-
-
-            if (!context.Roles.Any(x => x.Name == "OrganizationRepresentative"))
-            {
-                var roleManager = new RoleManager<IdentityRole>(
-                    new RoleStore<IdentityRole>(context));
-
-                roleManager.Create(new IdentityRole("OrganizationRepresentative"));
-            }
+  
 
             if (!context.Roles.Any(x => x.Name == "BlogAuthor"))
             {

@@ -10,7 +10,7 @@ namespace LeisureTimeSystem.Models.BidningModels
         public string Name { get; set; }
 
         [MinLength(2)]
-        [MaxLength(70)]
+        [MaxLength(2000)]
         public string Description { get; set; }
 
         [Required]

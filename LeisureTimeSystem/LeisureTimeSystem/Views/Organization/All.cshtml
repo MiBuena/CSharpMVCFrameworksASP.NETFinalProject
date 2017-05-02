@@ -10,11 +10,11 @@
         <div class="col-md-3" style="margin-top: 50px">
             <img src=@item.ProfilePicturePath alt="Smiley face" style="float: none; width: 80px; height: 40px;">
             <br/>
-            @Html.ActionLink(@item.Name, "Details", "Organization", new { organizationId = @item.Id })
+            @Html.ActionLink(@item.Name, "Details", "Organization", new { organizationId = @item.Id }, null)
 
             <br />
             <span style="color: #8a8b8d;">City:</span> @item.City <br>
-            <span style="color: #8a8b8d;" class="left lh11 ">Address:</span>
+            <span style="color: #8a8b8d;" class="left lh11 ">Address:</span> @item.Address
             <br> <span style="color: #8a8b8d;"> Telephone:</span> @item.Telephones <br>
             @Html.ActionLink("See profile", "Details", new { organizationId = item.Id })
         </div>

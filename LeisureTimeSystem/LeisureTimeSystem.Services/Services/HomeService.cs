@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using LeisureTimeSystem.Models.EntityModels;
 using LeisureTimeSystem.Models.ViewModels;
+using LeisureTimeSystem.Models.ViewModels.Article;
 using LeisureTimeSystem.Models.ViewModels.Category;
 using LeisureTimeSystem.Models.ViewModels.Course;
 using LeisureTimeSystem.Models.ViewModels.Home;
@@ -27,10 +28,16 @@ namespace LeisureTimeSystem.Services.Services
 
             var coursesViewModels = Mapper.Map<IEnumerable<Course>, IEnumerable<CourseHomeViewModel>>(futureCourses);
 
+            var articles = this.Context.Articles.OrderByDescending(x => x.Date).Take(5);
+
+            var homePageArticles = Mapper.Map<IEnumerable<Article>, IEnumerable<HomePageArticle>>(articles);
+
+
             HomePageViewModel model = new HomePageViewModel()
             {
                 Courses = coursesViewModels,
-                Tags = tagsViewModels
+                Tags = tagsViewModels,
+                Articles = homePageArticles
             };
 
             return model;

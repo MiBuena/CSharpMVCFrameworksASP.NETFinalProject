@@ -12,6 +12,7 @@
 
         public string ProfilePicturePath { get; set; }
 
+        public string Address { get; set; }
 
     }
 }

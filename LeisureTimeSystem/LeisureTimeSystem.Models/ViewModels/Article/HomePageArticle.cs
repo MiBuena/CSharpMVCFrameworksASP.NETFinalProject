@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace LeisureTimeSystem.Models.ViewModels.Article
 {
-    public class AllArticlesViewModel
+    public class HomePageArticle
     {
+        private string body;
+
         public int Id { get; set; }
 
         [Required]
@@ -17,10 +19,21 @@ namespace LeisureTimeSystem.Models.ViewModels.Article
 
         [Required]
         [DataType(DataType.MultilineText)]
-        public string Body { get; set; }
+        public string Body
+        {
+            get
+            {
+                if (this.body.Length > 400)
+                {
+                    return this.body.Substring(0, 400) + "...";
+                }
 
-        public int Likes { get; set; }
-
-        public int CommentsCount { get; set; }
+                return this.body;
+            }
+            set
+            {
+                this.body = value;
+            }
+        }
     }
 }

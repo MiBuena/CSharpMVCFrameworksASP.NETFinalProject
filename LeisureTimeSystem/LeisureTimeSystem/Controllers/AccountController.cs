@@ -165,7 +165,7 @@ namespace LeisureTimeSystem.Controllers
 
 
 
-                this.UserManager.AddToRole(user.Id, "BasicUser");
+                this.UserManager.AddToRole(user.Id, "User");
 
 
                 this.accountService.AddStudent(model.Name, user.Id, model.BirthDate);

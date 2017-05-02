@@ -181,6 +181,7 @@ namespace LeisureTimeSystem.Controllers
 
             var organizationViewModel = Mapper.Map<AddOrganizationBindingModel, AddOrganizationViewModel>(bindingModel);
 
+            organizationViewModel.Disciplines = this.service.GetDisciplinesViewModels();
 
             return View(organizationViewModel);
 

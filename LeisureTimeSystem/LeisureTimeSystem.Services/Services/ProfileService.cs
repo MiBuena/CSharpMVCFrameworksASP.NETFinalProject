@@ -19,7 +19,7 @@ namespace LeisureTimeSystem.Services.Services
         {
             var currentUser = this.Context.Users.Find(currentUserId);
 
-           var student = this.Context.Students.Include(x=>x.Address).FirstOrDefault(x => x.UserId == currentUserId);
+           var student = this.Context.Students.Include(x=>x.Address).Include(y=>y.User).FirstOrDefault(x => x.UserId == currentUserId);
 
             var detailsProfileViewModel = Mapper.Map<Student, DetailsProfileViewModel>(student);
 

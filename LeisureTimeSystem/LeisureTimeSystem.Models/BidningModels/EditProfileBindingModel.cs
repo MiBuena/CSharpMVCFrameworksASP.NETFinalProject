@@ -14,7 +14,7 @@ namespace LeisureTimeSystem.Models.BidningModels
 
         [Required]
         [MinLength(2)]
-        [MaxLength(10)]
+        [MaxLength(30)]
         [Display(Name = "Username")]
         public string Username { get; set; }
 

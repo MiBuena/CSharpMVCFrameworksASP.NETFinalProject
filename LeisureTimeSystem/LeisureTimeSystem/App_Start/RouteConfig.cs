@@ -19,11 +19,6 @@ namespace LeisureTimeSystem
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
 
-            routes.MapRoute(
-    "404-PageNotFound",
-    "{*url}",
-    new { controller = "Home", action = "Index" }
-    );
         }
     }
 }
