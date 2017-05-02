@@ -29,6 +29,7 @@ namespace LeisureTimeSystem.Models.ViewModels.Account
 
         [Required]
         [EmailAddress]
+
         [Display(Name = "Email")]
         public string Email { get; set; }
 

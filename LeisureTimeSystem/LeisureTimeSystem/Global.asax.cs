@@ -225,6 +225,10 @@ namespace LeisureTimeSystem
 
                 expression.CreateMap<Student, CommentAuthorViewModel>();
 
+                expression.CreateMap<Tag, TagViewModel>();
+
+                expression.CreateMap<Course, CourseHomeViewModel>();
+
 
                 expression.CreateMap<Comment, CommentViewModel>()
                     .ForMember(comment => comment.Author,
@@ -264,6 +268,7 @@ namespace LeisureTimeSystem
                 expression.CreateMap<IdentityRole, RoleViewModel>();
 
                 expression.CreateMap<ApplicationUser, PersonRoleViewModel>();
+
 
 
 

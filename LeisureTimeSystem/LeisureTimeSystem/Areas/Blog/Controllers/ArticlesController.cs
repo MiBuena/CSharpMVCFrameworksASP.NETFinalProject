@@ -113,9 +113,11 @@ namespace LeisureTimeSystem.Areas.Blog.Controllers
             return View(detailsArticleViewModel);
         }
 
-        public ActionResult DisplayTagSearchResults(int tagId)
+        public ActionResult ArticlesByTag(int tagId)
         {
-            return View();
+            var articlesByTag = this.service.GetArticlesByTagViewModels(tagId);
+
+            return View(articlesByTag);
         }
 
         public ActionResult AddALike(int articleId)

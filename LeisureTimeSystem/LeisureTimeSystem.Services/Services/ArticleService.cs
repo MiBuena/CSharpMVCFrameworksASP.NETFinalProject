@@ -98,10 +98,25 @@ namespace LeisureTimeSystem.Services.Services
             return editArticleViewModel;
         }
 
+        public ICollection<AllArticlesViewModel> GetArticlesByTagViewModels(int tagId)
+        {
+            ICollection<AllArticlesViewModel> collection = new HashSet<AllArticlesViewModel>();
+
+            var articles = this.Context.Articles.Where(x=>x.Tags.Any(y=>y.Id == tagId));
+
+            foreach (var article in articles)
+            {
+                var articleViewModel = Mapper.Map<Article, AllArticlesViewModel>(article);
+
+                collection.Add(articleViewModel);
+            }
+
+            return collection;
+        }
+
 
         public ICollection<AllArticlesViewModel> GetAllArticlesViewModels()
         {
-
             ICollection<AllArticlesViewModel> collection = new HashSet<AllArticlesViewModel>();
 
             var articles = this.Context.Articles;

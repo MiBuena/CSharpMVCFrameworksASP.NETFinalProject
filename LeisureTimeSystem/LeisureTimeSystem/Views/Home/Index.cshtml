@@ -1,11 +1,35 @@
-﻿@model LeisureTimeSystem.Models.EntityModels.Organization
+﻿@model LeisureTimeSystem.Models.ViewModels.Home.HomePageViewModel
 @{
     ViewBag.Title = "Home Page";
 }
 
 
-@foreach (var element in this.Model.Pictures)
-{
-    <p>@element</p>
-}
+<aside class="menu">
+    @*<span class="asideHeader">Последни публикации</span>
+        <ul>
+            @foreach (var post in Model)
+                {
+                <li>
+                    <a href="/Posts/Details/@post.Id">@post.Title</a>
+                </li>
+            }
+        </ul>
+        <br />*@
+    <div class="popularTags">
+        <span class="asideHeader">Popular tags</span>
+        <br />
+        @foreach (var tag in this.Model.Tags)
+        {
+
+
+            if (!string.IsNullOrEmpty(tag.Name))
+            {
+                <span class="tags">
+                    @Html.ActionLink(tag.Name, "ArticlesByTag", "Articles", new { tagId = tag.Id, area="Blog" }, null)
+                </span>
+            }
+
+        }
+    </div>
+</aside>
 

@@ -123,11 +123,13 @@
     <Compile Include="ViewModels\Course\ApplicationCourseViewModel.cs" />
     <Compile Include="ViewModels\Course\ApplicationStudentViewModel.cs" />
     <Compile Include="ViewModels\Course\CourseApplicationViewModel.cs" />
+    <Compile Include="ViewModels\Course\CourseHomeViewModel.cs" />
     <Compile Include="ViewModels\Course\DeleteCourseApplicationViewModel.cs" />
     <Compile Include="ViewModels\Course\DeleteCourseViewModel.cs" />
     <Compile Include="ViewModels\Course\EditCourseViewModel.cs" />
     <Compile Include="ViewModels\Course\ManageApplicationsWrapViewModel.cs" />
     <Compile Include="ViewModels\Course\NewCourseViewModel.cs" />
+    <Compile Include="ViewModels\Home\HomePageViewModel.cs" />
     <Compile Include="ViewModels\Organization\AddOrganizationDisciplineViewModel.cs" />
     <Compile Include="EntityModels\Address.cs" />
     <Compile Include="EntityModels\AbstractClasses\ContactableObject.cs" />

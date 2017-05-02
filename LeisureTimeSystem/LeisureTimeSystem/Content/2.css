@@ -3,8 +3,7 @@
 }
 
 .register {
-
-    width:215px;
+    width: 215px;
     font-size: 12px;
     position: absolute;
     right: 0px;
@@ -14,7 +13,7 @@
 
 .bar {
     width: 80%;
-	text-align:center;
+    text-align: center;
     margin-top: 0.5%;
     margin-left: 6%;
 }
@@ -25,24 +24,92 @@
 
 .navbar-inverse {
     background-color: bisque;
-
 }
 
-.navbar-inverse .navbar-nav > li > a {
-    color: black;
-}
+    .navbar-inverse .navbar-nav > li > a {
+        color: black;
+    }
 
 /* Change color of dropdown links on hover */
-.dropdown-content a:hover {    background-color: bisque;
+.dropdown-content a:hover {
+    background-color: bisque;
 }
 
-.navbar-inverse .navbar-nav > li > a:hover {    color: black;
+.navbar-inverse .navbar-nav > li > a:hover {
+    color: black;
 }
 
 .img {
     padding: 10px 10px 10px 10px;
-
-    float: left; 
-    width: 80px; 
+    float: left;
+    width: 80px;
     height: 80px;
 }
+
+
+.menu {
+    display: inline-block;
+    background: bisque;
+    margin-right: 10px;
+    padding-top: 10px;
+    width: 200px;
+    height: 400px;
+    float: left;
+}
+
+    .menu a {
+        display: block;
+        line-height: 15px;
+        text-align: left;
+        height: 15px;
+        margin-right: 5px;
+        margin-top: 5px;
+        text-decoration: none;
+        color: brown;
+    }
+
+        .menu a:hover {
+            text-decoration: underline;
+            background-color: bisque;
+        }
+
+    .menu ul {
+        margin-left: -15px;
+        margin-top: 15px;
+    }
+
+    .tags {
+    color: black;
+    display: inline-block;
+    font-size: 13px;
+    background-color: bisque;
+    line-height: 95%;
+    border-radius: 16px;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+    .asideHeader {
+             padding-left: 14px;
+    }
+
+ .popularTags a {
+        font-size: 13px;
+        height: 30px;
+    }
+
+     .tags a {
+        text-decoration: none;
+        border-radius: 16px;
+        border-style: none;
+        background-color: Bisque;
+        padding: 8px 14px;
+    }
+
+    .tags a:hover {
+        text-decoration: none;
+        border-radius: 16px;
+        border-style: none;
+        background-color: #f9bf55;
+        padding: 8px 14px;
+    }

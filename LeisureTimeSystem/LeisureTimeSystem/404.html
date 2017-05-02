@@ -1,0 +1,11 @@
+﻿<% Response.StatusCode = 404 %>
+
+@model System.Web.Mvc.HandleErrorInfo
+
+@{
+    ViewBag.Title = "Error";
+}
+
+
+<span>@this.Model.Exception.Message</span>
+

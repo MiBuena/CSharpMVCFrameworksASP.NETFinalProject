@@ -24,10 +24,9 @@ namespace LeisureTimeSystem.Controllers
 
         public ActionResult Index()
         {
-            LeisureSystemContext context = new LeisureSystemContext();
+            var homePageViewModel = this.homeService.GetHomePageViewModel();
 
-
-            return View(context.Organizations.FirstOrDefault());
+            return View(homePageViewModel);
         }
 
         public ActionResult About()
