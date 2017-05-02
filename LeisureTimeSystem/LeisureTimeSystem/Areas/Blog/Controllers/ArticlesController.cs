@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
+using LeisureTimeSystem.Attributes;
 using LeisureTimeSystem.Models.BidningModels.Article;
 using LeisureTimeSystem.Models.ViewModels.Article;
 using LeisureTimeSystem.Services.Services;
@@ -20,12 +21,8 @@ namespace LeisureTimeSystem.Areas.Blog.Controllers
             this.service = new ArticleService();
         }
 
-        // GET: Blog/Articles
-        public ActionResult Index()
-        {
-            return View();
-        }
 
+        [LeisureTimeAuthorize(Roles = "BlogAuthor")]
         public ActionResult Create()
         {
             string currentUserId = User.Identity.GetUserId();
@@ -36,6 +33,7 @@ namespace LeisureTimeSystem.Areas.Blog.Controllers
         }
 
         [HttpPost]
+        [LeisureTimeAuthorize(Roles = "BlogAuthor")]
         public ActionResult Create(CreateArticleBindingModel model)
         {
             if (this.ModelState.IsValid)
@@ -60,6 +58,7 @@ namespace LeisureTimeSystem.Areas.Blog.Controllers
             return View(allArticlesViewModels);
         }
 
+        [LeisureTimeAuthorize(Roles = "BlogAuthor")]
         public ActionResult Edit(int articleId)
         {
             var editArticleViewModel = this.service.GetEditArticleViewModel(articleId);
@@ -68,6 +67,7 @@ namespace LeisureTimeSystem.Areas.Blog.Controllers
         }
 
         [HttpPost]
+        [LeisureTimeAuthorize(Roles = "BlogAuthor")]
         public ActionResult Edit(EditArticleBindingModel model)
         {
             if (this.ModelState.IsValid)
@@ -84,6 +84,7 @@ namespace LeisureTimeSystem.Areas.Blog.Controllers
             return View(editArticleViewModel);
         }
 
+        [LeisureTimeAuthorize(Roles = "BlogAuthor")]
         public ActionResult Delete(int articleId)
         {
             var editArticleViewModel = this.service.GetDeleteArticleViewModel(articleId);
@@ -92,6 +93,7 @@ namespace LeisureTimeSystem.Areas.Blog.Controllers
         }
 
         [HttpPost]
+        [LeisureTimeAuthorize(Roles = "BlogAuthor")]
         public ActionResult Delete(DeleteArticleBindingModel model)
         {
             if (this.ModelState.IsValid)
@@ -120,14 +122,13 @@ namespace LeisureTimeSystem.Areas.Blog.Controllers
             return View(articlesByTag);
         }
 
+        [LeisureTimeAuthorize]
         public ActionResult AddALike(int articleId)
         {
             this.service.IncreaseLikeCounter(articleId);
 
             return this.RedirectToAction("Details", new {articleId = articleId});
         }
-
-
 
     }
 }

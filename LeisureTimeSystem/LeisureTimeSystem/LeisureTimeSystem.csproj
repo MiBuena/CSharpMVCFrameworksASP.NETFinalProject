@@ -209,7 +209,6 @@
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Blog\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Blog\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Blog\Views\Articles\Index.cshtml" />
     <Content Include="Areas\Blog\Views\Articles\Create.cshtml" />
     <Content Include="Areas\Blog\Views\Articles\All.cshtml" />
     <Content Include="Areas\Blog\Views\Articles\Edit.cshtml" />
@@ -307,6 +306,7 @@
     <Content Include="Views\Comment\Edit.cshtml" />
     <Content Include="Views\Comment\Delete.cshtml" />
     <Content Include="Views\Comment\Details.cshtml" />
+    <Content Include="Views\Shared\Unauthorized.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

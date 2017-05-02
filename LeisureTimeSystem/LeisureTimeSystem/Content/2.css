@@ -129,7 +129,10 @@ body {
     .articleTitle {
             font-weight: bold;
                     text-decoration: none;
+    }
 
+    .title a {
+        color: #019587;
     }
 
     .articleTitle a:hover {
@@ -148,6 +151,7 @@ body {
     .moreWord {
         font-weight: normal;
         color: black;
+        font-size: 13px;
     }
 
     .title a {

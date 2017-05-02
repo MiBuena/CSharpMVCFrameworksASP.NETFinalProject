@@ -34,7 +34,7 @@
     </aside>
     <div>
         <div class="col-md-4">
-            <div class="title">@Html.ActionLink("Articles", "All", "Articles")</div>
+            <div class="title">@Html.ActionLink("Articles", "All", "Articles", new {area="Blog"}, null)</div>
             <br/>
 
             <div class="articleTitle">@Html.ActionLink(this.Model.Articles.FirstOrDefault().Title, "Details", "Articles", new {articleId = this.Model.Articles.FirstOrDefault().Id, area = "Blog"}, null)</div>
@@ -44,7 +44,7 @@
             <br/>
             @foreach (var article in this.Model.Articles.Skip(1))
             {
-                <div class="articleTitle">@Html.ActionLink(@article.Title, "Details", "Articles", new {articleId = article.Id, area = "Blog"}, null) <span class="moreWord">@Html.ActionLink("read more...", "Details", "Articles", new { articleId = this.Model.Articles.FirstOrDefault().Id, area = "Blog" }, null)</span></div>
+                <div class="articleTitle">@Html.ActionLink(@article.Title, "Details", "Articles", new {articleId = article.Id, area = "Blog"}, null) <span class="moreWord">@Html.ActionLink("more...", "Details", "Articles", new { articleId = this.Model.Articles.FirstOrDefault().Id, area = "Blog" }, null)</span></div>
             }
 
         </div>
