@@ -9,33 +9,19 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Body)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Likes)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CommentsCount)
-        </th>
-    </tr>
 
+
+<h2>Articles</h2>
+<img src="~/UploadedFiles/redLine.png" alt="Smiley face"  style="float: none; width: 1500px; height: 3px;">
+
+<table class="table">
     @foreach (var item in Model)
     {
         <tr>
+            <td><img src=@item.PicturePath alt="Smiley face" style="float: none; width: 172px; height: 80px;"></td>
             <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Body)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Likes)
+                <div class="articleTitle">@Html.DisplayFor(modelItem => item.Title)</div>
+                <div class="articleBody">@Html.DisplayFor(modelItem => item.Body)</div>
             </td>
 
             <td>
@@ -46,8 +32,8 @@
 
                 @if (item.IsAllowedToModify)
                 {
-                    @:|@Html.ActionLink("Edit", "Edit", new { articleId = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { articleId = item.Id })
+                    @:|@Html.ActionLink("Edit", "Edit", new {articleId = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new {articleId = item.Id})
                 }
 
             </td>

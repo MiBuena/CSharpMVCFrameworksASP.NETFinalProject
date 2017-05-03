@@ -1,4 +1,5 @@
 using System.IO;
+using System.Web;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -28,10 +29,8 @@ namespace LeisureTimeSystem.Data.Migrations
         }
 
         private static void AddArticles(LeisureSystemContext context)
-        {
-            string path = "/DatabaseFiles/articleRichardBranson.rtf";
-
-            using (var reader = new StreamReader(path))
+        {            
+            using (var reader = new StreamReader(HttpContext.Current.Server.MapPath("/DatabaseFiles/articleRichardBranson.rtf")))
             {
                 var line = reader.ReadLine();
 

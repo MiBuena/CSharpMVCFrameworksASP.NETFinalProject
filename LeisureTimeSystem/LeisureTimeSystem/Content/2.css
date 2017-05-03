@@ -121,7 +121,7 @@ body {
 
 .title {
     font-size: 16px;
-    color: green;
+    color: #019587;
     font-weight: bold;
     text-decoration: none;
 }
@@ -129,15 +129,17 @@ body {
 .articleTitle {
     font-weight: bold;
     text-decoration: none;
+    color: black;
 }
 
 .title a {
-    color: green;
+    color: #019587;
     text-decoration: none;
 }
 
 .articleTitle a:hover {
     text-decoration: none;
+    color: black;
 }
 
 .articleBody {
@@ -155,13 +157,11 @@ body {
 }
 
 main a {
-    color: green;
     text-decoration: none;
     font-weight: bold;
 }
 
     main a:hover {
-    font-weight: bold;
+        font-weight: bold;
         text-decoration: none;
     }
-

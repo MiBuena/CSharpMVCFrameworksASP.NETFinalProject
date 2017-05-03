@@ -5,16 +5,6 @@
 
 <main float="nofloat">
     <aside class="menu">
-        @*<span class="asideHeader">Последни публикации</span>
-            <ul>
-                @foreach (var post in Model)
-                    {
-                    <li>
-                        <a href="/Posts/Details/@post.Id">@post.Title</a>
-                    </li>
-                }
-            </ul>
-            <br />*@
         <div class="popularTags">
             <span class="asideHeader">Popular tags</span>
             <br />
@@ -40,7 +30,7 @@
 
             <div class="articleTitle">@Html.ActionLink(this.Model.Articles.FirstOrDefault().Title, "Details", "Articles", new {articleId = this.Model.Articles.FirstOrDefault().Id, area = "Blog"}, null)</div>
 
-            <div class="articleBody">@this.Model.Articles.FirstOrDefault().Body <span class="moreWord">@Html.ActionLink("more", "Details", "Articles", new {articleId = this.Model.Articles.FirstOrDefault().Id, area = "Blog"}, null)</span></div>
+            <div class="articleBody"><img src=@this.Model.Articles.FirstOrDefault().PicturePath alt="Smiley face" style="float: left; width: 172px; height: 80px;">@this.Model.Articles.FirstOrDefault().Body <span class="moreWord">@Html.ActionLink("more", "Details", "Articles", new {articleId = this.Model.Articles.FirstOrDefault().Id, area = "Blog"}, null)</span></div>
 
             <br/>
             @foreach (var article in this.Model.Articles.Skip(1))

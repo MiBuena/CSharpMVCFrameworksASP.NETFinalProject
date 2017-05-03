@@ -258,7 +258,11 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="UploadedFiles\basket.png" />
+    <Content Include="UploadedFiles\blue_line.png" />
+    <Content Include="UploadedFiles\redLine.png" />
     <Content Include="UploadedFiles\TN_basketball_4_11B.jpg" />
+    <Content Include="UploadedFiles\virginsBooksDay.jpg" />
+    <Content Include="UploadedFiles\virginTrain.jpg" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

@@ -25,5 +25,7 @@ namespace LeisureTimeSystem.Models.ViewModels.Article
         public int CommentsCount { get; set; }
 
         public bool IsAllowedToModify { get; set; }
+
+        public string PicturePath { get; set; }
     }
 }

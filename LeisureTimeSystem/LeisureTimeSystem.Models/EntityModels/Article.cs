@@ -42,6 +42,8 @@ namespace LeisureTimeSystem.Models.EntityModels
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }
 
+        public virtual Picture Picture { get; set; }
+
         public int LikeCounter { get; set; }
 
         public virtual ICollection<Tag> Tags { get; set; }

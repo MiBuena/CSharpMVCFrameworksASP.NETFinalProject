@@ -218,7 +218,9 @@ namespace LeisureTimeSystem
                 expression.CreateMap<EditArticleBindingModel, EditArticleViewModel>();
 
                 expression.CreateMap<Article, AllArticlesViewModel>().ForMember(article => article.CommentsCount,
-                    m => m.MapFrom(article => article.Comments.Count));
+                    m => m.MapFrom(article => article.Comments.Count))
+                    .ForMember(article => article.PicturePath,
+                    m => m.MapFrom(article => article.Picture.Path));
 
                 expression.CreateMap<Article, EditArticleViewModel>();
 
@@ -243,7 +245,9 @@ namespace LeisureTimeSystem
 
                 expression.CreateMap<Tag, TagViewModel>();
 
-                expression.CreateMap<Article, HomePageArticle>();
+                expression.CreateMap<Article, HomePageArticle>()
+                                                    .ForMember(article => article.PicturePath,
+                        m => m.MapFrom(article => article.Picture.Path));
 
 
                 expression.CreateMap<Course, CourseHomeViewModel>()
