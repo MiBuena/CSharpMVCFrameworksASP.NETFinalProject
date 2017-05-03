@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using AutoMapper;
 using LeisureTimeSystem.Models.BidningModels.Admin;
 using LeisureTimeSystem.Models.EntityModels;
 using LeisureTimeSystem.Models.ViewModels.Admin;
+using LeisureTimeSystem.Services.Interfaces;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace LeisureTimeSystem.Services.Services
 {
-    public class AdminService : Service
+    public class AdminService : Service, IAdminService
     {
 
         public void RemoveRole(string roleName, string userId)

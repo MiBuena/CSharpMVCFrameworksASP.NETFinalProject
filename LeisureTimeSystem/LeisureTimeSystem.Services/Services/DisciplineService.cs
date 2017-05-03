@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using AutoMapper;
 using LeisureTimeSystem.Models.EntityModels;
 using LeisureTimeSystem.Models.ViewModels;
+using LeisureTimeSystem.Services.Interfaces;
 
 namespace LeisureTimeSystem.Services.Services
 {
-    public class DisciplineService : Service
+    public class DisciplineService : Service, IDisciplineService
     {
         public IEnumerable<DisciplineViewModel> GetDisciplineViewModels(int categoryId)
         {

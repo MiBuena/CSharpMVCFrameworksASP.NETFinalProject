@@ -21,6 +21,8 @@ namespace LeisureTimeSystem.Models.ViewModels.Course
         [Display(Name = "End date")]
         public DateTime EndDate { get; set; }
 
+        public string OrganizationId { get; set; }
+
         [Display(Name = "Organization name")]
         public string OrganizationName { get; set; }
     }

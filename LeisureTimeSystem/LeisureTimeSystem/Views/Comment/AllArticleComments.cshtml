@@ -26,8 +26,11 @@
         </div>
         <div class="commentsOptions">
 
-                @Html.ActionLink("Edit", "Edit", "Comment", new { commentId = item.Id, area="" }, null)
-                | @Html.ActionLink("Delete", "Delete", "Comment", new { commentId = item.Id, area="" }, null) |
+            @if (item.IsAllowedToModify)
+            {
+                @Html.ActionLink("Edit", "Edit", "Comment", new { commentId = item.Id, area = "" }, null)
+                @:| @Html.ActionLink("Delete", "Delete", "Comment", new { commentId = item.Id, area = "" }, null) |
+            }
 
             @Html.ActionLink("Details", "Details", "Comment", new { commentId = item.Id, area = "" }, null)
         </div>

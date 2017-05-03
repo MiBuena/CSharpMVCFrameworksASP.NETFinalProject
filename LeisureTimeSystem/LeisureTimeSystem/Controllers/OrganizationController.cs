@@ -9,6 +9,7 @@ using LeisureTimeSystem.Models.BidningModels;
 using LeisureTimeSystem.Models.EntityModels;
 using LeisureTimeSystem.Models.ViewModels;
 using LeisureTimeSystem.Models.ViewModels.Organization;
+using LeisureTimeSystem.Services.Interfaces;
 using LeisureTimeSystem.Services.Services;
 using Microsoft.AspNet.Identity;
 using Constants = LeisureTimeSystem.Models.Utils.Constants;
@@ -18,11 +19,11 @@ namespace LeisureTimeSystem.Controllers
     [HandleError(ExceptionType = typeof(NotAuthorizedException), View = "Error")]
     public class OrganizationController : Controller
     {
-        private OrganizationService service;
+        private IOrganizationService service;
 
-        public OrganizationController()
+        public OrganizationController(IOrganizationService service)
         {
-            this.service = new OrganizationService();
+            this.service = service;
         }
 
         [LeisureTimeAuthorize]
@@ -125,7 +126,9 @@ namespace LeisureTimeSystem.Controllers
         {
             CheckIfUserIsAllowedToPerformThisAction(organizationId, Constants.ManageOrganizationMembersExceptionMessage);
 
-            var organizationViewModel = this.service.GetDetailsOrganizationViewModel(organizationId);
+            string currentUserId = User.Identity.GetUserId();
+
+            var organizationViewModel = this.service.GetDetailsOrganizationViewModel(organizationId, currentUserId);
 
             return View(organizationViewModel);
         }
@@ -151,7 +154,9 @@ namespace LeisureTimeSystem.Controllers
 
         public ActionResult Details(int organizationId)
         {
-            var organizationViewModel = this.service.GetDetailsOrganizationViewModel(organizationId);
+            string currentUserId = User.Identity.GetUserId();
+
+            var organizationViewModel = this.service.GetDetailsOrganizationViewModel(organizationId, currentUserId);
 
             return View(organizationViewModel);
         }
@@ -319,9 +324,9 @@ namespace LeisureTimeSystem.Controllers
         {
             string currentUserId = User.Identity.GetUserId();
 
-            var isOrganizationRepresentative = this.service.IsOrganizationRepresentative(currentUserId, organizationId);
+            var isAuthorizedToModify = this.service.IsAuthorizedToModifyOrganization(currentUserId, organizationId);
 
-            if (!isOrganizationRepresentative)
+            if (!isAuthorizedToModify)
             {
                 throw new NotAuthorizedException(message);
             }

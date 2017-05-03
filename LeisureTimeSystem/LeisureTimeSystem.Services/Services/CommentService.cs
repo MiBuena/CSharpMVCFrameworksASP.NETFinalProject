@@ -2,17 +2,16 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using AutoMapper;
 using LeisureTimeSystem.Models.BidningModels.Comment;
 using LeisureTimeSystem.Models.EntityModels;
 using LeisureTimeSystem.Models.ViewModels.Comment;
+using LeisureTimeSystem.Services.Interfaces;
 using Microsoft.AspNet.Identity;
 
 namespace LeisureTimeSystem.Services.Services
 {
-    public class CommentService : Service
+    public class CommentService : Service, ICommentService
     {
 
         public bool IsAllowedToModifyTheComment(string userId, int commentId)
@@ -100,11 +99,18 @@ namespace LeisureTimeSystem.Services.Services
             return editCommentViewModel;
         }
 
-        public IEnumerable<ArticleCommentViewModel> GetAllArticleCommentViewModels(int articleId)
+        public IEnumerable<ArticleCommentViewModel> GetAllArticleCommentViewModels(int articleId, string currentUserId)
         {
-            var comments = this.Context.Comments.Where(x => x.Article.Id == articleId);
+            var comments = this.Context.Comments.Where(x => x.Article.Id == articleId).OrderByDescending(y=>y.Date);
 
             var commentsViewModels = Mapper.Map<IEnumerable<Comment>, IEnumerable<ArticleCommentViewModel>>(comments);
+
+            foreach (var commentViewModel in commentsViewModels)
+            {
+                bool isAllowedToModify = this.IsAllowedToModifyTheComment(currentUserId, commentViewModel.Id);
+
+                commentViewModel.IsAllowedToModify = isAllowedToModify;
+            }
 
             return commentsViewModels;
         }

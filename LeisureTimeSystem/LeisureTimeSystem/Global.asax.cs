@@ -154,6 +154,7 @@ namespace LeisureTimeSystem
                         m => m.MapFrom(organization => organization.Pictures.Select(x => x.Path)))
                     .ForMember(organization => organization.AddressId,
                         m => m.MapFrom(organization => organization.Address.Id));
+  
 
                 expression.CreateMap<Discipline, AddOrganizationDisciplineViewModel>()
                 .ForMember(discipline => discipline.Name,
@@ -237,7 +238,9 @@ namespace LeisureTimeSystem
                 expression.CreateMap<Article, HomePageArticle>();
 
 
-                expression.CreateMap<Course, CourseHomeViewModel>();
+                expression.CreateMap<Course, CourseHomeViewModel>()
+                                    .ForMember(course => course.OrganizationId,
+                        m => m.MapFrom(course => course.Organization.Id));
 
 
                 expression.CreateMap<Comment, CommentViewModel>()

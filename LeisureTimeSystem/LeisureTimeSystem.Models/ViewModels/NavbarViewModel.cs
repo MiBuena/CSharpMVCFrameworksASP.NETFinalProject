@@ -15,5 +15,7 @@ namespace LeisureTimeSystem.Models.ViewModels
         }
 
         public ICollection<CategoryViewModel> MainCategoriesViewModels { get; set; }
+
+        public bool IsAdmin { get; set; }
     }
 }

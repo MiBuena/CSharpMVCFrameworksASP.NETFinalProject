@@ -5,20 +5,24 @@ using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
 using LeisureTimeSystem.Attributes;
+using LeisureTimeSystem.Exceptions;
 using LeisureTimeSystem.Models.BidningModels.Article;
 using LeisureTimeSystem.Models.ViewModels.Article;
+using LeisureTimeSystem.Services.Interfaces;
 using LeisureTimeSystem.Services.Services;
 using Microsoft.AspNet.Identity;
+using Constants = LeisureTimeSystem.Models.Utils.Constants;
 
 namespace LeisureTimeSystem.Areas.Blog.Controllers
 {
+    [HandleError(ExceptionType = typeof(NotAuthorizedException), View = "Error")]
     public class ArticlesController : Controller
     {
-        private ArticleService service;
+        private IArticleService service;
 
-        public ArticlesController()
+        public ArticlesController(IArticleService service)
         {
-            this.service = new ArticleService();
+            this.service = service;
         }
 
 
@@ -53,7 +57,9 @@ namespace LeisureTimeSystem.Areas.Blog.Controllers
 
         public ActionResult All()
         {
-            var allArticlesViewModels = this.service.GetAllArticlesViewModels();
+            string currentUserId = User.Identity.GetUserId();
+
+            var allArticlesViewModels = this.service.GetAllArticlesViewModels(currentUserId);
 
             return View(allArticlesViewModels);
         }
@@ -61,6 +67,8 @@ namespace LeisureTimeSystem.Areas.Blog.Controllers
         [LeisureTimeAuthorize(Roles = "BlogAuthor")]
         public ActionResult Edit(int articleId)
         {
+            this.CheckIfUserIsAllowedToPerformThisAction(articleId, Constants.ModifyArticleExceptionMessage);
+
             var editArticleViewModel = this.service.GetEditArticleViewModel(articleId);
 
             return View(editArticleViewModel);
@@ -70,6 +78,8 @@ namespace LeisureTimeSystem.Areas.Blog.Controllers
         [LeisureTimeAuthorize(Roles = "BlogAuthor")]
         public ActionResult Edit(EditArticleBindingModel model)
         {
+            this.CheckIfUserIsAllowedToPerformThisAction(model.Id, Constants.ModifyArticleExceptionMessage);
+
             if (this.ModelState.IsValid)
             {
                 this.service.UpdateTags(model.TagsRaw);
@@ -87,6 +97,8 @@ namespace LeisureTimeSystem.Areas.Blog.Controllers
         [LeisureTimeAuthorize(Roles = "BlogAuthor")]
         public ActionResult Delete(int articleId)
         {
+            this.CheckIfUserIsAllowedToPerformThisAction(articleId, Constants.ModifyArticleExceptionMessage);
+
             var editArticleViewModel = this.service.GetDeleteArticleViewModel(articleId);
 
             return View(editArticleViewModel);
@@ -96,6 +108,8 @@ namespace LeisureTimeSystem.Areas.Blog.Controllers
         [LeisureTimeAuthorize(Roles = "BlogAuthor")]
         public ActionResult Delete(DeleteArticleBindingModel model)
         {
+            this.CheckIfUserIsAllowedToPerformThisAction(model.ArticleId, Constants.ModifyArticleExceptionMessage);
+
             if (this.ModelState.IsValid)
             {
                 this.service.DeleteArticle(model);
@@ -128,6 +142,18 @@ namespace LeisureTimeSystem.Areas.Blog.Controllers
             this.service.IncreaseLikeCounter(articleId);
 
             return this.RedirectToAction("Details", new {articleId = articleId});
+        }
+
+        private void CheckIfUserIsAllowedToPerformThisAction(int articleId, string message)
+        {
+            string currentUserId = User.Identity.GetUserId();
+
+            var isAuthorizedToModify = this.service.IsAuthorizedToModifyArticle(currentUserId, articleId);
+
+            if (!isAuthorizedToModify)
+            {
+                throw new NotAuthorizedException(message);
+            }
         }
 
     }

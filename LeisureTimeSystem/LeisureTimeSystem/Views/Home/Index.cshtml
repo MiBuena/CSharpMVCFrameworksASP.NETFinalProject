@@ -33,18 +33,19 @@
         </div>
     </aside>
     <div>
-        <div class="col-md-4">
-            <div class="title">@Html.ActionLink("Articles", "All", "Articles", new {area="Blog"}, null)</div>
+        <div class="col-md-5">
+
+            <div class="title">@Html.ActionLink("Articles", "All", "Articles", new {area = "Blog"}, null)</div>
             <br/>
 
             <div class="articleTitle">@Html.ActionLink(this.Model.Articles.FirstOrDefault().Title, "Details", "Articles", new {articleId = this.Model.Articles.FirstOrDefault().Id, area = "Blog"}, null)</div>
 
-            <div class="articleBody">@this.Model.Articles.FirstOrDefault().Body <span class="moreWord">@Html.ActionLink("more", "Details", "Articles", new { articleId = this.Model.Articles.FirstOrDefault().Id, area = "Blog" }, null)</span></div>
+            <div class="articleBody">@this.Model.Articles.FirstOrDefault().Body <span class="moreWord">@Html.ActionLink("more", "Details", "Articles", new {articleId = this.Model.Articles.FirstOrDefault().Id, area = "Blog"}, null)</span></div>
 
             <br/>
             @foreach (var article in this.Model.Articles.Skip(1))
             {
-                <div class="articleTitle">@Html.ActionLink(@article.Title, "Details", "Articles", new {articleId = article.Id, area = "Blog"}, null) <span class="moreWord">@Html.ActionLink("more...", "Details", "Articles", new { articleId = this.Model.Articles.FirstOrDefault().Id, area = "Blog" }, null)</span></div>
+                <div class="articleTitle">@Html.ActionLink(@article.Title, "Details", "Articles", new {articleId = article.Id, area = "Blog"}, null) <span class="moreWord">@Html.ActionLink("more...", "Details", "Articles", new {articleId = this.Model.Articles.FirstOrDefault().Id, area = "Blog"}, null)</span></div>
             }
 
         </div>
@@ -61,9 +62,6 @@
                         @Html.DisplayNameFor(model => model.Courses.FirstOrDefault().StartDate)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Courses.FirstOrDefault().EndDate)
-                    </th>
-                    <th>
                         @Html.DisplayNameFor(model => model.Courses.FirstOrDefault().OrganizationName)
                     </th>
 
@@ -76,13 +74,11 @@
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Name)
+                            
+                            @Html.ActionLink(item.Name, "Details", "Organization", new {organizationId = item.OrganizationId, area = ""}, null)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.StartDate)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.EndDate)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.OrganizationName)

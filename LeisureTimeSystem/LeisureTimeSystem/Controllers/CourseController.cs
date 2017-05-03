@@ -9,6 +9,7 @@ using LeisureTimeSystem.Exceptions;
 using LeisureTimeSystem.Models.BidningModels;
 using LeisureTimeSystem.Models.BidningModels.Course;
 using LeisureTimeSystem.Models.ViewModels.Course;
+using LeisureTimeSystem.Services.Interfaces;
 using LeisureTimeSystem.Services.Services;
 using Microsoft.AspNet.Identity;
 using Constants = LeisureTimeSystem.Models.Utils.Constants;
@@ -18,11 +19,11 @@ namespace LeisureTimeSystem.Controllers
     [HandleError(ExceptionType = typeof(NotAuthorizedException), View = "Error")]
     public class CourseController : Controller
     {
-        private CourseService service;
+        private ICourseService service;
 
-        public CourseController()
+        public CourseController(ICourseService service)
         {
-            this.service = new CourseService();
+            this.service = service;
         }
 
         [LeisureTimeAuthorize]
@@ -72,7 +73,7 @@ namespace LeisureTimeSystem.Controllers
         [LeisureTimeAuthorize]
         public ActionResult Edit(int courseId)
         {
-            CheckIfIsAllowedToModifyCourse(courseId, Constants.ModifyCourseExceptionMessage);
+            CheckIfIsAllowedToModifyCourse(courseId, Constants.ModifyCommentsExceptionMessage);
             
             var editViewModel = this.service.GetEditCourseViewModel(courseId);
 

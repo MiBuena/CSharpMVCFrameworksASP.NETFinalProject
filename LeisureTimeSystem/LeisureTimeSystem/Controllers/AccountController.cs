@@ -11,6 +11,7 @@ using Microsoft.Owin.Security;
 using LeisureTimeSystem.Models;
 using LeisureTimeSystem.Models.EntityModels;
 using LeisureTimeSystem.Models.ViewModels.Account;
+using LeisureTimeSystem.Services.Interfaces;
 using LeisureTimeSystem.Services.Services;
 
 namespace LeisureTimeSystem.Controllers
@@ -20,13 +21,18 @@ namespace LeisureTimeSystem.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-        private AccountService accountService;
+        private IAccountService accountService;
 
 
         public AccountController()
         {
-            this.accountService = new AccountService();
         }
+
+        public AccountController(IAccountService service)
+        {
+            this.accountService = service;
+        }
+
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
         {

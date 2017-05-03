@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using LeisureTimeSystem.Attributes;
 using LeisureTimeSystem.Models.BidningModels.Admin;
+using LeisureTimeSystem.Services.Interfaces;
 using LeisureTimeSystem.Services.Services;
 
 namespace LeisureTimeSystem.Areas.Admin.Controllers
@@ -12,11 +13,11 @@ namespace LeisureTimeSystem.Areas.Admin.Controllers
     [LeisureTimeAuthorize(Roles = "Administrator")]
     public class AdminController : Controller
     {
-        private AdminService service;
+        private IAdminService service;
 
-        public AdminController()
+        public AdminController(IAdminService service)
         {
-            this.service = new AdminService();
+            this.service = service;
         }
 
         // GET: Admin/Admin

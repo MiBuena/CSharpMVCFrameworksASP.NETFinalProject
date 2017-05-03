@@ -10,10 +10,11 @@ using LeisureTimeSystem.Models.EntityModels;
 using LeisureTimeSystem.Models.ViewModels;
 using LeisureTimeSystem.Models.ViewModels.Course;
 using LeisureTimeSystem.Models.ViewModels.Profile;
+using LeisureTimeSystem.Services.Interfaces;
 
 namespace LeisureTimeSystem.Services.Services
 {
-    public class ProfileService : Service
+    public class ProfileService : Service, IProfileService
     {
         public DetailsProfileViewModel GetProfileDetailsProfileViewModel(string currentUserId)
         {

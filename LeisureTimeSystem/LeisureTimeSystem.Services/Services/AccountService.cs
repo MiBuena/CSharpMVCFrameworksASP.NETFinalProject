@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using LeisureTimeSystem.Models.EntityModels;
+using LeisureTimeSystem.Services.Interfaces;
 
 namespace LeisureTimeSystem.Services.Services
 {
-    public class AccountService : Service
+    public class AccountService : Service, IAccountService
     {
         public void AddStudent(string name, string userId, DateTime birthDate)
         {

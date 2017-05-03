@@ -1,22 +1,18 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using AutoMapper;
 using LeisureTimeSystem.Models.BidningModels;
 using LeisureTimeSystem.Models.BidningModels.Course;
 using LeisureTimeSystem.Models.EntityModels;
-using LeisureTimeSystem.Models.Enums;
 using LeisureTimeSystem.Models.ViewModels;
 using LeisureTimeSystem.Models.ViewModels.Course;
+using LeisureTimeSystem.Services.Interfaces;
 using Microsoft.AspNet.Identity;
 
 namespace LeisureTimeSystem.Services.Services
 {
-    public class CourseService : Service
+    public class CourseService : Service, ICourseService
     {
 
         public bool IsAllowedToModifyCourse(int courseId, string userId)

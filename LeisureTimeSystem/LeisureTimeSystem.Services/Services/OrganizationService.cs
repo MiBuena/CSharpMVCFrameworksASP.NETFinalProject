@@ -15,38 +15,13 @@ using LeisureTimeSystem.Models.ViewModels.Course;
 using LeisureTimeSystem.Models.ViewModels.Organization;
 using LeisureTimeSystem.Models.ViewModels.Profile;
 using LeisureTimeSystem.Models.ViewModels.Student;
+using LeisureTimeSystem.Services.Interfaces;
+using Microsoft.AspNet.Identity;
 
 namespace LeisureTimeSystem.Services.Services
 {
-    public class OrganizationService : Service
+    public class OrganizationService : Service, IOrganizationService
     {
-
-        public bool IsOrganizationFounder(string userId, int organizationId)
-        {
-            var organization = this.Context.Organizations.Find(organizationId);
-
-            var founder = organization.Representatives.FirstOrDefault();
-
-            if (founder.UserId == userId)
-            {
-                return true;
-            }
-
-            return false;
-        }
-
-        public bool IsOrganizationRepresentative(string userId, int organizationId)
-        {
-            var organization = this.Context.Organizations.Find(organizationId);
-
-            if (organization.Representatives.Any(x => x.UserId == userId))
-            {
-                return true;
-            }
-
-            return false;
-        }
-
         public void RemoveRepresentative(RemoveRepresentativeBindingModel model)
         {
             var representative = this.Context.Students.Find(model.RepresentativeId);
@@ -343,13 +318,28 @@ namespace LeisureTimeSystem.Services.Services
 
 
 
-        public DetailsOrganizationViewModel GetDetailsOrganizationViewModel(int organizationId)
+        public DetailsOrganizationViewModel GetDetailsOrganizationViewModel(int organizationId, string userId)
         {
             var organization = this.Context.Organizations.Find(organizationId);
 
             var organizationVm = Mapper.Map<Organization, DetailsOrganizationViewModel>(organization);
 
+            var isAuthorizedToModify = IsAuthorizedToModifyOrganization(userId, organizationId);
+
+            organizationVm.IsAuthorizedToModify = isAuthorizedToModify;
+
             return organizationVm;
+        }
+
+        public bool IsAuthorizedToModifyOrganization(string userId, int organizationId)
+        {
+            var organization = this.Context.Organizations.Find(organizationId);
+
+            var isAdministrator = this.UserManager.IsInRole(userId, "Administrator");
+
+            var isOrganizationRepresentative = organization.Representatives.Any(x => x.UserId == userId);
+
+            return isOrganizationRepresentative || isAdministrator;
         }
     }
 }

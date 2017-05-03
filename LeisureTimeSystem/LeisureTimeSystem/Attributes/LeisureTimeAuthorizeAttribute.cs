@@ -12,7 +12,23 @@ namespace LeisureTimeSystem.Attributes
         {
             var roles = this.Roles.Split(',');
 
-            if (filterContext.HttpContext.Request.IsAuthenticated && !roles.Any(filterContext.HttpContext.User.IsInRole))
+            bool isUserAuthenticated = filterContext.HttpContext.Request.IsAuthenticated;
+
+            bool isInTheCorrectRole = false;
+
+            foreach (var role in roles)
+            {
+                bool isInRole = filterContext.HttpContext.User.IsInRole(role);
+
+                if (isInRole)
+                {
+                    isInTheCorrectRole = true;
+                    break;
+                }
+
+            }
+
+            if (isUserAuthenticated && !isInTheCorrectRole)
             {
                 filterContext.Result = new ViewResult()
                 {

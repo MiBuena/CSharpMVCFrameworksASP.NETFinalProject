@@ -8,6 +8,7 @@ using LeisureTimeSystem.Attributes;
 using LeisureTimeSystem.Exceptions;
 using LeisureTimeSystem.Models.BidningModels.Comment;
 using LeisureTimeSystem.Models.ViewModels.Comment;
+using LeisureTimeSystem.Services.Interfaces;
 using LeisureTimeSystem.Services.Services;
 using Microsoft.AspNet.Identity;
 using Constants = LeisureTimeSystem.Models.Utils.Constants;
@@ -17,11 +18,11 @@ namespace LeisureTimeSystem.Controllers
     [HandleError(ExceptionType = typeof (NotAuthorizedException), View = "Error")]
     public class CommentController : Controller
     {
-        private CommentService service;
+        private ICommentService service;
 
-        public CommentController()
+        public CommentController(ICommentService service)
         {
-            this.service = new CommentService();
+            this.service = service;
         }
 
         [LeisureTimeAuthorize]
@@ -69,6 +70,7 @@ namespace LeisureTimeSystem.Controllers
         }
 
         [HttpPost]
+        [LeisureTimeAuthorize]
         public ActionResult Delete(DeleteCommentBindingModel model)
         {
             CheckIfUserIsAuthorizedToModifyThisComment(model.CommentId);
@@ -125,7 +127,9 @@ namespace LeisureTimeSystem.Controllers
 
         public ActionResult AllArticleComments(int articleId)
         {
-            var commentsViewModels = this.service.GetAllArticleCommentViewModels(articleId);
+            string currentUserId = User.Identity.GetUserId();
+
+            var commentsViewModels = this.service.GetAllArticleCommentViewModels(articleId, currentUserId);
 
             return this.PartialView(commentsViewModels);
         }

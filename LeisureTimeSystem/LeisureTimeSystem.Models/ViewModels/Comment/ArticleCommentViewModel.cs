@@ -24,5 +24,7 @@ namespace LeisureTimeSystem.Models.ViewModels.Comment
         public virtual ArticleAuthorStudentViewModel Author { get; set; }
 
         public string AuthorOfLastChangeUsername { get; set; }
+
+        public bool IsAllowedToModify { get; set; }
     }
 }

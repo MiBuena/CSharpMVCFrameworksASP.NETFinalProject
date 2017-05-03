@@ -83,7 +83,7 @@ body {
         margin-top: 15px;
     }
 
-    .tags {
+.tags {
     color: black;
     display: inline-block;
     font-size: 13px;
@@ -94,22 +94,22 @@ body {
     box-sizing: border-box;
 }
 
-    .asideHeader {
-             padding-left: 14px;
-    }
+.asideHeader {
+    padding-left: 14px;
+}
 
- .popularTags a {
-        font-size: 13px;
-        height: 30px;
-    }
+.popularTags a {
+    font-size: 13px;
+    height: 30px;
+}
 
-     .tags a {
-        text-decoration: none;
-        border-radius: 16px;
-        border-style: none;
-        background-color: Bisque;
-        padding: 8px 14px;
-    }
+.tags a {
+    text-decoration: none;
+    border-radius: 16px;
+    border-style: none;
+    background-color: Bisque;
+    padding: 8px 14px;
+}
 
     .tags a:hover {
         text-decoration: none;
@@ -119,43 +119,48 @@ body {
         padding: 8px 14px;
     }
 
-    .title {
-        font-size: 16px;
-    color: #019587;
+.title {
+    font-size: 16px;
+    color: green;
     font-weight: bold;
     text-decoration: none;
 }
 
-    .articleTitle {
-            font-weight: bold;
-                    text-decoration: none;
-    }
+.articleTitle {
+    font-weight: bold;
+    text-decoration: none;
+}
 
-    .title a {
-        color: #019587;
-    }
+.title a {
+    color: green;
+    text-decoration: none;
+}
 
-    .articleTitle a:hover {
-                          text-decoration: none;
-  
-    }
+.articleTitle a:hover {
+    text-decoration: none;
+}
 
-    .articleBody {
-        font-size: 13px;
-    }
+.articleBody {
+    font-size: 13px;
+}
 
-    .moreWord a {
+.moreWord a {
+    text-decoration: none;
+}
+
+.moreWord {
+    font-weight: normal;
+    color: black;
+    font-size: 13px;
+}
+
+main a {
+    color: green;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+    main a:hover {
+    font-weight: bold;
         text-decoration: none;
     }
-
-    .moreWord {
-        font-weight: normal;
-        color: black;
-        font-size: 13px;
-    }
-
-    .title a {
-                text-decoration: none;
-
-    }
-

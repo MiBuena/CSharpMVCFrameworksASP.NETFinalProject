@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using LeisureTimeSystem.Attributes;
 using LeisureTimeSystem.Exceptions;
 using LeisureTimeSystem.Models.BidningModels;
+using LeisureTimeSystem.Services.Interfaces;
 using LeisureTimeSystem.Services.Services;
 using Microsoft.AspNet.Identity;
 using Constants = LeisureTimeSystem.Models.Utils.Constants;
@@ -15,11 +16,11 @@ namespace LeisureTimeSystem.Controllers
     [HandleError(ExceptionType = typeof(NotAuthorizedException), View = "Error")]
     public class ProfileController : Controller
     {
-        private ProfileService service;
+        private IProfileService service;
 
-        public ProfileController()
+        public ProfileController(IProfileService service)
         {
-            this.service = new ProfileService();
+            this.service = service;
         }
 
         [LeisureTimeAuthorize]

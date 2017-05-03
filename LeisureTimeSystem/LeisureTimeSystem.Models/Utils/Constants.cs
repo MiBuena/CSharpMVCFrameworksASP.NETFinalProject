@@ -38,5 +38,8 @@ namespace LeisureTimeSystem.Models.Utils
 
         public const string ViewUserOrganizationsExceptionMessage =
 "You are not allowed to view other users organizations.";
+
+
+        public const string ModifyArticleExceptionMessage = "You are not allowed to modify this article";
     }
 }

@@ -2,17 +2,28 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using AutoMapper;
 using LeisureTimeSystem.Models.BidningModels.Article;
 using LeisureTimeSystem.Models.EntityModels;
 using LeisureTimeSystem.Models.ViewModels.Article;
+using LeisureTimeSystem.Services.Interfaces;
+using Microsoft.AspNet.Identity;
 
 namespace LeisureTimeSystem.Services.Services
 {
-    public class ArticleService : Service
+    public class ArticleService : Service, IArticleService
     {
+        public bool IsAuthorizedToModifyArticle(string userId, int articleId)
+        {
+            var article = this.Context.Articles.Include(x => x.Author.User).FirstOrDefault(y => y.Id == articleId);
+
+            var isAdministrator = this.UserManager.IsInRole(userId, "Administrator");
+
+            var isArticleAuthor = article.Author.UserId == userId;
+
+            return isArticleAuthor || isAdministrator;
+        }
+
         public void DeleteArticle(DeleteArticleBindingModel model)
         {
             var article = this.Context.Articles.Find(model.ArticleId);
@@ -115,21 +126,44 @@ namespace LeisureTimeSystem.Services.Services
         }
 
 
-        public ICollection<AllArticlesViewModel> GetAllArticlesViewModels()
+        public ICollection<AllArticlesViewModel> GetAllArticlesViewModels(string currentUserId)
         {
             ICollection<AllArticlesViewModel> collection = new HashSet<AllArticlesViewModel>();
 
-            var articles = this.Context.Articles;
+            var articles = this.Context.Articles.Include(x=>x.Author.User);
 
             foreach (var article in articles)
             {
                 var articleViewModel = Mapper.Map<Article, AllArticlesViewModel>(article);
 
+                var isCurrentUserAuthorizedToModify = IsAuthorizedToModify(currentUserId, article);
+
+                articleViewModel.IsAllowedToModify = isCurrentUserAuthorizedToModify;
+
                 collection.Add(articleViewModel);
             }
 
             return collection;
-        } 
+        }
+
+        public bool IsAuthorizedToModify(string currentUserId, Article article)
+        {
+            var isArticleAuthor = this.IsArticleAuthor(currentUserId, article);
+
+            bool isAdministrator = this.UserManager.IsInRole(currentUserId, "Administrator");
+
+            return isArticleAuthor || isAdministrator;
+        }
+
+        public bool IsArticleAuthor(string currentUserId, Article article)
+        {
+            if (article.Author.User.Id == currentUserId)
+            {
+                return true;
+            }
+
+            return false;
+        }
 
 
         public void UpdateTags(string rawTags)

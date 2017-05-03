@@ -43,6 +43,8 @@ namespace LeisureTimeSystem.Models.ViewModels.Organization
 
         public string ProfilePicturePath { get; set; }
 
+        public bool IsAuthorizedToModify { get; set; }
+
         public virtual ICollection<string> DisciplineNames { get; set; }
 
         public virtual ICollection<string> Pictures { get; set; }

@@ -75,3 +75,10 @@ C:\Users\ff\Documents\MVCFinalProject\ASP.NET_MVC_FinalProject\LeisureTimeSystem
 C:\Users\ff\Documents\MVCFinalProject\ASP.NET_MVC_FinalProject\LeisureTimeSystem\LeisureTimeSystem\obj\Debug\LeisureTimeSystem.pdb
 C:\Users\ff\Documents\MVCFinalProject\ASP.NET_MVC_FinalProject\LeisureTimeSystem\LeisureTimeSystem\bin\AutoMapper.dll
 C:\Users\ff\Documents\MVCFinalProject\ASP.NET_MVC_FinalProject\LeisureTimeSystem\LeisureTimeSystem\bin\AutoMapper.xml
+C:\Users\ff\Documents\MVCFinalProject\ASP.NET_MVC_FinalProject\LeisureTimeSystem\LeisureTimeSystem\bin\Ninject.dll
+C:\Users\ff\Documents\MVCFinalProject\ASP.NET_MVC_FinalProject\LeisureTimeSystem\LeisureTimeSystem\bin\Ninject.Web.Common.dll
+C:\Users\ff\Documents\MVCFinalProject\ASP.NET_MVC_FinalProject\LeisureTimeSystem\LeisureTimeSystem\bin\Ninject.Web.Mvc.dll
+C:\Users\ff\Documents\MVCFinalProject\ASP.NET_MVC_FinalProject\LeisureTimeSystem\LeisureTimeSystem\bin\WebActivatorEx.dll
+C:\Users\ff\Documents\MVCFinalProject\ASP.NET_MVC_FinalProject\LeisureTimeSystem\LeisureTimeSystem\bin\Ninject.xml
+C:\Users\ff\Documents\MVCFinalProject\ASP.NET_MVC_FinalProject\LeisureTimeSystem\LeisureTimeSystem\bin\Ninject.Web.Common.xml
+C:\Users\ff\Documents\MVCFinalProject\ASP.NET_MVC_FinalProject\LeisureTimeSystem\LeisureTimeSystem\bin\Ninject.Web.Mvc.xml

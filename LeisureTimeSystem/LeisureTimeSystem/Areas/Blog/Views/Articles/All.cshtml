@@ -20,31 +20,38 @@
         <th>
             @Html.DisplayNameFor(model => model.Likes)
         </th>
-        <th>@Html.DisplayNameFor(model => model.CommentsCount)
-</th>
+        <th>
+            @Html.DisplayNameFor(model => model.CommentsCount)
+        </th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Body)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Likes)
-        </td>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Body)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Likes)
+            </td>
 
-        <td>
-            @Html.DisplayFor(modelItem => item.CommentsCount)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { articleId=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { articleId = item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { articleId = item.Id })
-        </td>
-    </tr>
-}
+            <td>
+                @Html.DisplayFor(modelItem => item.CommentsCount)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new {articleId = item.Id})
+
+                @if (item.IsAllowedToModify)
+                {
+                    @:|@Html.ActionLink("Edit", "Edit", new { articleId = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { articleId = item.Id })
+                }
+
+            </td>
+        </tr>
+    }
 
 </table>

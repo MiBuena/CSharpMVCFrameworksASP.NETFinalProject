@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using AutoMapper;
 using LeisureTimeSystem.Models.EntityModels;
 using LeisureTimeSystem.Models.ViewModels;
@@ -12,10 +9,12 @@ using LeisureTimeSystem.Models.ViewModels.Category;
 using LeisureTimeSystem.Models.ViewModels.Course;
 using LeisureTimeSystem.Models.ViewModels.Home;
 using LeisureTimeSystem.Models.ViewModels.Tag;
+using LeisureTimeSystem.Services.Interfaces;
+using Microsoft.AspNet.Identity;
 
 namespace LeisureTimeSystem.Services.Services
 {
-    public class HomeService : Service
+    public class HomeService : Service, IHomeService
     {
 
         public HomePageViewModel GetHomePageViewModel()
@@ -43,15 +42,23 @@ namespace LeisureTimeSystem.Services.Services
             return model;
         }
 
-        public NavbarViewModel GetNavbarViewModel()
+        public NavbarViewModel GetNavbarViewModel(string currentUserId)
         {
             ICollection<Category> mainCategories = this.Context.Categories.Include(x => x.Subcategories).Where(x => x.ParentCategory == null).ToList();
 
             var categoryVms = Mapper.Map<ICollection<Category>, ICollection<CategoryViewModel>>(mainCategories);
 
-            NavbarViewModel model = new NavbarViewModel()
+            var isAdministrator = false;
+
+            if (currentUserId != null)
             {
-                MainCategoriesViewModels = categoryVms
+                isAdministrator = this.UserManager.IsInRole(currentUserId, "Administrator");
+            }
+
+            NavbarViewModel model = new NavbarViewModel
+            {
+                MainCategoriesViewModels = categoryVms,
+                IsAdmin = isAdministrator
             };
 
             return model;

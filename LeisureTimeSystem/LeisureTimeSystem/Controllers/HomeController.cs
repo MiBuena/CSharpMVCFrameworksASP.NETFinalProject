@@ -1,25 +1,18 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using AutoMapper;
-using LeisureTimeSystem.Data;
-using LeisureTimeSystem.Models.EntityModels;
+﻿using System.Web.Mvc;
 using LeisureTimeSystem.Models.ViewModels;
+using LeisureTimeSystem.Services.Interfaces;
 using LeisureTimeSystem.Services.Services;
+using Microsoft.AspNet.Identity;
 
 namespace LeisureTimeSystem.Controllers
 {
     public class HomeController : Controller
     {
-        private HomeService homeService;
+        private IHomeService homeService;
 
-        public HomeController()
+        public HomeController(IHomeService service)
         {
-            this.homeService = new HomeService();
+            this.homeService = service;
         }
 
         public ActionResult Index()
@@ -45,26 +38,12 @@ namespace LeisureTimeSystem.Controllers
 
         public ActionResult RenderNavbar()
         {
-            NavbarViewModel model = this.homeService.GetNavbarViewModel();
+
+            string currentUserId = User.Identity.GetUserId();
+
+            NavbarViewModel model = this.homeService.GetNavbarViewModel(currentUserId);
 
             return this.PartialView(model);
         }
-
-        public ActionResult Update()
-        {
-            return this.PartialView("_NamePartial", new string[]
-            {
-                "Ivan", "Nasko", "Valio"
-            });
-        }
-
-
-
-
-        //public ActionResult RenderSubcategory()
-        //{
-        //}
-
-
     }
 }

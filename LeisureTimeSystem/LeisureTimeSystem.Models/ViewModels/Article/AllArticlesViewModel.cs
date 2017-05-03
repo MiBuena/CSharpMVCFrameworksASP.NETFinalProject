@@ -22,5 +22,7 @@ namespace LeisureTimeSystem.Models.ViewModels.Article
         public int Likes { get; set; }
 
         public int CommentsCount { get; set; }
+
+        public bool IsAllowedToModify { get; set; }
     }
 }
