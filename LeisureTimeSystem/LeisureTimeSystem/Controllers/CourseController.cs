@@ -1,23 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
 using LeisureTimeSystem.Attributes;
 using LeisureTimeSystem.Exceptions;
-using LeisureTimeSystem.Models.BidningModels;
 using LeisureTimeSystem.Models.BidningModels.Applications;
 using LeisureTimeSystem.Models.BidningModels.Course;
 using LeisureTimeSystem.Models.ViewModels.Course;
 using LeisureTimeSystem.Services.Interfaces;
-using LeisureTimeSystem.Services.Services;
 using Microsoft.AspNet.Identity;
 using Constants = LeisureTimeSystem.Models.Utils.Constants;
 
 namespace LeisureTimeSystem.Controllers
 {
     [HandleError(ExceptionType = typeof(NotAuthorizedException), View = "Error")]
+    [HandleError(ExceptionType = typeof(ArgumentException), View = "Error")]
     public class CourseController : Controller
     {
         private ICourseService service;

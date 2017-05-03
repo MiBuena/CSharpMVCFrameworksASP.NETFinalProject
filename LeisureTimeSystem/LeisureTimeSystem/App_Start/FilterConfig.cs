@@ -1,5 +1,7 @@
-﻿using System.Web;
+﻿using System;
+using System.Web;
 using System.Web.Mvc;
+using LeisureTimeSystem.Exceptions;
 
 namespace LeisureTimeSystem
 {
@@ -7,6 +9,7 @@ namespace LeisureTimeSystem
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
+
             filters.Add(new HandleErrorAttribute());
         }
     }

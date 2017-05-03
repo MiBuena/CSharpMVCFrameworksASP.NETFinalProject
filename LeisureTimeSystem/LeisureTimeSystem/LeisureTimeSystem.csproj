@@ -334,9 +334,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Blog\Models\" />
-    <Folder Include="Views\Address\" />
-    <Folder Include="Views\Controllers\" />
-    <Folder Include="Views\OrganizationRepresentative\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -57,6 +57,8 @@ namespace LeisureTimeSystem
 
                 expression.CreateMap<Discipline, DisciplineViewModel>();
 
+                expression.CreateMap<NewCourseBindingModel, NewCourseViewModel>();
+
                 expression.CreateMap<Picture, EditPictureViewModel>();
 
                 expression.CreateMap<Picture, DeletePictureViewModel>()
