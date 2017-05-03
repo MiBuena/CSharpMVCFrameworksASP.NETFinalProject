@@ -35,14 +35,6 @@
             @Html.DisplayFor(model => model.Date)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LikeCounter)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LikeCounter)
-        </dd>
-
     </dl>
 </div>
 
@@ -62,12 +54,10 @@
     </dl>
 
     <div class="liked">
-        @Model.LikeCounter Likes
     </div>
     <p class="footer">
         @Html.ActionLink("Back to List", "All")
-        |
-        @Html.ActionLink("Like", "AddALike", new { articleId = this.Model.Id })
+
     </p>
     <div>
         @if (User.Identity.GetUserId() != null)
@@ -90,5 +80,4 @@
 
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
 </p>

@@ -10,6 +10,7 @@ namespace LeisureTimeSystem.Models.ViewModels.Organization
 {
     public class EditOrganizationDataViewModel
     {
+        [Required]
         public int Id { get; set; }
 
         [Required]

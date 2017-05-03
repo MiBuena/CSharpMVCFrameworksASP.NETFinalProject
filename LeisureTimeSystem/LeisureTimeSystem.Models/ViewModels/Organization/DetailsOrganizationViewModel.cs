@@ -34,6 +34,9 @@ namespace LeisureTimeSystem.Models.ViewModels.Organization
 
         public string AddressId { get; set; }
 
+        [Required]
+        [MinLength(2)]
+        [MaxLength(100)]
         public string City { get; set; }
 
         public string Address { get; set; }

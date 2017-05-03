@@ -10,6 +10,7 @@ namespace LeisureTimeSystem.Models.BidningModels.Article
 
         [Required]
         [DataType(DataType.MultilineText)]
+        [StringLength(10000)]
         public string Body { get; set; }
 
         [Required]

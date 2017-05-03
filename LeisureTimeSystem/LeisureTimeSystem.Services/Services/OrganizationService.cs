@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Web;
 using AutoMapper;
 using LeisureTimeSystem.Models.BidningModels;
+using LeisureTimeSystem.Models.BidningModels.Address;
+using LeisureTimeSystem.Models.BidningModels.Organization;
 using LeisureTimeSystem.Models.EntityModels;
 using LeisureTimeSystem.Models.ViewModels;
 using LeisureTimeSystem.Models.ViewModels.Course;

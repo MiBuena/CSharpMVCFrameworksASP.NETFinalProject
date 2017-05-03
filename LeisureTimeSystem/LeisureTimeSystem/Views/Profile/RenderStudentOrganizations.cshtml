@@ -1,10 +1,5 @@
 ﻿@model IEnumerable<LeisureTimeSystem.Models.ViewModels.Profile.StudentProfileOrganizationViewModel>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-
-
 
 <p>Your organizations</p>
 
@@ -35,9 +30,7 @@
             @Html.DisplayFor(modelItem => item.Telephones)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", "Organization", new { id=item.Id }, null) |
-            @Html.ActionLink("Details", "Details", "Organization", new { organizationId=item.Id }, null) |
-            @Html.ActionLink("Delete", "Delete", "Organization", new { organizationId=item.Id }, null)
+            @Html.ActionLink("Details", "Details", "Organization", new { organizationId=item.Id }, null)
         </td>
     </tr>
 }

@@ -10,17 +10,20 @@ namespace LeisureTimeSystem.Models.BidningModels.Comment
 {
     public class DetailsCommentViewModel
     {
-        [Required(ErrorMessage = "Please, enter comment.")]
+        [Required]
         [DataType(DataType.MultilineText)]
         public string Body { get; set; }
 
+        [Required]
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }
 
         public DateTime TimeOfLastChange { get; set; }
 
+        [Required]
         public string AuthorUsername { get; set; }
 
+        [Required]
         public string AuthorOfLastChangeUsername { get; set; }
 
         public int CommentedEntityId { get; set; }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Linq;
 using AutoMapper;
 using LeisureTimeSystem.Models.BidningModels.Comment;
@@ -85,8 +86,14 @@ namespace LeisureTimeSystem.Services.Services
 
             this.Context.Entry(comment).CurrentValues.SetValues(model);
 
+            var article = this.Context.Articles.Find(model.ArticleId);
+
+            comment.Article = article;
+
+
             this.Context.SaveChanges();
         }
+
 
         public EditCommentViewModel GetEditCommentViewModel(int commentId)
         {
@@ -101,7 +108,7 @@ namespace LeisureTimeSystem.Services.Services
 
         public IEnumerable<ArticleCommentViewModel> GetAllArticleCommentViewModels(int articleId, string currentUserId)
         {
-            var comments = this.Context.Comments.Where(x => x.Article.Id == articleId).OrderByDescending(y=>y.Date);
+            var comments = this.Context.Comments.Where(x => x.Article.Id == articleId).OrderByDescending(y => y.Date);
 
             var commentsViewModels = Mapper.Map<IEnumerable<Comment>, IEnumerable<ArticleCommentViewModel>>(comments);
 

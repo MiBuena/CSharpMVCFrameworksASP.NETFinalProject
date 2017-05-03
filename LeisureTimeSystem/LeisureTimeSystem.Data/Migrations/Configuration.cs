@@ -1,3 +1,4 @@
+using System.IO;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -20,6 +21,27 @@ namespace LeisureTimeSystem.Data.Migrations
         protected override void Seed(LeisureTimeSystem.Data.LeisureSystemContext context)
         {
             AddRoles(context);
+
+            //AddArticles(context);
+
+
+        }
+
+        private static void AddArticles(LeisureSystemContext context)
+        {
+            string path = "/DatabaseFiles/articleRichardBranson.rtf";
+
+            using (var reader = new StreamReader(path))
+            {
+                var line = reader.ReadLine();
+
+                while (true)
+                {
+                    line = reader.ReadLine();
+
+                }
+            }
+
         }
 
         private static void AddRoles(LeisureSystemContext context)

@@ -9,9 +9,11 @@ namespace LeisureTimeSystem.Models.ViewModels.Comment
 {
     public class DeleteCommentViewModel
     {
+        [Required]
         public int CommentId { get; set; }
 
-        [Required(ErrorMessage = "Please, enter comment.")]
+        [Required]
+        [StringLength(1000)]
         [DataType(DataType.MultilineText)]
         public string Body { get; set; }
 

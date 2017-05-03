@@ -4,6 +4,7 @@ namespace LeisureTimeSystem.Models.BidningModels.Article
 {
     public class EditArticleBindingModel
     {
+        [Required]
         public int Id { get; set; }
 
         [Required]
@@ -12,6 +13,7 @@ namespace LeisureTimeSystem.Models.BidningModels.Article
 
         [Required]
         [DataType(DataType.MultilineText)]
+        [StringLength(10000)]
         public string Body { get; set; }
 
         [Required]

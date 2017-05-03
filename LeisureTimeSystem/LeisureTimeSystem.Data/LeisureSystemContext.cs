@@ -65,6 +65,11 @@ namespace LeisureTimeSystem.Data
 .WithRequired(x => x.Student)
 .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<Comment>()
+.HasRequired(comment => comment.Author)
+.WithMany(x=>x.Comments)
+.WillCascadeOnDelete(false);
+
             base.OnModelCreating(modelBuilder);
         }
     }

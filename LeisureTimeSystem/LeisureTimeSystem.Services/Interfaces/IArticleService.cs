@@ -10,7 +10,6 @@ namespace LeisureTimeSystem.Services.Interfaces
         bool IsAuthorizedToModifyArticle(string userId, int articleId);
         void DeleteArticle(DeleteArticleBindingModel model);
         DeleteArticleViewModel GetDeleteArticleViewModel(int articleId);
-        void IncreaseLikeCounter(int articleId);
         DetailsArticleViewModel GetDetailsArticleViewModel(int articleId);
         void EditArticle(EditArticleBindingModel model);
         EditArticleViewModel GetEditArticleViewModel(int articleId);

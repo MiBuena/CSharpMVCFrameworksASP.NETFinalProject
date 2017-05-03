@@ -1,19 +1,17 @@
+using System;
+using System.Web;
+using LeisureTimeSystem;
 using LeisureTimeSystem.Services.Interfaces;
 using LeisureTimeSystem.Services.Services;
+using Microsoft.Web.Infrastructure.DynamicModuleHelper;
+using Ninject;
+using Ninject.Web.Common;
 
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(LeisureTimeSystem.App_Start.NinjectWebCommon), "Start")]
-[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(LeisureTimeSystem.App_Start.NinjectWebCommon), "Stop")]
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(NinjectWebCommon), "Start")]
+[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(NinjectWebCommon), "Stop")]
 
-namespace LeisureTimeSystem.App_Start
+namespace LeisureTimeSystem
 {
-    using System;
-    using System.Web;
-
-    using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-
-    using Ninject;
-    using Ninject.Web.Common;
-
     public static class NinjectWebCommon 
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();

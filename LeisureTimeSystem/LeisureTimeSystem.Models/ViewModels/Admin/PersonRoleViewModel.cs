@@ -11,11 +11,15 @@ namespace LeisureTimeSystem.Models.ViewModels.Admin
     {
         public string Id { get; set; }
 
+        [Required]
+        [MinLength(2)]
+        [MaxLength(30)]
+        [Display(Name = "Username")]
         public string UserName { get; set; }
 
         public string NewRoleName { get; set; }
 
-        [Display(Name = "Current roles")]
+        [Display(Name = "Add role")]
         public List<RoleViewModel> CurrentRoleViewModels { get; set; }
     }
 }

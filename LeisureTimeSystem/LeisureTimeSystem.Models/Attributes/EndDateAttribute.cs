@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LeisureTimeSystem.Models.Utils;
 
 namespace LeisureTimeSystem.Models.Attributes
 {
@@ -14,14 +15,14 @@ namespace LeisureTimeSystem.Models.Attributes
         {
             DateTime date = Convert.ToDateTime(value);
 
-            DateTime maxDate = DateTime.Now.AddYears(Constants.Constatnts.EndCourseYearConstant);
+            DateTime maxDate = DateTime.Now.AddYears(Constants.EndCourseYearConstant);
 
             if (date <= maxDate)
             {
                 return ValidationResult.Success;
             }
 
-            return new ValidationResult($"The course can not last  for more than {Constants.Constatnts.EndCourseYearConstant} years ahead in time.");
+            return new ValidationResult($"The course can not last  for more than {Constants.EndCourseYearConstant} years ahead in time.");
         }
     }
 }

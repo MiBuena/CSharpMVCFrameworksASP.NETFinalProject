@@ -29,6 +29,7 @@ namespace LeisureTimeSystem.Models.ViewModels.Profile
         public string Email { get; set; }
 
         [Required]
+        [DataType(DataType.Date)]
         public DateTime BirthDate { get; set; }
 
         [Url]

@@ -17,8 +17,10 @@ namespace LeisureTimeSystem.Models.ViewModels.Course
             this.Student = new ApplicationStudentViewModel();
         }
 
+        [Required]
         public ApplicationCourseViewModel Course { get; set; }
 
+        [Required]
         public ApplicationStudentViewModel Student { get; set; }
 
         public ApplicationStatus Status { get; set; }

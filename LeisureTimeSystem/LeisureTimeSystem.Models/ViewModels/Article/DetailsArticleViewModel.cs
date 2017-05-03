@@ -23,6 +23,7 @@ namespace LeisureTimeSystem.Models.ViewModels.Article
         [DataType(DataType.MultilineText)]
         public string Body { get; set; }
 
+        [Required]
         public virtual ArticleAuthorStudentViewModel Author { get; set; }
 
         [Required]

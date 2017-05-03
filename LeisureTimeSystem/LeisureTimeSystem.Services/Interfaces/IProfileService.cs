@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using LeisureTimeSystem.Models.BidningModels;
+using LeisureTimeSystem.Models.BidningModels.Profile;
 using LeisureTimeSystem.Models.ViewModels.Course;
 using LeisureTimeSystem.Models.ViewModels.Profile;
 

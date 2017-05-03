@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -136,13 +137,6 @@ namespace LeisureTimeSystem.Areas.Blog.Controllers
             return View(articlesByTag);
         }
 
-        [LeisureTimeAuthorize]
-        public ActionResult AddALike(int articleId)
-        {
-            this.service.IncreaseLikeCounter(articleId);
-
-            return this.RedirectToAction("Details", new {articleId = articleId});
-        }
 
         private void CheckIfUserIsAllowedToPerformThisAction(int articleId, string message)
         {

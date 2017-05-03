@@ -1,7 +1,6 @@
 ﻿using System.Web.Mvc;
 using LeisureTimeSystem.Models.ViewModels;
 using LeisureTimeSystem.Services.Interfaces;
-using LeisureTimeSystem.Services.Services;
 using Microsoft.AspNet.Identity;
 
 namespace LeisureTimeSystem.Controllers

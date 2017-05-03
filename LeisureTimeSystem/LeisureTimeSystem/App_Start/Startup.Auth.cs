@@ -55,9 +55,9 @@ namespace LeisureTimeSystem
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "424091414620779",
+               appSecret: "d6f62e54fae01a5fa230a169f3cea923");
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{

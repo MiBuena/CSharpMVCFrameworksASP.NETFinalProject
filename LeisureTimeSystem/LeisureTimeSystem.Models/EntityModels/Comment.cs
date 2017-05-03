@@ -17,7 +17,8 @@ namespace LeisureTimeSystem.Models.EntityModels
 
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Please, enter comment.")]
+        [Required]
+        [StringLength(1000)]
         [DataType(DataType.MultilineText)]
         public string Body { get; set; }
 
@@ -26,10 +27,12 @@ namespace LeisureTimeSystem.Models.EntityModels
 
         public DateTime TimeOfLastChange { get; set; }
 
+        [Required]
         public virtual Article Article { get; set; }
 
         public virtual Organization Organization { get; set; }
 
+        [Required]
         public virtual Student Author { get; set; }
 
         public string AuthorOfLastChangeUsername { get; set; }

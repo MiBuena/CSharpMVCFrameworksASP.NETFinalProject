@@ -18,13 +18,16 @@ namespace LeisureTimeSystem.Models.ViewModels.Course
 
         [Required]
         [StartDate]
+        [DataType(DataType.Date)]
         public DateTime StartDate { get; set; }
 
         [Required]
         [EndDate]
+        [DataType(DataType.Date)]
         public DateTime EndDate { get; set; }
 
         [Required]
+        [DataType(DataType.Date)]
         public DateTime SubscriptionDeadLine { get; set; }
 
         [Required]

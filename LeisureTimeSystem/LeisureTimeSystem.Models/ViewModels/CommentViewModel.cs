@@ -19,6 +19,7 @@ namespace LeisureTimeSystem.Models.ViewModels
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }
 
+        [DataType(DataType.Date)]
         public DateTime TimeOfLastChange { get; set; }
 
         public virtual CommentAuthorViewModel Author { get; set; }

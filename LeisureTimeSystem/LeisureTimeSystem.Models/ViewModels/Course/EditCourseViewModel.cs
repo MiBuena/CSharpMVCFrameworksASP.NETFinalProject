@@ -10,9 +10,10 @@ namespace LeisureTimeSystem.Models.ViewModels.Course
 {
     public class EditCourseViewModel
     {
-
+        [Required]
         public int Id { get; set; }
 
+        [Required]
         public string Name { get; set; }
 
         [MinLength(2)]
@@ -21,13 +22,19 @@ namespace LeisureTimeSystem.Models.ViewModels.Course
 
         [Required]
         [StartDate]
+        [DataType(DataType.Date)]
+        [Display(Name="Start date")]
         public DateTime StartDate { get; set; }
 
         [Required]
         [EndDate]
+        [DataType(DataType.Date)]
+        [Display(Name = "End date")]
         public DateTime EndDate { get; set; }
 
         [Required]
+        [DataType(DataType.Date)]
+        [Display(Name = "Subscription deadline")]
         public DateTime SubscriptionDeadLine { get; set; }
 
         [Required]

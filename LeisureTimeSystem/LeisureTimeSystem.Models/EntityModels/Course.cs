@@ -59,8 +59,10 @@ namespace LeisureTimeSystem.Models.EntityModels
             get { return DateTime.Now <= this.SubscriptionDeadLine; }
         }
 
+        [Required]
         public virtual Discipline Discipline { get; set; }
 
+        [Required]
         public virtual Organization Organization { get; set; }
 
         public virtual ICollection<CourseApplicationData> CoursesSubscriptionData { get; set; }

@@ -16,6 +16,7 @@ namespace LeisureTimeSystem.Models.ViewModels.Article
         public string Title { get; set; }
 
         [Required]
+        [StringLength(10000)]
         [DataType(DataType.MultilineText)]
         public string Body { get; set; }
     }

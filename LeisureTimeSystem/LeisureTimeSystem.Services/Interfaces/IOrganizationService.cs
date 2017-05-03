@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Web;
 using LeisureTimeSystem.Models.BidningModels;
+using LeisureTimeSystem.Models.BidningModels.Organization;
 using LeisureTimeSystem.Models.ViewModels.Organization;
 
 namespace LeisureTimeSystem.Services.Interfaces

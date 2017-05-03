@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LeisureTimeSystem.Models.Utils;
 
 namespace LeisureTimeSystem.Models.Attributes
 {
@@ -13,14 +14,14 @@ namespace LeisureTimeSystem.Models.Attributes
         {
             DateTime date = Convert.ToDateTime(value);
 
-            DateTime minDate = DateTime.Now.AddYears(-Constants.Constatnts.StartCourseYearConstant);
+            DateTime minDate = DateTime.Now.AddYears(-Constants.StartCourseYearConstant);
 
             if (date >= minDate)
             {
                 return ValidationResult.Success;
             }
 
-            return new ValidationResult($"The course's start can not be more than {Constants.Constatnts.StartCourseYearConstant} years back in time.");
+            return new ValidationResult($"The course's start can not be more than {Constants.StartCourseYearConstant} years back in time.");
         }
     }
 

@@ -1,16 +1,11 @@
-﻿using System;
-using System.IO;
-using System.Web;
+﻿using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
 using LeisureTimeSystem.Attributes;
 using LeisureTimeSystem.Exceptions;
-using LeisureTimeSystem.Models.BidningModels;
-using LeisureTimeSystem.Models.EntityModels;
-using LeisureTimeSystem.Models.ViewModels;
+using LeisureTimeSystem.Models.BidningModels.Organization;
 using LeisureTimeSystem.Models.ViewModels.Organization;
 using LeisureTimeSystem.Services.Interfaces;
-using LeisureTimeSystem.Services.Services;
 using Microsoft.AspNet.Identity;
 using Constants = LeisureTimeSystem.Models.Utils.Constants;
 

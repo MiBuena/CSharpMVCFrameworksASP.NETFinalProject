@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using LeisureTimeSystem.Attributes;
 using LeisureTimeSystem.Exceptions;
 using LeisureTimeSystem.Models.BidningModels;
+using LeisureTimeSystem.Models.BidningModels.Profile;
 using LeisureTimeSystem.Services.Interfaces;
 using LeisureTimeSystem.Services.Services;
 using Microsoft.AspNet.Identity;

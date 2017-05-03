@@ -7,8 +7,12 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using AutoMapper;
 using LeisureTimeSystem.Models.BidningModels;
+using LeisureTimeSystem.Models.BidningModels.Address;
 using LeisureTimeSystem.Models.BidningModels.Article;
 using LeisureTimeSystem.Models.BidningModels.Comment;
+using LeisureTimeSystem.Models.BidningModels.Course;
+using LeisureTimeSystem.Models.BidningModels.Organization;
+using LeisureTimeSystem.Models.BidningModels.Profile;
 using LeisureTimeSystem.Models.EntityModels;
 using LeisureTimeSystem.Models.ViewModels;
 using LeisureTimeSystem.Models.ViewModels.Admin;
@@ -208,6 +212,8 @@ namespace LeisureTimeSystem
                 expression.CreateMap<NewArticleBindingModel, Article>();
 
                 expression.CreateMap<NewArticleBindingModel, NewArticleViewModel>();
+
+                expression.CreateMap<EditArticleBindingModel, EditArticleViewModel>();
 
                 expression.CreateMap<Article, AllArticlesViewModel>().ForMember(article => article.CommentsCount,
                     m => m.MapFrom(article => article.Comments.Count));

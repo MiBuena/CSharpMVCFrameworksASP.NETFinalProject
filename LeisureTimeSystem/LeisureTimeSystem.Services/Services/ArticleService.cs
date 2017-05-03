@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Linq;
 using AutoMapper;
 using LeisureTimeSystem.Models.BidningModels.Article;
@@ -42,14 +43,6 @@ namespace LeisureTimeSystem.Services.Services
             return articleViewModel;
         }
 
-        public void IncreaseLikeCounter(int articleId)
-        {
-            var article = this.Context.Articles.Find(articleId);
-
-            article.LikeCounter++;
-
-            this.Context.SaveChanges();
-        }
 
         public DetailsArticleViewModel GetDetailsArticleViewModel(int articleId)
         {

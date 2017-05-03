@@ -3,6 +3,7 @@ using System.Data.Entity;
 using System.Linq;
 using AutoMapper;
 using LeisureTimeSystem.Models.BidningModels;
+using LeisureTimeSystem.Models.BidningModels.Applications;
 using LeisureTimeSystem.Models.BidningModels.Course;
 using LeisureTimeSystem.Models.EntityModels;
 using LeisureTimeSystem.Models.ViewModels;

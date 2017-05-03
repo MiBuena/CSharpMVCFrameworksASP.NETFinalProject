@@ -9,9 +9,10 @@ namespace LeisureTimeSystem.Models.ViewModels.Comment
 {
     public class EditCommentViewModel
     {
+        [Required]
         public int CommentId { get; set; }
 
-        [Required(ErrorMessage = "Please, enter comment.")]
+        [Required]
         [DataType(DataType.MultilineText)]
         public string Body { get; set; }
 

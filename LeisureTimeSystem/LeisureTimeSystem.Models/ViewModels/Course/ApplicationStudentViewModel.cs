@@ -9,11 +9,13 @@ namespace LeisureTimeSystem.Models.ViewModels.Course
 {
     public class ApplicationStudentViewModel
     {
+        [Required]
         public int StudentId { get; set; }
 
         [Required]
         [MinLength(2)]
         [MaxLength(50)]
+        [Display(Name="Student name")]
         public string Name { get; set; }
 
         [Required]

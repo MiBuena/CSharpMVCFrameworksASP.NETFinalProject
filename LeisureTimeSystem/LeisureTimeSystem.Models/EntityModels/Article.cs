@@ -28,12 +28,14 @@ namespace LeisureTimeSystem.Models.EntityModels
 
         [Required]
         [DataType(DataType.MultilineText)]
+        [StringLength(10000)]
         public string Body { get; set; }
 
         [Required]
         [StringLength(200)]
         public string TagsRaw { get; set; }
 
+        [Required]
         public virtual Student Author { get; set; }
 
         [Required]

@@ -8,6 +8,10 @@ namespace LeisureTimeSystem.Models.Utils
 {
     public static class Constants
     {
+        public const int StartCourseYearConstant = 1;
+
+        public const int EndCourseYearConstant = 10;
+
         public const string ModifyCommentsExceptionMessage = "You are not allowed to modify this comment.";
 
         public const string AddCoursesExceptionMessage = "You are not allowed to add a course to this organization.";

@@ -4,15 +4,14 @@
     ViewBag.Title = "AddRepresentatives";
 }
 
-<h2>AddRepresentatives</h2>
+<h2>Manage representatives</h2>
 
-    <h4>ManageRepresentativesViewModel</h4>
 <hr/>
 
 
-<p>Organization name: @this.Model.OrganizationName</p>
+<p><span class="boldedWords">Organization name:</span> @this.Model.OrganizationName</p>
 
-<p>Current representatives:</p>
+<p class="boldedWords">Current representatives:</p>
 
 @foreach (var student in this.Model.CurrentRepresentatives)
 {
@@ -31,12 +30,12 @@
 
 <br/>
 <br/>
-<p>Remove representative</p>
+<p class="boldedWords">Remove representative</p>
 @foreach (var student in this.Model.CurrentRepresentatives)
 {
 
 
-    <span>@student.Username</span> @Html.ActionLink("Remove", "RemoveRepresentative", "Organization", new { organizationId = this.Model.OrganizationId, @class = "btn btn-lg" }, null)
+    <span>@student.Username</span> @Html.ActionLink("Remove", "RemoveRepresentative", "Organization", new { organizationId = this.Model.OrganizationId, studentId = student.Id, @class = "btn btn-lg" }, null)
     <br/>
 
     }

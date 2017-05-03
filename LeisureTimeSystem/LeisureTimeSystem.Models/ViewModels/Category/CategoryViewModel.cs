@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Microsoft.Build.Framework;
 
 namespace LeisureTimeSystem.Models.ViewModels.Category
 {
@@ -11,6 +12,7 @@ namespace LeisureTimeSystem.Models.ViewModels.Category
 
         public int Id { get; set; }
 
+        [Required]
         public string Name { get; set; }
 
         public ICollection<CategoryViewModel> SubCategoryViewModels { get; set; }

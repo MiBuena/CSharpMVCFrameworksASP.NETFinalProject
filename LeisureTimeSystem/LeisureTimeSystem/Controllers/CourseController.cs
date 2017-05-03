@@ -7,6 +7,7 @@ using AutoMapper;
 using LeisureTimeSystem.Attributes;
 using LeisureTimeSystem.Exceptions;
 using LeisureTimeSystem.Models.BidningModels;
+using LeisureTimeSystem.Models.BidningModels.Applications;
 using LeisureTimeSystem.Models.BidningModels.Course;
 using LeisureTimeSystem.Models.ViewModels.Course;
 using LeisureTimeSystem.Services.Interfaces;
