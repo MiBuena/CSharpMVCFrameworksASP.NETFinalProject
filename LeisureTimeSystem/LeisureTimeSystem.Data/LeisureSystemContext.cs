@@ -1,5 +1,6 @@
 using System.Globalization;
 using System.Runtime.Remoting.Contexts;
+using LeisureTimeSystem.Data.Interfaces;
 using LeisureTimeSystem.Data.Migrations;
 using LeisureTimeSystem.Models.EntityModels;
 using LeisureTimeSystem.Models.EntityModels.AbstractClasses;
@@ -11,7 +12,7 @@ namespace LeisureTimeSystem.Data
     using System.Data.Entity;
     using System.Linq;
 
-    public class LeisureSystemContext : IdentityDbContext<ApplicationUser>
+    public class LeisureSystemContext : IdentityDbContext<ApplicationUser>, ILeisureTimeSystemDbContext
     {
         public LeisureSystemContext()
             : base("name=LeisureTimeSystem", throwIfV1Schema: false)
@@ -24,6 +25,11 @@ namespace LeisureTimeSystem.Data
             return new LeisureSystemContext();
         }
 
+
+        public void SetModified(object entity, object newValues)
+        {
+            this.Entry(entity).CurrentValues.SetValues(newValues);
+        }
 
         public virtual DbSet<Student> Students { get; set; }
 
@@ -47,17 +53,13 @@ namespace LeisureTimeSystem.Data
 
         public virtual DbSet<Article> Articles { get; set; }
 
-
-
-
-
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Category>().HasMany(x => x.Subcategories).WithOptional(x => x.ParentCategory);
 
             modelBuilder.Entity<Article>()
 .HasMany(art => art.Comments)
-.WithRequired(x=>x.Article)
+.WithRequired(x => x.Article)
 .WillCascadeOnDelete(true);
 
             modelBuilder.Entity<Student>()
@@ -67,7 +69,7 @@ namespace LeisureTimeSystem.Data
 
             modelBuilder.Entity<Comment>()
 .HasRequired(comment => comment.Author)
-.WithMany(x=>x.Comments)
+.WithMany(x => x.Comments)
 .WillCascadeOnDelete(false);
 
             base.OnModelCreating(modelBuilder);

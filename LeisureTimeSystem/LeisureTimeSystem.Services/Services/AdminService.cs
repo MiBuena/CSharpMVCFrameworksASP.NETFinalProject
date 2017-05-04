@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
+using LeisureTimeSystem.Data.Interfaces;
 using LeisureTimeSystem.Models.BidningModels.Admin;
 using LeisureTimeSystem.Models.EntityModels;
 using LeisureTimeSystem.Models.ViewModels.Admin;
@@ -12,6 +13,9 @@ namespace LeisureTimeSystem.Services.Services
 {
     public class AdminService : Service, IAdminService
     {
+        public AdminService(ILeisureTimeSystemDbContext context) : base(context)
+        {
+        }
 
         public void RemoveRole(string roleName, string userId)
         {
@@ -72,6 +76,7 @@ namespace LeisureTimeSystem.Services.Services
 
             return model;
         }
+
 
     }
 }

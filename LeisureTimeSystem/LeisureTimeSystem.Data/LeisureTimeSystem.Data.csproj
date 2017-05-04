@@ -60,8 +60,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\ILeisureTimeSystemDbContext.cs" />
     <Compile Include="LeisureSystemContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Mocks\DBSets\FakeUsersDbSet.cs" />
+    <Compile Include="Mocks\DBSets\FakeRolesDbSet.cs" />
+    <Compile Include="Mocks\DBSets\FakeArticlesDbSet.cs" />
+    <Compile Include="Mocks\DBSets\FakeTagsDbSet.cs" />
+    <Compile Include="Mocks\DBSets\FakeCommentsDbSet.cs" />
+    <Compile Include="Mocks\DBSets\FakePicturesDbSet.cs" />
+    <Compile Include="Mocks\DBSets\FakeAddressesDbSet.cs" />
+    <Compile Include="Mocks\DBSets\FakeCourseApplicationDataDbSet.cs" />
+    <Compile Include="Mocks\DBSets\FakeCoursesDbSet.cs" />
+    <Compile Include="Mocks\DBSets\FakeCategoriesDbSet.cs" />
+    <Compile Include="Mocks\DBSets\FakeOrganizationsDbSet.cs" />
+    <Compile Include="Mocks\DBSets\FakeDisciplinesDbSet.cs" />
+    <Compile Include="Mocks\DBSets\FakeStudentsDbSet.cs" />
+    <Compile Include="Mocks\FakeDbSet.cs" />
+    <Compile Include="Mocks\FakeLeisureTimeDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -2,6 +2,7 @@
 using System.Data.Entity;
 using System.Linq;
 using AutoMapper;
+using LeisureTimeSystem.Data.Interfaces;
 using LeisureTimeSystem.Models.BidningModels;
 using LeisureTimeSystem.Models.BidningModels.Applications;
 using LeisureTimeSystem.Models.BidningModels.Course;
@@ -15,6 +16,10 @@ namespace LeisureTimeSystem.Services.Services
 {
     public class CourseService : Service, ICourseService
     {
+
+        public CourseService(ILeisureTimeSystemDbContext context) : base(context)
+        {
+        }
 
         public bool IsAllowedToModifyCourse(int courseId, string userId)
         {
@@ -86,8 +91,7 @@ namespace LeisureTimeSystem.Services.Services
 
             courseFromDB.Discipline = discipline;
 
-
-            this.Context.Entry(courseFromDB).CurrentValues.SetValues(model);
+            this.Context.SetModified(courseFromDB, model);
 
             this.Context.SaveChanges();
         }
@@ -281,5 +285,7 @@ namespace LeisureTimeSystem.Services.Services
 
             return false;
         }
+
+
     }
 }

@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Linq;
 using AutoMapper;
+using LeisureTimeSystem.Data.Interfaces;
 using LeisureTimeSystem.Models.BidningModels.Article;
 using LeisureTimeSystem.Models.EntityModels;
 using LeisureTimeSystem.Models.ViewModels.Article;
@@ -14,6 +15,10 @@ namespace LeisureTimeSystem.Services.Services
 {
     public class ArticleService : Service, IArticleService
     {
+        public ArticleService(ILeisureTimeSystemDbContext context) : base(context)
+        {
+        }
+
         public bool IsAuthorizedToModifyArticle(string userId, int articleId)
         {
             var article = this.Context.Articles.Include(x => x.Author.User).FirstOrDefault(y => y.Id == articleId);
@@ -73,7 +78,7 @@ namespace LeisureTimeSystem.Services.Services
 
             dbArticle.Tags = new HashSet<Tag>(article.Tags);
 
-            this.Context.Entry(dbArticle).CurrentValues.SetValues(article);
+            this.Context.SetModified(dbArticle, article);
 
             this.Context.SaveChanges();
         }

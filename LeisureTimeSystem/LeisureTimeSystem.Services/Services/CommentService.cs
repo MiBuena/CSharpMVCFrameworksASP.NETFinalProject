@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Linq;
 using AutoMapper;
+using LeisureTimeSystem.Data.Interfaces;
 using LeisureTimeSystem.Models.BidningModels.Comment;
 using LeisureTimeSystem.Models.EntityModels;
 using LeisureTimeSystem.Models.ViewModels.Comment;
@@ -14,6 +15,9 @@ namespace LeisureTimeSystem.Services.Services
 {
     public class CommentService : Service, ICommentService
     {
+        public CommentService(ILeisureTimeSystemDbContext context) : base(context)
+        {
+        }
 
         public bool IsAllowedToModifyTheComment(string userId, int commentId)
         {
@@ -84,7 +88,7 @@ namespace LeisureTimeSystem.Services.Services
 
             comment.AuthorOfLastChangeUsername = authorOfLastChange.UserName;
 
-            this.Context.Entry(comment).CurrentValues.SetValues(model);
+            this.Context.SetModified(comment, model);
 
             var article = this.Context.Articles.Find(model.ArticleId);
 
@@ -153,5 +157,7 @@ namespace LeisureTimeSystem.Services.Services
 
             return model;
         }
+
+
     }
 }

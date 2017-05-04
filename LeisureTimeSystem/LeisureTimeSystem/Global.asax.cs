@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using AutoMapper;
+using LeisureTimeSystem.Data;
+using LeisureTimeSystem.Data.Interfaces;
 using LeisureTimeSystem.Models.BidningModels;
 using LeisureTimeSystem.Models.BidningModels.Address;
 using LeisureTimeSystem.Models.BidningModels.Article;
@@ -44,7 +46,7 @@ namespace LeisureTimeSystem
         //{
         //    Exception exception = Server.GetLastError();
         //    Server.ClearError();
-        //    Response.Redirect("/Home/About");
+        //    Response.Redirect("/Shared/Error.cshtml");
         //}
 
         private void RegisterMaps()

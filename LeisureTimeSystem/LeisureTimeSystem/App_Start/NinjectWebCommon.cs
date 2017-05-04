@@ -1,6 +1,8 @@
 using System;
 using System.Web;
 using LeisureTimeSystem;
+using LeisureTimeSystem.Data;
+using LeisureTimeSystem.Data.Interfaces;
 using LeisureTimeSystem.Services.Interfaces;
 using LeisureTimeSystem.Services.Services;
 using Microsoft.Web.Infrastructure.DynamicModuleHelper;
@@ -62,6 +64,8 @@ namespace LeisureTimeSystem
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            kernel.Bind<ILeisureTimeSystemDbContext>().To<LeisureSystemContext>();
+
             kernel.Bind<IAccountService>().To<AccountService>();
 
             kernel.Bind<IAdminService>().To<AdminService>();
@@ -79,6 +83,7 @@ namespace LeisureTimeSystem
             kernel.Bind<IOrganizationService>().To<OrganizationService>();
 
             kernel.Bind<IProfileService>().To<ProfileService>();
+
         }
     }
 }

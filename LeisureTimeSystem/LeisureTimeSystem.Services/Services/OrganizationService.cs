@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using AutoMapper;
+using LeisureTimeSystem.Data.Interfaces;
 using LeisureTimeSystem.Models.BidningModels;
 using LeisureTimeSystem.Models.BidningModels.Address;
 using LeisureTimeSystem.Models.BidningModels.Organization;
@@ -24,6 +25,11 @@ namespace LeisureTimeSystem.Services.Services
 {
     public class OrganizationService : Service, IOrganizationService
     {
+
+        public OrganizationService(ILeisureTimeSystemDbContext context) : base(context)
+        {
+        }
+
         public void RemoveRepresentative(RemoveRepresentativeBindingModel model)
         {
             var representative = this.Context.Students.Find(model.RepresentativeId);
@@ -227,11 +233,11 @@ namespace LeisureTimeSystem.Services.Services
         {
             var organization = this.Context.Organizations.Find(model.Id);
 
-            this.Context.Entry(organization).CurrentValues.SetValues(model);
+            this.Context.SetModified(organization, model);
 
             var address = this.Context.Addresses.Find(organization.Address.Id);
 
-            this.Context.Entry(address).CurrentValues.SetValues(model.Address);
+            this.Context.SetModified(address, model.Address);
 
             this.Context.SaveChanges();
         }

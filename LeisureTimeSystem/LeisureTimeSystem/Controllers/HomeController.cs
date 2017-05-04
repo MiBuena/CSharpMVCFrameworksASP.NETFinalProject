@@ -1,4 +1,6 @@
 ﻿using System.Web.Mvc;
+using LeisureTimeSystem.Data.Mocks;
+using LeisureTimeSystem.Models.EntityModels;
 using LeisureTimeSystem.Models.ViewModels;
 using LeisureTimeSystem.Services.Interfaces;
 using Microsoft.AspNet.Identity;
@@ -16,6 +18,7 @@ namespace LeisureTimeSystem.Controllers
 
         public ActionResult Index()
         {
+
             var homePageViewModel = this.homeService.GetHomePageViewModel();
 
             return View(homePageViewModel);

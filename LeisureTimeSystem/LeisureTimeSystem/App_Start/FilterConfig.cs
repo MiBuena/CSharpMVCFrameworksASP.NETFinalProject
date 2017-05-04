@@ -10,7 +10,11 @@ namespace LeisureTimeSystem
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
 
-            filters.Add(new HandleErrorAttribute());
+            filters.Add(new HandleErrorAttribute()
+            {
+                ExceptionType = typeof(NotAuthorizedException),
+                View = "Error"
+            });
         }
     }
 }

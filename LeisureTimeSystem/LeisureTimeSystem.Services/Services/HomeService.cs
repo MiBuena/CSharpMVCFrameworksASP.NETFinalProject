@@ -2,6 +2,7 @@
 using System.Data.Entity;
 using System.Linq;
 using AutoMapper;
+using LeisureTimeSystem.Data.Interfaces;
 using LeisureTimeSystem.Models.EntityModels;
 using LeisureTimeSystem.Models.ViewModels;
 using LeisureTimeSystem.Models.ViewModels.Article;
@@ -16,6 +17,9 @@ namespace LeisureTimeSystem.Services.Services
 {
     public class HomeService : Service, IHomeService
     {
+        public HomeService(ILeisureTimeSystemDbContext context) : base(context)
+        {
+        }
 
         public HomePageViewModel GetHomePageViewModel()
         {
@@ -63,5 +67,7 @@ namespace LeisureTimeSystem.Services.Services
 
             return model;
         }
+
+
     }
 }

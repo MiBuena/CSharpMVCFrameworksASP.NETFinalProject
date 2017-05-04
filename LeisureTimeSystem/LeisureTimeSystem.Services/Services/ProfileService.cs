@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using LeisureTimeSystem.Data.Interfaces;
 using LeisureTimeSystem.Models.BidningModels;
 using LeisureTimeSystem.Models.BidningModels.Address;
 using LeisureTimeSystem.Models.BidningModels.Profile;
@@ -18,6 +19,10 @@ namespace LeisureTimeSystem.Services.Services
 {
     public class ProfileService : Service, IProfileService
     {
+        public ProfileService(ILeisureTimeSystemDbContext context) : base(context)
+        {
+        }
+
         public DetailsProfileViewModel GetProfileDetailsProfileViewModel(string currentUserId)
         {
             var currentUser = this.Context.Users.Find(currentUserId);
@@ -50,7 +55,7 @@ namespace LeisureTimeSystem.Services.Services
         {
             var student = this.Context.Students.Include(x=>x.Address).Include(x => x.User).FirstOrDefault(y => y.Id == model.Id);
 
-            this.Context.Entry(student).CurrentValues.SetValues(model);
+            this.Context.SetModified(student, model);
 
             student.User.UserName = model.Username;
             student.User.Email = model.Email;
@@ -73,7 +78,7 @@ namespace LeisureTimeSystem.Services.Services
             {
                 var studentAddress = student.Address;
 
-                this.Context.Entry(studentAddress).CurrentValues.SetValues(model.Address);
+                this.Context.SetModified(studentAddress, model.Address);
             }
         }
 
@@ -118,5 +123,7 @@ namespace LeisureTimeSystem.Services.Services
 
             return courseViewModels;
         }
+
+
     }
 }
