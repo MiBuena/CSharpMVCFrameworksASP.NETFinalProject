@@ -101,6 +101,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Controllers\TestCourseController.cs" />
+    <Compile Include="Controllers\TestOrganizationController.cs" />
     <Compile Include="Controllers\TestDisciplineController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
