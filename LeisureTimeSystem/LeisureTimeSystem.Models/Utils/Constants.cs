@@ -45,5 +45,7 @@ namespace LeisureTimeSystem.Models.Utils
 
 
         public const string ModifyArticleExceptionMessage = "You are not allowed to modify this article";
+
+        public const string AlreadyAppliedExceptionMessage = "You have already applied for this course";
     }
 }

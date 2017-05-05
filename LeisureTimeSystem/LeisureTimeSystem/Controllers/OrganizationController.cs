@@ -11,7 +11,6 @@ using Constants = LeisureTimeSystem.Models.Utils.Constants;
 
 namespace LeisureTimeSystem.Controllers
 {
-    [HandleError(ExceptionType = typeof(NotAuthorizedException), View = "Error")]
     public class OrganizationController : Controller
     {
         private IOrganizationService service;

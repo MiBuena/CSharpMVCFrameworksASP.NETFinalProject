@@ -12,6 +12,7 @@ using LeisureTimeSystem.Models.ViewModels;
 using LeisureTimeSystem.Models.ViewModels.Course;
 using LeisureTimeSystem.Services.Interfaces;
 using Microsoft.AspNet.Identity;
+using Constants = LeisureTimeSystem.Models.Utils.Constants;
 
 namespace LeisureTimeSystem.Services.Services
 {
@@ -249,7 +250,7 @@ namespace LeisureTimeSystem.Services.Services
 
             if (this.Context.CoursesApplications.Any(x => x.StudentId == student.Id && x.CourseId == courseId))
             {
-                throw new ArgumentException("You have already applied for this course");
+                throw new ArgumentException(Constants.AlreadyAppliedExceptionMessage);
             }
                 ApplyCourseViewModel applyCourseViewModel = Mapper.Map<Course, ApplyCourseViewModel>(course);
 
