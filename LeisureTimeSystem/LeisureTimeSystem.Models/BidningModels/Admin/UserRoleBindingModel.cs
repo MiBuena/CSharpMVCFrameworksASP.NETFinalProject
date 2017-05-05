@@ -12,7 +12,6 @@ namespace LeisureTimeSystem.Models.BidningModels.Admin
         [Required]
         public string Id { get; set; }
 
-        [Required]
         public string NewRoleName { get; set; }
     }
 }

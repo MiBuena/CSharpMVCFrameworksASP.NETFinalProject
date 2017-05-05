@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using AutoMapper;
@@ -246,7 +247,11 @@ namespace LeisureTimeSystem.Services.Services
 
             var student = this.Context.Students.FirstOrDefault(x => x.UserId == userId);
 
-            ApplyCourseViewModel applyCourseViewModel = Mapper.Map<Course, ApplyCourseViewModel>(course);
+            if (this.Context.CoursesApplications.Any(x => x.StudentId == student.Id && x.CourseId == courseId))
+            {
+                throw new ArgumentException("You have already applied for this course");
+            }
+                ApplyCourseViewModel applyCourseViewModel = Mapper.Map<Course, ApplyCourseViewModel>(course);
 
             ApplyStudentViewModel applyStudentViewModel = Mapper.Map<Student, ApplyStudentViewModel>(student);
 
