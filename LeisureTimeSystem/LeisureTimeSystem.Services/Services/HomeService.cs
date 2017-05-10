@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Security.Principal;
 using AutoMapper;
 using LeisureTimeSystem.Data.Interfaces;
 using LeisureTimeSystem.Models.EntityModels;
@@ -46,7 +47,7 @@ namespace LeisureTimeSystem.Services.Services
             return model;
         }
 
-        public NavbarViewModel GetNavbarViewModel(string currentUserId)
+        public NavbarViewModel GetNavbarViewModel(string currentUserId, IPrincipal user)
         {
             ICollection<Category> mainCategories = this.Context.Categories.Include(x => x.Subcategories).Where(x => x.ParentCategory == null).ToList();
 
@@ -56,7 +57,7 @@ namespace LeisureTimeSystem.Services.Services
 
             if (currentUserId != null)
             {
-                isAdministrator = this.UserManager.IsInRole(currentUserId, "Administrator");
+                isAdministrator = user.IsInRole("Administrator");
             }
 
             NavbarViewModel model = new NavbarViewModel

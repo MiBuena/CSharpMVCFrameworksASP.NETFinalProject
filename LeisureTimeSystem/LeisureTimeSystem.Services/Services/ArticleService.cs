@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.Validation;
 using System.Linq;
+using System.Security.Principal;
+using System.Web.Security;
 using AutoMapper;
 using LeisureTimeSystem.Data.Interfaces;
 using LeisureTimeSystem.Models.BidningModels.Article;
 using LeisureTimeSystem.Models.EntityModels;
+using LeisureTimeSystem.Models.Interfaces;
 using LeisureTimeSystem.Models.ViewModels.Article;
 using LeisureTimeSystem.Services.Interfaces;
 using Microsoft.AspNet.Identity;
@@ -19,11 +21,11 @@ namespace LeisureTimeSystem.Services.Services
         {
         }
 
-        public bool IsAuthorizedToModifyArticle(string userId, int articleId)
+        public bool IsAuthorizedToModifyArticle(string userId, int articleId, IPrincipal user)
         {
             var article = this.Context.Articles.Include(x => x.Author.User).FirstOrDefault(y => y.Id == articleId);
 
-            var isAdministrator = this.UserManager.IsInRole(userId, "Administrator");
+            var isAdministrator = user.IsInRole("Administrator");
 
             var isArticleAuthor = article.Author.UserId == userId;
 
@@ -124,7 +126,7 @@ namespace LeisureTimeSystem.Services.Services
         }
 
 
-        public ICollection<AllArticlesViewModel> GetAllArticlesViewModels(string currentUserId)
+        public ICollection<AllArticlesViewModel> GetAllArticlesViewModels(string currentUserId, IPrincipal user)
         {
             ICollection<AllArticlesViewModel> collection = new HashSet<AllArticlesViewModel>();
 
@@ -134,7 +136,7 @@ namespace LeisureTimeSystem.Services.Services
             {
                 var articleViewModel = Mapper.Map<Article, AllArticlesViewModel>(article);
 
-                var isCurrentUserAuthorizedToModify = IsAuthorizedToModify(currentUserId, article);
+                var isCurrentUserAuthorizedToModify = IsAuthorizedToModify(currentUserId, article, user);
 
                 articleViewModel.IsAllowedToModify = isCurrentUserAuthorizedToModify;
 
@@ -144,11 +146,11 @@ namespace LeisureTimeSystem.Services.Services
             return collection;
         }
 
-        public bool IsAuthorizedToModify(string currentUserId, Article article)
+        public bool IsAuthorizedToModify(string currentUserId, Article article, IPrincipal user)
         {
             var isArticleAuthor = this.IsArticleAuthor(currentUserId, article);
 
-            bool isAdministrator = this.UserManager.IsInRole(currentUserId, "Administrator");
+            bool isAdministrator = user.IsInRole("Administrator");
 
             return isArticleAuthor || isAdministrator;
         }

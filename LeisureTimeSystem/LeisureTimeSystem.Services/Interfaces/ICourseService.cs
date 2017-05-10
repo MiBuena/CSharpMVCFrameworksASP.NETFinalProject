@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Security.Principal;
 using LeisureTimeSystem.Models.BidningModels;
 using LeisureTimeSystem.Models.BidningModels.Applications;
 using LeisureTimeSystem.Models.BidningModels.Course;
@@ -8,9 +9,9 @@ namespace LeisureTimeSystem.Services.Interfaces
 {
     public interface ICourseService
     {
-        bool IsAllowedToModifyCourse(int courseId, string userId);
-        bool IsAllowedToAddAcourse(string userId, int organizationId);
-        bool IsCurrentUserAdministrator(string userId);
+        bool IsAllowedToModifyCourse(int courseId, string userId, IPrincipal user);
+        bool IsAllowedToAddAcourse(string userId, int organizationId, IPrincipal user);
+        bool IsCurrentUserAdministrator(string userId, IPrincipal user);
         bool IsOrganizationRepresentative(string userId, int organizationId);
         void DeleteCourse(DeleteCourseBindingModel model);
         DeleteCourseViewModel GetDeleteCourseViewModel(int courseId);

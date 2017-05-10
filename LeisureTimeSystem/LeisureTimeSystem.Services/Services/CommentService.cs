@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.Validation;
 using System.Linq;
+using System.Security.Principal;
 using AutoMapper;
 using LeisureTimeSystem.Data.Interfaces;
 using LeisureTimeSystem.Models.BidningModels.Comment;
@@ -19,18 +19,18 @@ namespace LeisureTimeSystem.Services.Services
         {
         }
 
-        public bool IsAllowedToModifyTheComment(string userId, int commentId)
+        public bool IsAllowedToModifyTheComment(string userId, int commentId, IPrincipal user)
         {
             bool isAuthorOfTheComment = this.IsAuthorOfTheComment(userId, commentId);
 
-            bool isUserAdministrator = this.IsCurrentUserAdministrator(userId);
+            bool isUserAdministrator = this.IsCurrentUserAdministrator(userId, user);
 
             return isAuthorOfTheComment || isUserAdministrator;
         }
 
-        public bool IsCurrentUserAdministrator(string userId)
+        public bool IsCurrentUserAdministrator(string userId, IPrincipal user)
         {
-            if (this.UserManager.IsInRole(userId, "Administrator"))
+            if (user.IsInRole("Administrator"))
             {
                 return true;
             }
@@ -110,7 +110,7 @@ namespace LeisureTimeSystem.Services.Services
             return editCommentViewModel;
         }
 
-        public IEnumerable<ArticleCommentViewModel> GetAllArticleCommentViewModels(int articleId, string currentUserId)
+        public IEnumerable<ArticleCommentViewModel> GetAllArticleCommentViewModels(int articleId, string currentUserId, IPrincipal user)
         {
             var comments = this.Context.Comments.Where(x => x.Article.Id == articleId).OrderByDescending(y => y.Date);
 
@@ -118,7 +118,7 @@ namespace LeisureTimeSystem.Services.Services
 
             foreach (var commentViewModel in commentsViewModels)
             {
-                bool isAllowedToModify = this.IsAllowedToModifyTheComment(currentUserId, commentViewModel.Id);
+                bool isAllowedToModify = this.IsAllowedToModifyTheComment(currentUserId, commentViewModel.Id, user);
 
                 commentViewModel.IsAllowedToModify = isAllowedToModify;
             }

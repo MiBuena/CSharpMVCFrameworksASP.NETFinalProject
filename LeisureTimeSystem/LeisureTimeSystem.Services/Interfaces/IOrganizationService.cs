@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Security.Principal;
 using System.Web;
 using LeisureTimeSystem.Models.BidningModels;
 using LeisureTimeSystem.Models.BidningModels.Organization;
@@ -29,7 +30,7 @@ namespace LeisureTimeSystem.Services.Interfaces
         void CreateOrganization(AddOrganizationBindingModel model);
         ICollection<AddOrganizationDisciplineViewModel> GetDisciplinesViewModels();
         AllDisciplineOrganizationsViewModel GetAllOrganizationsViewModels(int disciplineId);
-        DetailsOrganizationViewModel GetDetailsOrganizationViewModel(int organizationId, string userId);
-        bool IsAuthorizedToModifyOrganization(string userId, int organizationId);
+        DetailsOrganizationViewModel GetDetailsOrganizationViewModel(IPrincipal user, int organizationId, string userId);
+        bool IsAuthorizedToModifyOrganization(IPrincipal principal, string userId, int organizationId);
     }
 }

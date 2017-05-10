@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Web.Security;
 using AutoMapper;
 using LeisureTimeSystem.Data.Interfaces;
 using LeisureTimeSystem.Models.BidningModels.Admin;
 using LeisureTimeSystem.Models.EntityModels;
+using LeisureTimeSystem.Models.Interfaces;
 using LeisureTimeSystem.Models.ViewModels.Admin;
 using LeisureTimeSystem.Services.Interfaces;
 using Microsoft.AspNet.Identity;
@@ -17,21 +19,21 @@ namespace LeisureTimeSystem.Services.Services
         {
         }
 
-        public void RemoveRole(string roleName, string userId)
+        public void RemoveRole(string roleName, string userId, IApplicationUserManager userManager)
         {
-            this.UserManager.RemoveFromRole(userId, roleName);
+            userManager.RemoveFromRole(userId, roleName);
 
             this.Context.SaveChanges();
         }
 
-        public void SetRoles(SetRolesBindingModel setRolesBindingModel)
+        public void SetRoles(SetRolesBindingModel setRolesBindingModel, IApplicationUserManager userManager)
         {
 
             foreach (var combination in setRolesBindingModel.PersonRoles)
             {
                 if (combination.NewRoleName != null)
                 {
-                    this.UserManager.AddToRole(combination.Id, combination.NewRoleName);
+                    userManager.AddToRole(combination.Id, combination.NewRoleName);
                 }
             }
 

@@ -1,15 +1,23 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
+using System.Security.Principal;
+using System.Web;
+using System.Web.Mvc;
 using AutoMapper;
+using Fasterflect;
 using LeisureTimeSystem.Controllers;
 using LeisureTimeSystem.Data.Interfaces;
 using LeisureTimeSystem.Data.Mocks;
 using LeisureTimeSystem.Models.BidningModels.Organization;
 using LeisureTimeSystem.Models.EntityModels;
 using LeisureTimeSystem.Models.ViewModels.Organization;
+using LeisureTimeSystem.Models.ViewModels.Student;
 using LeisureTimeSystem.Services.Interfaces;
 using LeisureTimeSystem.Services.Services;
+using Microsoft.AspNet.Identity;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using TestStack.FluentMVCTesting;
 
 
@@ -37,6 +45,11 @@ namespace LeisureTimeSystem.Tests.Controllers
                 expression.CreateMap<AddOrganizationBindingModel, Organization>()
                                                   .ForMember(organization => organization.Address,
       m => m.MapFrom(organization => organization.Address));
+
+
+                expression.CreateMap<Student, RepresentativesStudentViewModel>()
+                 .ForMember(student => student.Username,
+        m => m.MapFrom(student => student.User.UserName));
 
                 expression.CreateMap<AddOrganizationBindingModel, AddOrganizationViewModel>();
 
@@ -94,12 +107,14 @@ namespace LeisureTimeSystem.Tests.Controllers
 
             this.firstOrganization = new Organization()
             {
+                Id = 1,
                 Name = "Athletic",
                 Representatives = new HashSet<Student>()
             };
 
             this.secondOrganization = new Organization()
             {
+                Id = 2,
                 Name = "Champion",
                 Representatives = new HashSet<Student>()
             };
@@ -108,14 +123,16 @@ namespace LeisureTimeSystem.Tests.Controllers
             {
                 Id = 1,
                 Name = "FirstStudent",
-                OrganizationsTheyRepresent = new HashSet<Organization>()
+                OrganizationsTheyRepresent = new HashSet<Organization>(),
+                UserId = "1"
             };
 
             this.secondStudent = new Student()
             {
                 Id = 2,
                 Name = "SecondStudent",
-                OrganizationsTheyRepresent = new HashSet<Organization>()
+                OrganizationsTheyRepresent = new HashSet<Organization>(),
+                UserId = "2"
             };
 
             this.discipline = new Discipline()
@@ -148,6 +165,8 @@ namespace LeisureTimeSystem.Tests.Controllers
 
             this.firstOrganization.Disciplines.Add(this.discipline);
 
+            this.firstOrganization.Representatives.Add(this.firstStudent);
+
 
             this.secondOrganization.Disciplines = new HashSet<Discipline>();
 
@@ -157,14 +176,14 @@ namespace LeisureTimeSystem.Tests.Controllers
         }
 
         [TestMethod]
-        public void AddRepresentatives_ShouldPass()
+        public void All_ViewModel_ShouldPass()
         {
             _controller.WithCallTo(c => c.All(1)).ShouldRenderDefaultView()
 .WithModel<AllDisciplineOrganizationsViewModel>(m => m.OrganizationViewModels!=null);
         }
 
         [TestMethod]
-        public void All_ShouldPass()
+        public void All_OrganizationsCount_ShouldPass()
         {
             _controller.WithCallTo(c => c.All(1)).ShouldRenderDefaultView()
 .WithModel<AllDisciplineOrganizationsViewModel>(m => m.OrganizationViewModels.Count() == 2);
@@ -179,6 +198,46 @@ namespace LeisureTimeSystem.Tests.Controllers
 
         }
 
+        [TestMethod]
+        public void CreateOrganization_ShouldPass()
+        {
+            _controller.WithCallTo(c => c.Create()).ShouldRenderDefaultView();
+        }
+
+
+        [TestMethod]
+        public void AddRepresentative_ShouldReturnViewModel()
+        {
+
+            var identity = new GenericIdentity("1", "");
+
+            var idIdentifierClaim = new Claim(ClaimTypes.NameIdentifier, "1");
+
+            identity.AddClaim(idIdentifierClaim);
+
+            var mockPrincipal = new Mock<IPrincipal>();
+
+            mockPrincipal.Setup(x => x.Identity).Returns(identity);
+
+            var controllerContext = new Mock<ControllerContext>();
+
+            mockPrincipal.Setup(p => p.IsInRole("Administrator")).Returns(true);
+
+
+            mockPrincipal.SetupGet(x => x.Identity).Returns(identity);
+
+
+            controllerContext.SetupGet(x => x.HttpContext.User).Returns(mockPrincipal.Object);
+
+
+            this._controller.ControllerContext = controllerContext.Object;
+
+
+            _controller.WithCallTo(c => c.AddRepresentative(1)).ShouldRenderPartialView("AddRepresentative")
+.WithModel<AddRepresentativeViewModel>();
+
+
+        }
 
     }
 }

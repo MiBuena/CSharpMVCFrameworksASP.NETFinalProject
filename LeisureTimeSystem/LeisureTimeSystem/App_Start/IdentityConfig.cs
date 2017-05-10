@@ -13,6 +13,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using LeisureTimeSystem.Models;
 using LeisureTimeSystem.Models.EntityModels;
+using LeisureTimeSystem.Models.Interfaces;
 
 namespace LeisureTimeSystem
 {
@@ -35,7 +36,7 @@ namespace LeisureTimeSystem
     }
 
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
-    public class ApplicationUserManager : UserManager<ApplicationUser>
+    public class ApplicationUserManager : UserManager<ApplicationUser>, IApplicationUserManager
     {
         public ApplicationUserManager(IUserStore<ApplicationUser> store)
             : base(store)
@@ -87,6 +88,16 @@ namespace LeisureTimeSystem
                     new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"));
             }
             return manager;
+        }
+
+        public IdentityResult RemoveFromRole(string userId, string userRole)
+        {
+            return UserManagerExtensions.RemoveFromRole(this, userId, userRole);
+        }
+
+        public IdentityResult AddToRole(string userId, string userRole)
+        {
+            return this.AddToRoles(userId, userRole);
         }
     }
 

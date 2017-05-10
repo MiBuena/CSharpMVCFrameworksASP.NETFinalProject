@@ -10,7 +10,9 @@ using LeisureTimeSystem.Models.EntityModels;
 using LeisureTimeSystem.Models.ViewModels;
 using LeisureTimeSystem.Services.Interfaces;
 using LeisureTimeSystem.Services.Services;
+using Microsoft.AspNet.Identity;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using TestStack.FluentMVCTesting;
 
 
@@ -71,12 +73,9 @@ namespace LeisureTimeSystem.Tests.Controllers
                 this._context.Disciplines.Add(discipline);
             }
 
-           //HttpConfiguration config = new HttpConfiguration();
-
             this._service = new DisciplineService(this._context);
 
             this._controller = new DisciplineController(this._service);
-            //this._controller.Configuration = config;
         }
 
         [TestMethod]
@@ -104,6 +103,8 @@ namespace LeisureTimeSystem.Tests.Controllers
 .WithModel<IEnumerable<DisciplineViewModel>>(m => m.LastOrDefault().Name == "Football");
 
         }
+
+
 
     }
 }

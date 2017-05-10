@@ -15,17 +15,11 @@ namespace LeisureTimeSystem.Services
     {
         private ILeisureTimeSystemDbContext context;
 
-        private UserManager<ApplicationUser> userManager;
-
         protected Service(ILeisureTimeSystemDbContext context)
         {
             this.context = context;
-            this.userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new LeisureSystemContext()));
-
         }
 
         protected ILeisureTimeSystemDbContext Context => this.context;
-
-        protected UserManager<ApplicationUser> UserManager => this.userManager;
     }
 }

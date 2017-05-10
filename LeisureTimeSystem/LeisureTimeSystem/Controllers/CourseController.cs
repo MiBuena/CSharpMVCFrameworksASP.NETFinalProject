@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Mvc;
 using AutoMapper;
 using LeisureTimeSystem.Attributes;
@@ -36,7 +35,7 @@ namespace LeisureTimeSystem.Controllers
         {
             string currentUserId = User.Identity.GetUserId();
 
-            bool isAllowedToAddAcourse = this.service.IsAllowedToAddAcourse(currentUserId, organizationId);
+            bool isAllowedToAddAcourse = this.service.IsAllowedToAddAcourse(currentUserId, organizationId, this.User);
 
             if (!isAllowedToAddAcourse)
             {
@@ -222,7 +221,7 @@ namespace LeisureTimeSystem.Controllers
         {
             string currentUserId = User.Identity.GetUserId();
 
-            bool isAllowedToModifyCourse = this.service.IsAllowedToModifyCourse(courseId, currentUserId);
+            bool isAllowedToModifyCourse = this.service.IsAllowedToModifyCourse(courseId, currentUserId, this.User);
 
             if (!isAllowedToModifyCourse)
             {

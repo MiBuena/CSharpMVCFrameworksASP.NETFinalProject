@@ -123,7 +123,7 @@ namespace LeisureTimeSystem.Controllers
         {
             string currentUserId = User.Identity.GetUserId();
 
-            var commentsViewModels = this.service.GetAllArticleCommentViewModels(articleId, currentUserId);
+            var commentsViewModels = this.service.GetAllArticleCommentViewModels(articleId, currentUserId, this.User);
 
             return this.PartialView(commentsViewModels);
         }
@@ -132,7 +132,7 @@ namespace LeisureTimeSystem.Controllers
         {
             string currentUserId = User.Identity.GetUserId();
 
-            var isAllowedToModifyTheComment = this.service.IsAllowedToModifyTheComment(currentUserId, commentId);
+            var isAllowedToModifyTheComment = this.service.IsAllowedToModifyTheComment(currentUserId, commentId, this.User);
 
             if (!isAllowedToModifyTheComment)
             {

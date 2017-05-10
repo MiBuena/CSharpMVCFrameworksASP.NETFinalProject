@@ -7,6 +7,7 @@ using LeisureTimeSystem.Models.BidningModels.Organization;
 using LeisureTimeSystem.Models.ViewModels.Organization;
 using LeisureTimeSystem.Services.Interfaces;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using Constants = LeisureTimeSystem.Models.Utils.Constants;
 
 namespace LeisureTimeSystem.Controllers
@@ -15,10 +16,13 @@ namespace LeisureTimeSystem.Controllers
     {
         private IOrganizationService service;
 
+
         public OrganizationController(IOrganizationService service)
         {
             this.service = service;
         }
+
+
 
         [LeisureTimeAuthorize]
         public ActionResult AddRepresentative(int organizationId)
@@ -122,7 +126,7 @@ namespace LeisureTimeSystem.Controllers
 
             string currentUserId = User.Identity.GetUserId();
 
-            var organizationViewModel = this.service.GetDetailsOrganizationViewModel(organizationId, currentUserId);
+            var organizationViewModel = this.service.GetDetailsOrganizationViewModel(this.User, organizationId, currentUserId);
 
             return View(organizationViewModel);
         }
@@ -150,7 +154,7 @@ namespace LeisureTimeSystem.Controllers
         {
             string currentUserId = User.Identity.GetUserId();
 
-            var organizationViewModel = this.service.GetDetailsOrganizationViewModel(organizationId, currentUserId);
+            var organizationViewModel = this.service.GetDetailsOrganizationViewModel(this.User, organizationId, currentUserId);
 
             return View(organizationViewModel);
         }
@@ -316,14 +320,22 @@ namespace LeisureTimeSystem.Controllers
 
         private void CheckIfUserIsAllowedToPerformThisAction(int organizationId, string message)
         {
-            string currentUserId = User.Identity.GetUserId();
 
-            var isAuthorizedToModify = this.service.IsAuthorizedToModifyOrganization(currentUserId, organizationId);
+            var currentUserId = this.GetIdString();
+
+            var isAuthorizedToModify = this.service.IsAuthorizedToModifyOrganization(this.User, currentUserId, organizationId);
 
             if (!isAuthorizedToModify)
             {
                 throw new NotAuthorizedException(message);
             }
+        }
+
+        public string GetIdString()
+        {
+            string currentUserId = User.Identity.GetUserId();
+
+            return currentUserId;
         }
     }
 }

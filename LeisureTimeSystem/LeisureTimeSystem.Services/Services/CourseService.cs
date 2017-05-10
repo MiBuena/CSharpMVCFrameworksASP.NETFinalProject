@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Security.Principal;
 using AutoMapper;
 using LeisureTimeSystem.Data.Interfaces;
-using LeisureTimeSystem.Models.BidningModels;
 using LeisureTimeSystem.Models.BidningModels.Applications;
 using LeisureTimeSystem.Models.BidningModels.Course;
 using LeisureTimeSystem.Models.EntityModels;
@@ -23,30 +23,30 @@ namespace LeisureTimeSystem.Services.Services
         {
         }
 
-        public bool IsAllowedToModifyCourse(int courseId, string userId)
+        public bool IsAllowedToModifyCourse(int courseId, string userId, IPrincipal user)
         {
             var organization = this.Context.Organizations.FirstOrDefault(x => x.Courses.Any(y => y.Id == courseId));
 
             bool isOrganizationRepresentative = this.IsOrganizationRepresentative(userId, organization.Id);
 
-            bool isAdministrator = this.IsCurrentUserAdministrator(userId);
+            bool isAdministrator = this.IsCurrentUserAdministrator(userId, user);
 
             return isAdministrator || isOrganizationRepresentative;
         }
 
 
-        public bool IsAllowedToAddAcourse(string userId, int organizationId)
+        public bool IsAllowedToAddAcourse(string userId, int organizationId, IPrincipal user)
         {
-            bool isAdministrator = this.IsCurrentUserAdministrator(userId);
+            bool isAdministrator = this.IsCurrentUserAdministrator(userId, user);
 
             bool isOrganizationRepresentative = this.IsOrganizationRepresentative(userId, organizationId);
 
             return isAdministrator || isOrganizationRepresentative;
         }
 
-        public bool IsCurrentUserAdministrator(string userId)
+        public bool IsCurrentUserAdministrator(string userId, IPrincipal user)
         {
-            if (this.UserManager.IsInRole(userId, "Administrator"))
+            if (user.IsInRole("Administrator"))
             {
                 return true;
             }

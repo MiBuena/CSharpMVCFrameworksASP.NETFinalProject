@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Linq;
+using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
@@ -60,7 +61,7 @@ namespace LeisureTimeSystem.Areas.Blog.Controllers
         {
             string currentUserId = User.Identity.GetUserId();
 
-            var allArticlesViewModels = this.service.GetAllArticlesViewModels(currentUserId);
+            var allArticlesViewModels = this.service.GetAllArticlesViewModels(currentUserId, this.User);
 
             return View(allArticlesViewModels);
         }
@@ -142,7 +143,7 @@ namespace LeisureTimeSystem.Areas.Blog.Controllers
         {
             string currentUserId = User.Identity.GetUserId();
 
-            var isAuthorizedToModify = this.service.IsAuthorizedToModifyArticle(currentUserId, articleId);
+            var isAuthorizedToModify = this.service.IsAuthorizedToModifyArticle(currentUserId, articleId, this.User);
 
             if (!isAuthorizedToModify)
             {

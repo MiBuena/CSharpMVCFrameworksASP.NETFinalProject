@@ -1,22 +1,15 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Data.Entity;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Security.Principal;
 using System.Web;
 using AutoMapper;
 using LeisureTimeSystem.Data.Interfaces;
-using LeisureTimeSystem.Models.BidningModels;
 using LeisureTimeSystem.Models.BidningModels.Address;
 using LeisureTimeSystem.Models.BidningModels.Organization;
 using LeisureTimeSystem.Models.EntityModels;
-using LeisureTimeSystem.Models.ViewModels;
 using LeisureTimeSystem.Models.ViewModels.Course;
 using LeisureTimeSystem.Models.ViewModels.Organization;
-using LeisureTimeSystem.Models.ViewModels.Profile;
 using LeisureTimeSystem.Models.ViewModels.Student;
 using LeisureTimeSystem.Services.Interfaces;
 using Microsoft.AspNet.Identity;
@@ -326,24 +319,24 @@ namespace LeisureTimeSystem.Services.Services
 
 
 
-        public DetailsOrganizationViewModel GetDetailsOrganizationViewModel(int organizationId, string userId)
+        public DetailsOrganizationViewModel GetDetailsOrganizationViewModel(IPrincipal user, int organizationId, string userId)
         {
             var organization = this.Context.Organizations.Find(organizationId);
 
             var organizationVm = Mapper.Map<Organization, DetailsOrganizationViewModel>(organization);
 
-            var isAuthorizedToModify = IsAuthorizedToModifyOrganization(userId, organizationId);
+            var isAuthorizedToModify = IsAuthorizedToModifyOrganization(user, userId, organizationId);
 
             organizationVm.IsAuthorizedToModify = isAuthorizedToModify;
 
             return organizationVm;
         }
 
-        public bool IsAuthorizedToModifyOrganization(string userId, int organizationId)
+        public bool IsAuthorizedToModifyOrganization(IPrincipal user, string userId, int organizationId)
         {
             var organization = this.Context.Organizations.Find(organizationId);
 
-            var isAdministrator = this.UserManager.IsInRole(userId, "Administrator");
+            var isAdministrator = user.IsInRole("Administrator");
 
             var isOrganizationRepresentative = organization.Representatives.Any(x => x.UserId == userId);
 

@@ -1,6 +1,4 @@
 ﻿using System.Web.Mvc;
-using LeisureTimeSystem.Data.Mocks;
-using LeisureTimeSystem.Models.EntityModels;
 using LeisureTimeSystem.Models.ViewModels;
 using LeisureTimeSystem.Services.Interfaces;
 using Microsoft.AspNet.Identity;
@@ -40,10 +38,9 @@ namespace LeisureTimeSystem.Controllers
 
         public ActionResult RenderNavbar()
         {
-
             string currentUserId = User.Identity.GetUserId();
 
-            NavbarViewModel model = this.homeService.GetNavbarViewModel(currentUserId);
+            NavbarViewModel model = this.homeService.GetNavbarViewModel(currentUserId, this.User);
 
             return this.PartialView(model);
         }
